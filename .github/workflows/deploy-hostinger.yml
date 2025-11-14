@@ -1,0 +1,73 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install Frontend Dependencies
+      run: |
+        npm ci
+    
+    - name: Install Backend Dependencies
+      run: |
+        cd backend
+        npm ci
+    
+    - name: Build Frontend
+      run: |
+        npm run build
+      env:
+        NODE_ENV: production
+    
+    - name: Deploy to Hostinger via SFTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.HOSTINGER_FTP_HOST }}
+        username: ${{ secrets.HOSTINGER_FTP_USER }}
+        password: ${{ secrets.HOSTINGER_FTP_PASS }}
+        local-dir: ./
+        server-dir: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.env
+          **/.env.*
+          **/dist/**
+          **/.vscode/**
+          **/.idea/**
+          **/*.log
+          **/backend/node_modules/**
+          **/backend/whatsapp-session/**
+    
+    - name: Build on Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOSTINGER_SSH_HOST }}
+        username: ${{ secrets.HOSTINGER_SSH_USER }}
+        key: ${{ secrets.HOSTINGER_SSH_KEY }}
+        script: |
+          cd ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+          npm install --production
+          cd backend
+          npm install --production
+          cd ..
+          npm run build
+          pm2 restart cleaning-service || node backend/server.js
+

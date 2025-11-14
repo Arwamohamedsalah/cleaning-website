@@ -1,0 +1,17 @@
+{
+  "hostinger": {
+    "host": "your-hostinger-host.com",
+    "username": "your-username",
+    "password": "your-password",
+    "deployPath": "/home/username/public_html",
+    "sshKey": "/path/to/ssh/key"
+  },
+  "notes": {
+    "host": "Your Hostinger FTP/SFTP host (usually ftp.yourdomain.com or IP address)",
+    "username": "Your Hostinger FTP username",
+    "password": "Your Hostinger FTP password",
+    "deployPath": "Path where files should be deployed (usually /home/username/public_html or /home/username/domains/yourdomain.com/public_html)",
+    "sshKey": "Path to SSH private key (optional, for SSH deployment)"
+  }
+}
+

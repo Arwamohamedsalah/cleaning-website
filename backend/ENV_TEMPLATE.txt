@@ -1,3 +1,10 @@
+# ============================================
+# Environment Variables Template
+# ============================================
+# للـ Development: استخدم هذه القيم
+# للـ Production على Hostinger: انظر إلى HOSTINGER_ENV.txt
+# ============================================
+
 # MongoDB Atlas Connection String
 # احصل على الرابط من MongoDB Atlas > Connect > Connect your application
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cleaning-service?retryWrites=true&w=majority

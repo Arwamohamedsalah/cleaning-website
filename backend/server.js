@@ -1,12 +1,18 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/database.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { initializeWhatsApp } from './services/whatsappClient.js';
 
 // Load env vars
 dotenv.config();
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Connect to database
 connectDB();
@@ -16,11 +22,31 @@ initializeWhatsApp();
 
 const app = express();
 
-// Middleware
+// CORS Configuration for Production
+const allowedOrigins = [
+  'http://ardbk.com',
+  'https://ardbk.com',
+  'http://www.ardbk.com',
+  'https://www.ardbk.com',
+  process.env.FRONTEND_URL,
+  'http://localhost:3000',
+  'http://localhost:5173',
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
+
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
@@ -61,12 +87,37 @@ app.get('/api/settings/test', (req, res) => {
   res.json({ success: true, message: 'Settings route is working' });
 });
 
+// Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+  // Path to the frontend build directory
+  const frontendPath = path.join(__dirname, '..', 'dist');
+  
+  // Serve static files
+  app.use(express.static(frontendPath));
+  
+  // Handle React routing - return all requests to React app
+  app.get('*', (req, res) => {
+    // Don't serve index.html for API routes
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ success: false, message: 'API endpoint not found' });
+    }
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  });
+}
+
 // Error handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3001;
+// Port configuration for Hostinger
+// Hostinger typically uses port 3000 for Node.js apps
+// Check your Hostinger Node.js app settings for the correct port
+const PORT = process.env.PORT || (process.env.NODE_ENV === 'production' ? 3000 : 3001);
 
 app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  if (process.env.NODE_ENV === 'production') {
+    console.log(`Frontend served from: ${path.join(__dirname, '..', 'dist')}`);
+    console.log(`Site URL: ${process.env.FRONTEND_URL || 'http://ardbk.com'}`);
+  }
 });
 
