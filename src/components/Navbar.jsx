@@ -41,6 +41,41 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  // Function to toggle mobile menu
+  const toggleMobileMenu = () => {
+    console.log('🍔 Toggling mobile menu. Current state:', mobileMenuOpen);
+    setMobileMenuOpen(prev => {
+      const newState = !prev;
+      console.log('🔄 Menu state changed:', prev, '->', newState);
+      return newState;
+    });
+  };
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    if (mobileMenuOpen && isMobile) {
+      const handleClickOutside = (e) => {
+        const menuContent = document.getElementById('mobile-menu-content');
+        const hamburgerButton = document.getElementById('hamburger-button');
+        
+        if (menuContent && hamburgerButton) {
+          if (!menuContent.contains(e.target) && !hamburgerButton.contains(e.target)) {
+            console.log('🖱️ Clicked outside menu, closing...');
+            setMobileMenuOpen(false);
+          }
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('touchstart', handleClickOutside);
+      };
+    }
+  }, [mobileMenuOpen, isMobile]);
+
   return (
     <nav className={`glass-navbar ${scrolled ? 'scrolled' : ''}`} style={{
       position: 'fixed',
@@ -130,16 +165,10 @@ const Navbar = () => {
           <button 
             type="button"
             id="hamburger-button"
-            onClick={() => {
-              console.log('🍔 Hamburger button clicked! Current state:', mobileMenuOpen);
-              setMobileMenuOpen(!mobileMenuOpen);
-              console.log('🔄 Menu should be:', !mobileMenuOpen);
-            }}
+            onClick={toggleMobileMenu}
             onTouchEnd={(e) => {
               e.preventDefault();
-              console.log('👆 Hamburger button touched! Current state:', mobileMenuOpen);
-              setMobileMenuOpen(!mobileMenuOpen);
-              console.log('🔄 Menu should be (touch):', !mobileMenuOpen);
+              toggleMobileMenu();
             }}
             style={{ 
               display: 'flex',
