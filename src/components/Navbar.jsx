@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import GlassButton from './GlassButton';
 import '../styles/glassmorphism.css';
 import '../styles/dashboard.css';
+import '../styles/mobile-menu.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
