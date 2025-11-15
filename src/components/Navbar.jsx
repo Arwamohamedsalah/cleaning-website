@@ -24,6 +24,7 @@ const Navbar = () => {
   useEffect(() => {
     const checkMobile = () => {
       const isMobileView = window.innerWidth <= 768;
+      console.log('📱 Checking mobile view:', { width: window.innerWidth, isMobileView, currentIsMobile: isMobile });
       setIsMobile(isMobileView);
       if (!isMobileView && mobileMenuOpen) setMobileMenuOpen(false);
     };
@@ -35,7 +36,7 @@ const Navbar = () => {
       window.removeEventListener('resize', resizeListener);
       window.removeEventListener('orientationchange', checkMobile);
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isMobile]);
 
   const isActive = (path) => location.pathname === path;
 
@@ -127,10 +128,26 @@ const Navbar = () => {
         {isMobile && (
           <button 
             type="button"
+            id="hamburger-button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(!mobileMenuOpen);
+              console.log('🍔 Hamburger clicked!', { currentState: mobileMenuOpen });
+              setMobileMenuOpen(prev => {
+                const newState = !prev;
+                console.log('🔄 Menu state changed:', prev, '->', newState);
+                return newState;
+              });
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('👆 Hamburger touched!', { currentState: mobileMenuOpen });
+              setMobileMenuOpen(prev => {
+                const newState = !prev;
+                console.log('🔄 Menu state changed (touch):', prev, '->', newState);
+                return newState;
+              });
             }}
             style={{ 
               display: 'flex',
@@ -146,6 +163,8 @@ const Navbar = () => {
               zIndex: 1003,
               fontSize: '20px',
               transition: 'all 0.3s',
+              position: 'relative',
+              pointerEvents: 'auto',
             }}
           >
             {mobileMenuOpen ? '✕' : '☰'}
@@ -154,10 +173,23 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
+      {(() => {
+        if (isMobile && mobileMenuOpen) {
+          console.log('📱 Rendering mobile menu:', { isMobile, mobileMenuOpen });
+        }
+        return null;
+      })()}
       {isMobile && mobileMenuOpen && (
         <>
           <div 
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={() => {
+              console.log('🖱️ Overlay clicked');
+              setMobileMenuOpen(false);
+            }}
+            onTouchStart={() => {
+              console.log('👆 Overlay touched');
+              setMobileMenuOpen(false);
+            }}
             style={{ 
               position: 'fixed', 
               top: 0, 
@@ -170,7 +202,14 @@ const Navbar = () => {
             }} 
           />
           <div 
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              console.log('🖱️ Menu content clicked');
+              e.stopPropagation();
+            }}
+            onTouchStart={(e) => {
+              console.log('👆 Menu content touched');
+              e.stopPropagation();
+            }}
             style={{ 
               position: 'fixed', 
               top: scrolled ? '78px' : '88px', 
@@ -186,6 +225,8 @@ const Navbar = () => {
               boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
+              visibility: 'visible',
+              opacity: 1,
             }}
           >
             {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
