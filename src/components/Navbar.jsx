@@ -30,7 +30,6 @@ const Navbar = () => {
       const width = window.innerWidth;
       const isMobileView = width <= 768;
       
-      console.log('📱 Checking mobile view:', { width, isMobileView, currentIsMobile: isMobile });
       setIsMobile(isMobileView);
       
       // Close mobile menu if switching to desktop
@@ -277,24 +276,14 @@ const Navbar = () => {
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             onClick={(e) => {
-              console.log('🍔 Hamburger button clicked!', { mobileMenuOpen });
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => {
-                const newState = !prev;
-                console.log('🔄 Menu state changed:', { prev, newState });
-                return newState;
-              });
+              setMobileMenuOpen(prev => !prev);
             }}
             onTouchEnd={(e) => {
-              console.log('👆 Hamburger button touched!', { mobileMenuOpen });
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => {
-                const newState = !prev;
-                console.log('🔄 Menu state changed (touch):', { prev, newState });
-                return newState;
-              });
+              setMobileMenuOpen(prev => !prev);
             }}
             style={{
               display: 'flex',
@@ -397,6 +386,8 @@ const Navbar = () => {
               touchAction: 'pan-y',
               visibility: 'visible',
               opacity: 1,
+              transform: 'translateY(0)',
+              willChange: 'transform, opacity',
             }}
           >
           {/* Navigation Links */}
