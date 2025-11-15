@@ -278,14 +278,7 @@ const Navbar = () => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              const newState = !mobileMenuOpen;
-              console.log('🔘 Hamburger clicked:', { 
-                current: mobileMenuOpen, 
-                new: newState, 
-                isMobile,
-                windowWidth: window.innerWidth 
-              });
-              setMobileMenuOpen(newState);
+              setMobileMenuOpen(prev => !prev);
             }}
             onTouchStart={(e) => {
               e.stopPropagation();
@@ -344,26 +337,12 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {(() => {
-        const shouldShow = isMobile && mobileMenuOpen;
-        if (shouldShow) {
-          console.log('📱 Menu should show:', { isMobile, mobileMenuOpen, windowWidth: window.innerWidth });
-        }
-        return shouldShow;
-      })() && (
+      {isMobile && mobileMenuOpen && (
         <>
           {/* Overlay - must be before menu for proper z-index */}
           <div
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setMobileMenuOpen(false);
-            }}
-            onTouchStart={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setMobileMenuOpen(false);
-            }}
+            onClick={() => setMobileMenuOpen(false)}
+            onTouchStart={() => setMobileMenuOpen(false)}
             style={{
               position: 'fixed',
               top: 0,
