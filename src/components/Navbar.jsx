@@ -219,7 +219,7 @@ const Navbar = () => {
               display: 'flex', 
               flexDirection: 'column', 
               gap: '12px', 
-              background: '#fff', 
+              background: '#ffffff', 
               borderRadius: '16px', 
               zIndex: 1002,
               boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
@@ -227,13 +227,18 @@ const Navbar = () => {
               overflowY: 'auto',
               visibility: 'visible',
               opacity: 1,
+              minHeight: '200px',
+              width: 'calc(100% - 40px)',
             }}
           >
             {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
               <Link 
                 key={path} 
                 to={path} 
-                onClick={() => setMobileMenuOpen(false)} 
+                onClick={() => {
+                  console.log('🔗 Link clicked:', path);
+                  setMobileMenuOpen(false);
+                }} 
                 style={{ 
                   textDecoration: 'none', 
                   padding: '14px 20px', 
@@ -245,13 +250,24 @@ const Navbar = () => {
                   fontWeight: 600,
                   fontSize: '16px',
                   transition: 'all 0.3s',
+                  display: 'block',
+                  width: '100%',
+                  minHeight: '44px',
+                  lineHeight: '1.5',
                 }}
               >
                 {['الرئيسية', 'الاستقدام', 'تنظيف اليوم', 'تواصل معنا'][i]}
               </Link>
             ))}
             <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(37, 150, 190, 0.3) 50%, transparent 100%)', margin: '8px 0' }} />
-            <Link to="/service-request" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', width: '100%' }}>
+            <Link 
+              to="/service-request" 
+              onClick={() => {
+                console.log('🔗 Service request clicked');
+                setMobileMenuOpen(false);
+              }} 
+              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
+            >
               <button style={{ 
                 width: '100%', 
                 padding: '14px 24px',
@@ -264,11 +280,19 @@ const Navbar = () => {
                 cursor: 'pointer',
                 boxShadow: '0 4px 16px rgba(37, 150, 190, 0.5)',
                 transition: 'all 0.3s',
+                minHeight: '44px',
               }}>
                 طلب خدمة
               </button>
             </Link>
-            <Link to="/login" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', width: '100%' }}>
+            <Link 
+              to="/login" 
+              onClick={() => {
+                console.log('🔗 Login clicked');
+                setMobileMenuOpen(false);
+              }} 
+              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
+            >
               <button style={{ 
                 width: '100%', 
                 padding: '14px 24px',
@@ -280,6 +304,7 @@ const Navbar = () => {
                 borderRadius: '12px',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
+                minHeight: '44px',
               }}>
                 تسجيل دخول
               </button>
