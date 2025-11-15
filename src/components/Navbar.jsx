@@ -197,11 +197,12 @@ const Navbar = () => {
               right: 0, 
               bottom: 0, 
               background: 'rgba(0, 0, 0, 0.3)', 
-              zIndex: 1001,
+              zIndex: 1003,
               cursor: 'pointer',
             }} 
           />
           <div 
+            id="mobile-menu-content"
             onClick={(e) => {
               console.log('🖱️ Menu content clicked');
               e.stopPropagation();
@@ -221,7 +222,7 @@ const Navbar = () => {
               gap: '12px', 
               background: '#ffffff', 
               borderRadius: '16px', 
-              zIndex: 1002,
+              zIndex: 1004,
               boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
@@ -229,6 +230,7 @@ const Navbar = () => {
               opacity: 1,
               minHeight: '200px',
               width: 'calc(100% - 40px)',
+              pointerEvents: 'auto',
             }}
           >
             {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
