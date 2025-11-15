@@ -112,7 +112,7 @@ if (process.env.NODE_ENV === 'production' && process.env.SERVE_STATIC === 'true'
 app.use(errorHandler);
 
 // Port configuration
-// In development: Backend runs on 3001, Frontend (Vite) runs on 3001 (different processes)
+// In development: Backend runs on 3001, Frontend (Vite) runs on 3000
 // In production: Backend runs on 3000 (or PORT from env)
 const PORT = process.env.PORT || (process.env.NODE_ENV === 'production' ? 3000 : 3001);
 
