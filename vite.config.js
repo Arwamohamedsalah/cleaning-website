@@ -5,9 +5,13 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    port: 3001,
     host: '0.0.0.0',
-    open: true
+    open: true,
+    hmr: {
+      port: 3001,
+      clientPort: 3001
+    }
   },
   build: {
     outDir: 'dist',
