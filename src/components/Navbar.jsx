@@ -274,10 +274,14 @@ const Navbar = () => {
           <button
             type="button"
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               setMobileMenuOpen(prev => !prev);
+            }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
             }}
             style={{
               display: 'flex',
@@ -295,10 +299,11 @@ const Navbar = () => {
               width: '44px',
               height: '44px',
               transition: 'all 0.3s',
-              zIndex: 1002,
+              zIndex: 1003,
               position: 'relative',
               flexShrink: 0,
               WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
@@ -331,10 +336,12 @@ const Navbar = () => {
         )}
       </div>
 
+      {/* Mobile Menu Dropdown */}
       {isMobile && mobileMenuOpen && (
         <div
           className="glass-card"
           onClick={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
           style={{
             position: 'fixed',
             top: scrolled ? '78px' : '88px',
@@ -349,10 +356,11 @@ const Navbar = () => {
             background: '#ffffff',
             border: '1px solid #e5e7eb',
             borderRadius: '16px',
-            zIndex: 1001,
+            zIndex: 1002,
             maxHeight: 'calc(100vh - 120px)',
             overflowY: 'auto',
             pointerEvents: 'auto',
+            touchAction: 'pan-y',
           }}
         >
           {/* Navigation Links */}
@@ -485,6 +493,7 @@ const Navbar = () => {
           }}
           onTouchStart={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             setMobileMenuOpen(false);
           }}
           style={{
@@ -495,8 +504,9 @@ const Navbar = () => {
             bottom: 0,
             background: 'rgba(0, 0, 0, 0.3)',
             backdropFilter: 'blur(2px)',
-            zIndex: 1000,
+            zIndex: 1001,
             WebkitTapHighlightColor: 'transparent',
+            touchAction: 'manipulation',
           }}
         />
       )}
