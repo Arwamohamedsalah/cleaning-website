@@ -220,41 +220,42 @@ const Navbar = () => {
               overflowY: 'auto',
               visibility: 'visible',
               opacity: 1,
-              display: 'flex',
               minHeight: '200px',
               width: 'calc(100% - 40px)',
               pointerEvents: 'auto',
               transform: 'translateZ(0)',
             }}
           >
-            {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
-              <Link 
-                key={path} 
-                to={path} 
-                onClick={() => {
-                  console.log('🔗 Link clicked:', path);
-                  setMobileMenuOpen(false);
-                }} 
-                style={{ 
-                  textDecoration: 'none', 
-                  padding: '14px 20px', 
-                  borderRadius: '12px', 
-                  background: isActive(path) ? 'rgba(59, 130, 246, 0.1)' : 'transparent', 
-                  border: isActive(path) ? '2px solid #3b82f6' : '1px solid #e5e7eb', 
-                  color: isActive(path) ? '#3b82f6' : '#0f172a', 
-                  textAlign: 'center', 
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  transition: 'all 0.3s',
-                  display: 'block',
-                  width: '100%',
-                  minHeight: '44px',
-                  lineHeight: '1.5',
-                }}
-              >
-                {['الرئيسية', 'الاستقدام', 'تنظيف اليوم', 'تواصل معنا'][i]}
-              </Link>
-            ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
+              {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
+                <Link 
+                  key={path} 
+                  to={path} 
+                  onClick={() => {
+                    console.log('🔗 Link clicked:', path);
+                    setMobileMenuOpen(false);
+                  }} 
+                  style={{ 
+                    textDecoration: 'none', 
+                    padding: '14px 20px', 
+                    borderRadius: '12px', 
+                    background: isActive(path) ? 'rgba(59, 130, 246, 0.1)' : 'transparent', 
+                    border: isActive(path) ? '2px solid #3b82f6' : '1px solid #e5e7eb', 
+                    color: isActive(path) ? '#3b82f6' : '#0f172a', 
+                    textAlign: 'center', 
+                    fontWeight: 600,
+                    fontSize: '16px',
+                    transition: 'all 0.3s',
+                    display: 'block',
+                    width: '100%',
+                    minHeight: '44px',
+                    lineHeight: '1.5',
+                  }}
+                >
+                  {['الرئيسية', 'الاستقدام', 'تنظيف اليوم', 'تواصل معنا'][i]}
+                </Link>
+              ))}
+            </div>
             <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(37, 150, 190, 0.3) 50%, transparent 100%)', margin: '8px 0' }} />
             <Link 
               to="/service-request" 
