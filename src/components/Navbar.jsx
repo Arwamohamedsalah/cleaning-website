@@ -276,10 +276,15 @@ const Navbar = () => {
           </Link>
         </div>
         
-        {/* Hamburger Menu Button - Visible on Mobile */}
+        {/* ============================================
+            زر الهامبرجر - يظهر فقط على الموبايل
+            Hamburger Menu Button - Visible on Mobile Only
+            ============================================ */}
         {isMobile && (
           <button
             type="button"
+            id="hamburger-menu-button"
+            className="hamburger-menu-button"
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             onClick={(e) => {
@@ -322,13 +327,17 @@ const Navbar = () => {
               WebkitTapHighlightColor: 'transparent',
               touchAction: 'manipulation',
               userSelect: 'none',
-              pointerEvents: 'auto', // Ensure pointer events are enabled
+              pointerEvents: 'auto',
+              boxShadow: mobileMenuOpen 
+                ? '0 4px 12px rgba(37, 150, 190, 0.3)' 
+                : '0 2px 4px rgba(0, 0, 0, 0.1)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
                 ? 'rgba(37, 150, 190, 0.3)' 
                 : '#f1f5f9';
               e.currentTarget.style.borderColor = '#3b82f6';
+              e.currentTarget.style.transform = 'scale(1.05)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
@@ -337,14 +346,23 @@ const Navbar = () => {
               e.currentTarget.style.borderColor = mobileMenuOpen 
                 ? 'rgba(37, 150, 190, 1)' 
                 : '#e5e7eb';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+            onMouseDown={(e) => {
+              e.currentTarget.style.transform = 'scale(0.95)';
+            }}
+            onMouseUp={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)';
             }}
           >
             {mobileMenuOpen ? (
+              // أيقونة X (إغلاق)
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             ) : (
+              // أيقونة الهامبرجر (ثلاثة خطوط)
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
