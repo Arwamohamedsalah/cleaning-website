@@ -230,10 +230,11 @@ const Navbar = () => {
         {isMobile && (
           <button
             type="button"
+            aria-label="Toggle menu"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(!mobileMenuOpen);
+              setMobileMenuOpen(prev => !prev);
             }}
             style={{
               display: 'flex',
@@ -251,9 +252,10 @@ const Navbar = () => {
               width: '44px',
               height: '44px',
               transition: 'all 0.3s',
-              zIndex: 1001,
+              zIndex: 1002,
               position: 'relative',
               flexShrink: 0,
+              WebkitTapHighlightColor: 'transparent',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
@@ -289,6 +291,7 @@ const Navbar = () => {
       {isMobile && mobileMenuOpen && (
         <div
           className="glass-card"
+          onClick={(e) => e.stopPropagation()}
           style={{
             position: 'fixed',
             top: scrolled ? '78px' : '88px',
@@ -303,9 +306,10 @@ const Navbar = () => {
             background: '#ffffff',
             border: '1px solid #e5e7eb',
             borderRadius: '16px',
-            zIndex: 999,
+            zIndex: 1001,
             maxHeight: 'calc(100vh - 120px)',
             overflowY: 'auto',
+            pointerEvents: 'auto',
           }}
         >
           {/* Navigation Links */}
@@ -429,9 +433,17 @@ const Navbar = () => {
       )}
       
       {/* Overlay to close menu when clicking outside */}
-      {mobileMenuOpen && (
+      {isMobile && mobileMenuOpen && (
         <div
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setMobileMenuOpen(false);
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            setMobileMenuOpen(false);
+          }}
           style={{
             position: 'fixed',
             top: 0,
@@ -440,7 +452,8 @@ const Navbar = () => {
             bottom: 0,
             background: 'rgba(0, 0, 0, 0.3)',
             backdropFilter: 'blur(2px)',
-            zIndex: 998,
+            zIndex: 1000,
+            WebkitTapHighlightColor: 'transparent',
           }}
         />
       )}
