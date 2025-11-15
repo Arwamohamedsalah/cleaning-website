@@ -61,7 +61,7 @@ const Navbar = () => {
       borderBottom: '1px solid #e5e7eb',
       boxShadow: scrolled ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
     }}>
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '16px', flexShrink: 0 }}>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '16px', flexShrink: 0, textDecoration: 'none' }}>
         <img 
           src="/img/logo.jpg" 
           alt="Logo" 
