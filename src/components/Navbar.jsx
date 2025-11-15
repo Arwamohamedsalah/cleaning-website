@@ -70,6 +70,17 @@ const Navbar = () => {
         <img
           src="/img/logo.jpg"
           alt="Ard El Baraka Logo"
+          onError={(e) => {
+            console.error('❌ Logo image failed to load:', e.target.src);
+            // Try alternative paths
+            const currentSrc = e.target.src;
+            if (currentSrc.includes('/img/logo.jpg')) {
+              // Try with base URL
+              e.target.src = `${window.location.origin}/img/logo.jpg`;
+            } else {
+              e.target.style.display = 'none';
+            }
+          }}
           style={{
             width: isMobile ? '40px' : '56px',
             height: isMobile ? '40px' : '56px',
@@ -77,6 +88,11 @@ const Navbar = () => {
             borderRadius: '12px',
             boxShadow: '0 4px 20px rgba(37, 150, 190, 0.3)',
             flexShrink: 0,
+            display: 'block',
+            visibility: 'visible',
+            opacity: 1,
+            maxWidth: '100%',
+            height: 'auto',
           }}
         />
         <div>
