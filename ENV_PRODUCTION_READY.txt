@@ -1,0 +1,40 @@
+# ============================================
+# Production .env File - Ready to Use
+# Domain: https://ardbk.com
+# ============================================
+# 
+# تعليمات:
+# 1. انسخ محتوى هذا الملف
+# 2. أنشئ ملف .env في مجلد backend
+# 3. الصق المحتوى
+# 4. استبدل القيم المذكورة فقط
+# ============================================
+
+# MongoDB Atlas Connection String
+# ⚠️ استبدل username و password و cluster URL
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cleaning-service?retryWrites=true&w=majority
+
+# Server Configuration
+PORT=3000
+NODE_ENV=production
+
+# Frontend URL (Production Domain)
+# ✅ Production: https://ardbk.com
+FRONTEND_URL=https://ardbk.com
+
+# JWT Secret
+# ⚠️ مهم جداً: استبدل هذا بمفتاح عشوائي قوي
+# توليد: openssl rand -base64 64
+JWT_SECRET=CHANGE_THIS_TO_A_VERY_STRONG_RANDOM_SECRET_KEY_IN_PRODUCTION_USE_OPENSSL_RAND_BASE64_64
+
+# Admin User Credentials
+ADMIN_NAME=Admin
+ADMIN_EMAIL=admin@ardbk.com
+ADMIN_PASSWORD=CHANGE_THIS_PASSWORD_TO_SOMETHING_STRONG
+ADMIN_PHONE=0500000000
+
+# WhatsApp API Configuration (اختياري)
+WHATSAPP_API_URL=https://api.whatsapp.com/v1
+WHATSAPP_API_KEY=your_whatsapp_api_key
+WHATSAPP_PHONE_NUMBER=your_whatsapp_phone_number
+

@@ -20,7 +20,7 @@ PORT=3000
 NODE_ENV=production
 
 # Frontend URL (Production Domain)
-# استخدم https إذا كان SSL مفعّل
+# ✅ Production URL - https://ardbk.com
 FRONTEND_URL=https://ardbk.com
 
 # JWT Secret
