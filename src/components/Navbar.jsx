@@ -7,7 +7,13 @@ import '../styles/dashboard.css';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(() => {
+    // Check if window is available (SSR safety)
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768;
+    }
+    return false;
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -19,12 +25,45 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+    const checkMobile = () => {
+      // Use a more reliable breakpoint check
+      const width = window.innerWidth;
+      const isMobileView = width <= 768;
+      
+      setIsMobile(isMobileView);
+      
+      // Close mobile menu if switching to desktop
+      if (!isMobileView && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
     };
+
+    // Check immediately on mount
+    checkMobile();
+
+    // Debounce resize for better performance
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(checkMobile, 100);
+    };
+
+    // Check on resize
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    
+    // Check on orientation change (for mobile devices)
+    window.addEventListener('orientationchange', checkMobile);
+    
+    // Check on load (in case of late loading)
+    window.addEventListener('load', checkMobile);
+
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', checkMobile);
+      window.removeEventListener('load', checkMobile);
+    };
+  }, [mobileMenuOpen]);
 
   const isActive = (path) => location.pathname === path;
 
