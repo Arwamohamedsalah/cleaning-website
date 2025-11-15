@@ -14,16 +14,29 @@ export const initializeWhatsApp = () => {
     return whatsappClient;
   }
 
+  // Check if Puppeteer is disabled
+  if (process.env.DISABLE_PUPPETEER === 'true') {
+    console.log("⚠️ Puppeteer disabled on this server.");
+    console.log("📱 WhatsApp Client will not be initialized.");
+    return null;
+  }
+
   try {
-    whatsappClient = new Client({
+    const clientConfig = {
       authStrategy: new LocalAuth({
         dataPath: './whatsapp-session'
-      }),
-      puppeteer: {
+      })
+    };
+
+    // Only add puppeteer config if not disabled
+    if (process.env.DISABLE_PUPPETEER !== 'true') {
+      clientConfig.puppeteer = {
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-      }
-    });
+      };
+    }
+
+    whatsappClient = new Client(clientConfig);
 
     // QR Code event
     whatsappClient.on('qr', (qr) => {

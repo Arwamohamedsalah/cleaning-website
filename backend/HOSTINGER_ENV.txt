@@ -40,6 +40,11 @@ WHATSAPP_API_URL=https://api.whatsapp.com/v1
 WHATSAPP_API_KEY=your_whatsapp_api_key
 WHATSAPP_PHONE_NUMBER=your_whatsapp_phone_number
 
+# Disable Puppeteer (for servers that don't support it)
+# Set to 'true' to disable Puppeteer/WhatsApp Web.js initialization
+# Useful for servers without GUI support or when WhatsApp integration is not needed
+DISABLE_PUPPETEER=false
+
 # ============================================
 # خطوات الإعداد على Hostinger:
 # ============================================
