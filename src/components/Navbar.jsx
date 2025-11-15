@@ -30,6 +30,7 @@ const Navbar = () => {
       const width = window.innerWidth;
       const isMobileView = width <= 768;
       
+      console.log('📱 Checking mobile view:', { width, isMobileView, currentIsMobile: isMobile });
       setIsMobile(isMobileView);
       
       // Close mobile menu if switching to desktop
@@ -278,12 +279,20 @@ const Navbar = () => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => !prev);
+              console.log('🍔 Button clicked! Current state:', mobileMenuOpen);
+              setMobileMenuOpen(prev => {
+                console.log('🔄 Toggling menu:', prev, '->', !prev);
+                return !prev;
+              });
             }}
             onTouchEnd={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => !prev);
+              console.log('👆 Button touched! Current state:', mobileMenuOpen);
+              setMobileMenuOpen(prev => {
+                console.log('🔄 Toggling menu (touch):', prev, '->', !prev);
+                return !prev;
+              });
             }}
             style={{
               display: 'flex',
@@ -343,10 +352,17 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       {isMobile && mobileMenuOpen && (
         <>
+          {console.log('📱 Rendering mobile menu:', { isMobile, mobileMenuOpen })}
           {/* Overlay - must be before menu for proper z-index */}
           <div
-            onClick={() => setMobileMenuOpen(false)}
-            onTouchStart={() => setMobileMenuOpen(false)}
+            onClick={() => {
+              console.log('🖱️ Overlay clicked, closing menu');
+              setMobileMenuOpen(false);
+            }}
+            onTouchStart={() => {
+              console.log('👆 Overlay touched, closing menu');
+              setMobileMenuOpen(false);
+            }}
             style={{
               position: 'fixed',
               top: 0,
@@ -363,8 +379,14 @@ const Navbar = () => {
           {/* Menu Content */}
           <div
             className="glass-card"
-            onClick={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              console.log('🖱️ Menu content clicked');
+              e.stopPropagation();
+            }}
+            onTouchStart={(e) => {
+              console.log('👆 Menu content touched');
+              e.stopPropagation();
+            }}
             style={{
               position: 'fixed',
               top: scrolled ? '78px' : '88px',
