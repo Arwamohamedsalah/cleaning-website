@@ -1,194 +1,260 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../styles/glassmorphism.css';
-import '../styles/dashboard.css';
-import '../styles/mobile-menu.css';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth <= 768;
-    }
-    return false;
-  });
-
+  const [isMobile, setIsMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  const navLinks = [
+    { path: '/', label: 'الرئيسية' },
+    { path: '/assistants', label: 'الاستقدام' },
+    { path: '/workers', label: 'تنظيف اليوم' },
+    { path: '/contact', label: 'تواصل معنا' },
+  ];
 
   const isActive = (path) => location.pathname === path;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when clicking outside
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-
-    let resizeTimeout;
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(checkMobile, 100);
-    };
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', checkMobile);
-
-    return () => {
-      clearTimeout(resizeTimeout);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('orientationchange', checkMobile);
-    };
-  }, []);
+    if (mobileMenuOpen) {
+      const handleClickOutside = (e) => {
+        if (!e.target.closest('nav')) {
+          setMobileMenuOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <nav
-      className={`glass-navbar ${scrolled ? 'scrolled' : ''}`}
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 1000,
-        padding: isMobile ? (scrolled ? '12px 16px' : '14px 16px') : (scrolled ? '14px 60px' : '20px 60px'),
+        padding: isMobile ? (scrolled ? '12px 16px' : '16px') : (scrolled ? '14px 60px' : '20px 60px'),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '100%',
+        background: scrolled 
+          ? 'rgba(255, 255, 255, 0.98)' 
+          : 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        borderBottom: scrolled 
+          ? '1px solid rgba(37, 150, 190, 0.1)' 
+          : '1px solid rgba(37, 150, 190, 0.05)',
+        boxShadow: scrolled 
+          ? '0 4px 20px rgba(0, 0, 0, 0.08), 0 0 40px rgba(37, 150, 190, 0.1)' 
+          : '0 2px 8px rgba(0, 0, 0, 0.05)',
+        zIndex: 1000,
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-        background: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid #e5e7eb',
-        boxShadow: scrolled ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
       }}
     >
       {/* Logo */}
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '16px', textDecoration: 'none' }}>
+      <Link 
+        to="/" 
+        style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: isMobile ? '10px' : '16px', 
+          textDecoration: 'none',
+          transition: 'transform 0.3s ease',
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+      >
         <img
           src="/img/logo.jpg"
           alt="Ard El Baraka Logo"
-          onError={(e) => {
-            console.error('❌ Logo image failed to load:', e.target.src);
-            // Try alternative paths
-            const currentSrc = e.target.src;
-            if (currentSrc.includes('/img/logo.jpg')) {
-              // Try with base URL
-              e.target.src = `${window.location.origin}/img/logo.jpg`;
-            } else {
-              e.target.style.display = 'none';
-            }
-          }}
-          style={{
-            width: isMobile ? '40px' : '56px',
-            height: isMobile ? '40px' : '56px',
-            objectFit: 'contain',
-            borderRadius: '12px',
+          style={{ 
+            width: isMobile ? '45px' : '56px', 
+            height: isMobile ? '45px' : '56px', 
+            objectFit: 'contain', 
+            borderRadius: '14px',
             boxShadow: '0 4px 20px rgba(37, 150, 190, 0.3)',
-            flexShrink: 0,
-            display: 'block',
-            visibility: 'visible',
-            opacity: 1,
-            maxWidth: '100%',
-            height: 'auto',
+            border: '2px solid rgba(37, 150, 190, 0.1)',
+            transition: 'all 0.3s ease',
           }}
         />
         <div>
-          <div style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 800, color: '#0f172a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div style={{ 
+            fontWeight: 800, 
+            fontSize: isMobile ? '18px' : '22px', 
+            color: '#0f172a',
+            letterSpacing: '-0.5px',
+            lineHeight: '1.2',
+          }}>
             Ard El Baraka
           </div>
-          <div style={{ fontSize: isMobile ? '10px' : '13px', color: '#FFD700', fontWeight: 600, letterSpacing: '1px', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div style={{ 
+            fontWeight: 600, 
+            fontSize: isMobile ? '11px' : '13px', 
+            color: '#FFD700',
+            letterSpacing: '1px',
+            marginTop: '2px',
+          }}>
             M a n p o w e r
           </div>
         </div>
       </Link>
 
-      {/* Desktop Navigation */}
-      <div style={{ display: isMobile ? 'none' : 'flex', gap: '4px', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-        {[
-          { path: '/', label: 'الرئيسية' },
-          { path: '/assistants', label: 'الاستقدام' },
-          { path: '/workers', label: 'تنظيف اليوم' },
-          { path: '/contact', label: 'تواصل معنا' },
-        ].map((item) => {
-          const active = isActive(item.path);
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
+      {/* Desktop Links */}
+      {!isMobile && (
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+          {navLinks.map((item) => {
+            const active = isActive(item.path);
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                style={{
+                  textDecoration: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  background: active 
+                    ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.15), rgba(59, 130, 246, 0.1))' 
+                    : 'transparent',
+                  color: active ? '#2596be' : '#0f172a',
+                  fontWeight: active ? 700 : 500,
+                  fontSize: '15px',
+                  border: active ? '1px solid rgba(37, 150, 190, 0.2)' : '1px solid transparent',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  position: 'relative',
+                }}
+                onMouseEnter={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.background = 'rgba(37, 150, 190, 0.08)';
+                    e.currentTarget.style.color = '#2596be';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#0f172a';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Desktop Buttons */}
+      {!isMobile && (
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <Link to="/service-request" style={{ textDecoration: 'none' }}>
+            <button
               style={{
-                textDecoration: 'none',
-                padding: '12px 24px',
-                borderRadius: '10px',
-                background: active ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
-                color: active ? '#3b82f6' : '#0f172a',
-                fontWeight: active ? 700 : 500,
+                padding: '12px 28px',
+                borderRadius: '12px',
+                background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
+                color: 'white',
+                border: 'none',
+                cursor: 'pointer',
+                fontWeight: 600,
                 fontSize: '15px',
-                transition: 'all 0.3s',
+                boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
               }}
             >
-              {item.label}
-            </Link>
-          );
-        })}
-      </div>
-
-      {/* Right Buttons */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        {/* Desktop Buttons */}
-        <div style={{ display: isMobile ? 'none' : 'flex', gap: '12px' }}>
-          <Link to="/service-request">
-            <button style={{
-              padding: '12px 28px',
-              fontSize: '15px',
-              fontWeight: 600,
-              background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '12px',
-              cursor: 'pointer',
-            }}>طلب خدمة</button>
+              طلب خدمة
+            </button>
           </Link>
-          <Link to="/login">
-            <button style={{
-              padding: '12px 24px',
-              fontSize: '15px',
-              fontWeight: 500,
-              background: '#ffffff',
-              color: '#0f172a',
-              border: '1px solid #e5e7eb',
-              borderRadius: '10px',
-              cursor: 'pointer',
-            }}>تسجيل دخول</button>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <button
+              style={{
+                padding: '12px 24px',
+                borderRadius: '12px',
+                background: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid rgba(37, 150, 190, 0.2)',
+                cursor: 'pointer',
+                fontWeight: 500,
+                fontSize: '15px',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(37, 150, 190, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#ffffff';
+                e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              تسجيل دخول
+            </button>
           </Link>
         </div>
+      )}
 
-        {/* Hamburger - Mobile Only */}
-        {isMobile && (
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            onClick={() => setMobileMenuOpen(prev => !prev)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '44px',
-              height: '44px',
-              padding: '10px',
-              background: '#fff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '12px',
-              cursor: 'pointer',
-              zIndex: 1005,
-            }}
-          >
-            {mobileMenuOpen ? '✕' : '☰'}
-          </button>
-        )}
-      </div>
+      {/* Hamburger - Mobile */}
+      {isMobile && (
+        <button
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          style={{
+            width: '44px',
+            height: '44px',
+            fontSize: '24px',
+            border: '1px solid rgba(37, 150, 190, 0.2)',
+            borderRadius: '12px',
+            background: '#ffffff',
+            cursor: 'pointer',
+            zIndex: 1005,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            boxShadow: mobileMenuOpen 
+              ? '0 4px 12px rgba(37, 150, 190, 0.3)' 
+              : '0 2px 8px rgba(0, 0, 0, 0.1)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(37, 150, 190, 0.05)';
+            e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.3)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.2)';
+          }}
+        >
+          {mobileMenuOpen ? '✕' : '☰'}
+        </button>
+      )}
 
       {/* Mobile Menu */}
       {isMobile && mobileMenuOpen && (
@@ -202,7 +268,8 @@ const Navbar = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'rgba(0,0,0,0.3)',
+              background: 'rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(4px)',
               zIndex: 1002,
               cursor: 'pointer',
             }}
@@ -210,35 +277,29 @@ const Navbar = () => {
 
           {/* Menu Content */}
           <div
-            id="mobile-menu-content"
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'fixed',
               top: scrolled ? '78px' : '88px',
               left: '20px',
               right: '20px',
+              background: 'rgba(255, 255, 255, 0.98)',
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              borderRadius: '16px',
+              boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15), 0 0 40px rgba(37, 150, 190, 0.1)',
               padding: '24px',
               display: 'flex',
               flexDirection: 'column',
               gap: '12px',
-              background: '#ffffff',
-              borderRadius: '16px',
               zIndex: 1003,
-              boxShadow: '0 12px 48px rgba(0,0,0,0.15)',
+              border: '1px solid rgba(37, 150, 190, 0.1)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
-              minHeight: '300px',
-              visibility: 'visible',
-              opacity: 1,
+              animation: 'fadeInDown 0.3s ease-out',
             }}
           >
-            {/* Navigation Links - نفس الروابط في الديسكتوب */}
-            {[
-              { path: '/', label: 'الرئيسية' },
-              { path: '/assistants', label: 'الاستقدام' },
-              { path: '/workers', label: 'تنظيف اليوم' },
-              { path: '/contact', label: 'تواصل معنا' },
-            ].map((item) => {
+            {navLinks.map((item) => {
               const active = isActive(item.path);
               return (
                 <Link
@@ -246,18 +307,30 @@ const Navbar = () => {
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    textDecoration: 'none',
                     padding: '14px 20px',
                     borderRadius: '12px',
-                    background: active ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
-                    border: active ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                    color: active ? '#3b82f6' : '#0f172a',
-                    fontWeight: 600,
-                    fontSize: '16px',
+                    background: active 
+                      ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.15), rgba(59, 130, 246, 0.1))' 
+                      : 'rgba(37, 150, 190, 0.05)',
+                    color: active ? '#2596be' : '#0f172a',
                     textAlign: 'center',
-                    width: '100%',
-                    display: 'block',
-                    transition: 'all 0.3s',
+                    textDecoration: 'none',
+                    fontWeight: active ? 700 : 500,
+                    fontSize: '16px',
+                    border: active ? '1px solid rgba(37, 150, 190, 0.2)' : '1px solid transparent',
+                    transition: 'all 0.3s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active) {
+                      e.currentTarget.style.background = 'rgba(37, 150, 190, 0.1)';
+                      e.currentTarget.style.color = '#2596be';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) {
+                      e.currentTarget.style.background = 'rgba(37, 150, 190, 0.05)';
+                      e.currentTarget.style.color = '#0f172a';
+                    }
                   }}
                 >
                   {item.label}
@@ -272,45 +345,56 @@ const Navbar = () => {
               margin: '8px 0' 
             }} />
             
-            {/* Action Buttons - نفس الأزرار في الديسكتوب */}
-            <Link 
-              to="/service-request" 
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
-            >
-              <button style={{
-                width: '100%',
-                padding: '14px 24px',
-                fontSize: '16px',
-                fontWeight: 600,
-                background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(37, 150, 190, 0.5)',
-                transition: 'all 0.3s',
-              }}>
+            <Link to="/service-request" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none' }}>
+              <button
+                style={{
+                  width: '100%',
+                  padding: '14px 24px',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  fontSize: '16px',
+                  boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                }}
+              >
                 طلب خدمة
               </button>
             </Link>
-            <Link 
-              to="/login" 
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
-            >
-              <button style={{
-                width: '100%',
-                padding: '14px 24px',
-                fontSize: '16px',
-                fontWeight: 600,
-                background: '#ffffff',
-                color: '#0f172a',
-                border: '1px solid #e5e7eb',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                transition: 'all 0.3s',
-              }}>
+            <Link to="/login" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none' }}>
+              <button
+                style={{
+                  width: '100%',
+                  padding: '14px 24px',
+                  borderRadius: '12px',
+                  background: '#ffffff',
+                  color: '#0f172a',
+                  border: '1px solid rgba(37, 150, 190, 0.2)',
+                  cursor: 'pointer',
+                  fontWeight: 500,
+                  fontSize: '16px',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(37, 150, 190, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.2)';
+                }}
+              >
                 تسجيل دخول
               </button>
             </Link>
