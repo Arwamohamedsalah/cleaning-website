@@ -54,9 +54,9 @@ const apiRequest = async (endpoint, options = {}) => {
       console.error('❌ Non-JSON response received. Content-Type:', contentType);
       console.error('❌ Response preview:', text.substring(0, 500));
       
-      // If it's HTML, it's likely a 404 or server error page
+      // If it's HTML, it's likely a 404 or error page
       if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-        throw new Error(`الخادم لم يرجع بيانات JSON (ربما الـ endpoint غير موجود أو الـ server غير شغال). تحقق من: ${url}`);
+        throw new Error(`لم يتم إرجاع بيانات JSON (ربما الـ endpoint غير موجود أو الـ backend غير شغال). تحقق من: ${url}`);
       }
       
       // If it's not JSON but also not HTML, try to parse as JSON anyway
@@ -67,7 +67,7 @@ const apiRequest = async (endpoint, options = {}) => {
         }
         return data;
       } catch (parseError) {
-        throw new Error(`استجابة غير متوقعة من الخادم. تحقق من أن الـ backend server يعمل على ${API_BASE_URL}`);
+        throw new Error(`استجابة غير متوقعة. تحقق من أن الـ backend يعمل على ${API_BASE_URL}`);
       }
     }
     
@@ -81,10 +81,10 @@ const apiRequest = async (endpoint, options = {}) => {
   } catch (error) {
     console.error('❌ API Request Error:', error);
     if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.message.includes('ERR_CONNECTION_REFUSED')) {
-      throw new Error(`لا يمكن الاتصال بالخادم. تأكد من أن الـ backend server يعمل على ${API_BASE_URL}. قم بتشغيل: cd backend && npm start`);
+      throw new Error(`لا يمكن الاتصال بالـ backend. تأكد من أن الـ backend يعمل على ${API_BASE_URL}. قم بتشغيل: cd backend && npm start`);
     }
     if (error.message.includes('<!DOCTYPE') || error.message.includes('<html')) {
-      throw new Error(`الخادم يرجع صفحة HTML بدلاً من JSON. تحقق من أن الـ endpoint صحيح وأن الـ server يعمل.`);
+      throw new Error(`تم إرجاع صفحة HTML بدلاً من JSON. تحقق من أن الـ endpoint صحيح وأن الـ backend يعمل.`);
     }
     throw error;
   }

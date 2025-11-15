@@ -80,6 +80,7 @@ const Navbar = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      width: '100%',
       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
       background: scrolled 
         ? 'rgba(255, 255, 255, 0.98)'
@@ -144,10 +145,13 @@ const Navbar = () => {
         </div>
       </Link>
       
+      {/* Desktop Navigation Links - Hidden on Mobile */}
       <div style={{
-        display: !isMobile ? 'flex' : 'none',
+        display: isMobile ? 'none' : 'flex',
         gap: '4px',
         alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
       }}>
         {[
           { path: '/', label: 'الرئيسية' },
