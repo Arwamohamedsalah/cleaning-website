@@ -209,31 +209,50 @@ const Navbar = () => {
               boxShadow: '0 12px 48px rgba(0,0,0,0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
+              minHeight: '300px',
             }}
           >
-            {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
-              <Link
-                key={path}
-                to={path}
-                onClick={() => setMobileMenuOpen(false)}
-                style={{
-                  textDecoration: 'none',
-                  padding: '14px 20px',
-                  borderRadius: '12px',
-                  background: isActive(path) ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
-                  border: isActive(path) ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                  color: isActive(path) ? '#3b82f6' : '#0f172a',
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  textAlign: 'center',
-                  width: '100%',
-                  display: 'block',
-                }}
-              >
-                {['الرئيسية', 'الاستقدام', 'تنظيف اليوم', 'تواصل معنا'][i]}
-              </Link>
-            ))}
-            <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(37, 150, 190, 0.3) 50%, transparent 100%)', margin: '8px 0' }} />
+            {/* Navigation Links - نفس الروابط في الديسكتوب */}
+            {[
+              { path: '/', label: 'الرئيسية' },
+              { path: '/assistants', label: 'الاستقدام' },
+              { path: '/workers', label: 'تنظيف اليوم' },
+              { path: '/contact', label: 'تواصل معنا' },
+            ].map((item) => {
+              const active = isActive(item.path);
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    textDecoration: 'none',
+                    padding: '14px 20px',
+                    borderRadius: '12px',
+                    background: active ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                    border: active ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                    color: active ? '#3b82f6' : '#0f172a',
+                    fontWeight: 600,
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    width: '100%',
+                    display: 'block',
+                    transition: 'all 0.3s',
+                  }}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            
+            {/* Divider */}
+            <div style={{ 
+              height: '1px', 
+              background: 'linear-gradient(90deg, transparent 0%, rgba(37, 150, 190, 0.3) 50%, transparent 100%)', 
+              margin: '8px 0' 
+            }} />
+            
+            {/* Action Buttons - نفس الأزرار في الديسكتوب */}
             <Link 
               to="/service-request" 
               onClick={() => setMobileMenuOpen(false)}
@@ -250,6 +269,7 @@ const Navbar = () => {
                 borderRadius: '12px',
                 cursor: 'pointer',
                 boxShadow: '0 4px 16px rgba(37, 150, 190, 0.5)',
+                transition: 'all 0.3s',
               }}>
                 طلب خدمة
               </button>
@@ -269,6 +289,7 @@ const Navbar = () => {
                 border: '1px solid #e5e7eb',
                 borderRadius: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.3s',
               }}>
                 تسجيل دخول
               </button>
