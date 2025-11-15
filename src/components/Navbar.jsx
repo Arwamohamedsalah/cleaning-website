@@ -129,25 +129,16 @@ const Navbar = () => {
           <button 
             type="button"
             id="hamburger-button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              console.log('🍔 Hamburger clicked!', { currentState: mobileMenuOpen });
-              setMobileMenuOpen(prev => {
-                const newState = !prev;
-                console.log('🔄 Menu state changed:', prev, '->', newState);
-                return newState;
-              });
+            onClick={() => {
+              console.log('🍔 Hamburger button clicked! Current state:', mobileMenuOpen);
+              setMobileMenuOpen(!mobileMenuOpen);
+              console.log('🔄 Menu should be:', !mobileMenuOpen);
             }}
             onTouchEnd={(e) => {
               e.preventDefault();
-              e.stopPropagation();
-              console.log('👆 Hamburger touched!', { currentState: mobileMenuOpen });
-              setMobileMenuOpen(prev => {
-                const newState = !prev;
-                console.log('🔄 Menu state changed (touch):', prev, '->', newState);
-                return newState;
-              });
+              console.log('👆 Hamburger button touched! Current state:', mobileMenuOpen);
+              setMobileMenuOpen(!mobileMenuOpen);
+              console.log('🔄 Menu should be (touch):', !mobileMenuOpen);
             }}
             style={{ 
               display: 'flex',
@@ -160,11 +151,12 @@ const Navbar = () => {
               border: mobileMenuOpen ? '2px solid rgba(37, 150, 190, 1)' : '1px solid #e5e7eb',
               borderRadius: '12px',
               cursor: 'pointer',
-              zIndex: 1003,
+              zIndex: 1005,
               fontSize: '20px',
               transition: 'all 0.3s',
               position: 'relative',
               pointerEvents: 'auto',
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
             {mobileMenuOpen ? '✕' : '☰'}
