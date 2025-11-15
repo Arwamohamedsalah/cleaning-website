@@ -17,8 +17,10 @@ const __dirname = path.dirname(__filename);
 // Connect to database
 connectDB();
 
-// Initialize WhatsApp Client
-initializeWhatsApp();
+// Initialize WhatsApp Client (async, but don't block server startup)
+initializeWhatsApp().catch((error) => {
+  console.error('⚠️ Failed to initialize WhatsApp Client:', error.message);
+});
 
 const app = express();
 

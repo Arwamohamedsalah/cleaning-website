@@ -1,6 +1,7 @@
 import pkg from 'whatsapp-web.js';
 const { Client, LocalAuth } = pkg;
 import qrcode from 'qrcode-terminal';
+import { checkPuppeteerDependencies, installPuppeteerDependencies } from '../utils/checkPuppeteerDeps.js';
 
 let whatsappClient = null;
 let isInitialized = false;
@@ -9,7 +10,7 @@ let isReady = false;
 /**
  * Initialize WhatsApp Client
  */
-export const initializeWhatsApp = () => {
+export const initializeWhatsApp = async () => {
   if (isInitialized) {
     return whatsappClient;
   }
@@ -22,6 +23,40 @@ export const initializeWhatsApp = () => {
   }
 
   try {
+    // Check Puppeteer dependencies before initializing
+    if (process.env.CHECK_PUPPETEER_DEPS !== 'false') {
+      console.log('🔍 Checking Puppeteer dependencies...');
+      const depsCheck = await checkPuppeteerDependencies();
+      
+      if (!depsCheck.installed) {
+        console.warn('⚠️  Missing Puppeteer dependencies detected!');
+        console.warn(`📦 Missing libraries: ${depsCheck.missing.join(', ')}`);
+        console.warn(`📊 Status: ${depsCheck.installed}/${depsCheck.total} libraries installed`);
+        
+        // Try to install automatically (if has sudo)
+        if (process.env.AUTO_INSTALL_DEPS === 'true') {
+          console.log('🔧 Attempting to install dependencies automatically...');
+          const installResult = await installPuppeteerDependencies();
+          
+          if (!installResult.success) {
+            console.error('❌ Auto-installation failed. Please install manually:');
+            console.error(installResult.command || installResult.message);
+            console.error('\n📝 Or run: ./install-puppeteer-deps.sh');
+            console.error('📝 Or set DISABLE_PUPPETEER=true in .env to disable WhatsApp');
+          } else {
+            console.log('✅ Dependencies installed successfully!');
+          }
+        } else {
+          console.error('❌ Please install missing dependencies:');
+          console.error(`   ${depsCheck.installCommand || 'See FIX_PUPPETEER_ERROR.md'}`);
+          console.error('📝 Or run: ./install-puppeteer-deps.sh');
+          console.error('📝 Or set DISABLE_PUPPETEER=true in .env to disable WhatsApp');
+        }
+      } else {
+        console.log('✅ All Puppeteer dependencies are installed');
+      }
+    }
+
     const clientConfig = {
       authStrategy: new LocalAuth({
         dataPath: './whatsapp-session'
@@ -91,6 +126,22 @@ export const initializeWhatsApp = () => {
     return whatsappClient;
   } catch (error) {
     console.error('❌ خطأ في تهيئة WhatsApp Client:', error);
+    
+    // Check if it's a dependency error
+    if (error.message && (
+      error.message.includes('libasound') ||
+      error.message.includes('shared libraries') ||
+      error.message.includes('cannot open shared object file')
+    )) {
+      console.error('\n🔧 هذا خطأ في المكتبات المطلوبة!');
+      console.error('📝 الحل:');
+      console.error('   1. شغّل: ./install-puppeteer-deps.sh');
+      console.error('   2. أو: sudo apt-get install -y libasound2 libatk-bridge2.0-0 libgtk-3-0 ...');
+      console.error('   3. أو: اضبط AUTO_INSTALL_DEPS=true في .env');
+      console.error('   4. أو: اضبط DISABLE_PUPPETEER=true في .env لتعطيل WhatsApp');
+      console.error('\n📚 راجع: FIX_PUPPETEER_ERROR.md للتفاصيل');
+    }
+    
     return null;
   }
 };
@@ -105,7 +156,7 @@ export const sendWhatsAppMessage = async (to, message) => {
   try {
     // Initialize client if not already done
     if (!isInitialized || !whatsappClient) {
-      whatsappClient = initializeWhatsApp();
+      whatsappClient = await initializeWhatsApp();
     }
 
     // Wait for client to be ready (max 30 seconds)
