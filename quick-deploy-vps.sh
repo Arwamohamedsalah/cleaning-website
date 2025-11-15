@@ -7,7 +7,7 @@ set -e
 
 VPS_IP="72.61.94.71"
 DOMAIN="ardbk.com"
-GITHUB_REPO="https://github.com/Arwamohamedsalah/cleaning-.git"
+GITHUB_REPO="https://github.com/Arwamohamedsalah/cleaning-website.git"
 
 echo "🚀 Starting Quick Deployment..."
 

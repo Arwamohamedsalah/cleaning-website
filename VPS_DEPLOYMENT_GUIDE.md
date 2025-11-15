@@ -66,7 +66,7 @@ apt-get install -y nginx
 ```bash
 mkdir -p /var/www
 cd /var/www
-git clone https://github.com/Arwamohamedsalah/cleaning-.git cleaning
+git clone https://github.com/Arwamohamedsalah/cleaning-website.git cleaning
 cd cleaning
 ```
 

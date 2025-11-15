@@ -10,7 +10,7 @@
 set -e
 
 DOMAIN="ardbk.com"
-GITHUB_REPO="https://github.com/Arwamohamedsalah/cleaning-.git"
+GITHUB_REPO="https://github.com/Arwamohamedsalah/cleaning-website.git"
 
 echo "=========================================="
 echo "🚀 VPS Deployment Script"

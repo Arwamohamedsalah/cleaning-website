@@ -13,7 +13,7 @@ ssh root@72.61.94.71
 **انسخ والصق هذا الأمر:**
 
 ```bash
-cd /tmp && curl -o deploy.sh https://raw.githubusercontent.com/Arwamohamedsalah/cleaning-website/main/EXECUTE_ON_VPS.sh && chmod +x deploy.sh && bash deploy.sh
+cd /tmp && curl -o deploy.sh https://raw.githubusercontent.com/Arwamohamedsalah/cleaning-website/main/QUICK_DEPLOY_SERVER.sh && chmod +x deploy.sh && bash deploy.sh
 ```
 
 **أو:**

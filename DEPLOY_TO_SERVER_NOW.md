@@ -14,7 +14,7 @@ ssh root@72.61.94.71
 
 ```bash
 cd /tmp
-curl -o deploy.sh https://raw.githubusercontent.com/Arwamohamedsalah/cleaning-website/main/EXECUTE_ON_VPS.sh
+curl -o deploy.sh https://raw.githubusercontent.com/Arwamohamedsalah/cleaning-website/main/QUICK_DEPLOY_SERVER.sh
 chmod +x deploy.sh
 bash deploy.sh
 ```

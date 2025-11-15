@@ -4,7 +4,7 @@
 
 - **VPS IP**: 72.61.94.71
 - **Domain**: ardbk.com
-- **GitHub Repo**: https://github.com/Arwamohamedsalah/cleaning-.git
+- **GitHub Repo**: https://github.com/Arwamohamedsalah/cleaning-website.git
 
 ---
 
@@ -92,7 +92,7 @@ npm install -g pm2
 ```bash
 mkdir -p /var/www
 cd /var/www
-git clone https://github.com/Arwamohamedsalah/cleaning-.git cleaning
+git clone https://github.com/Arwamohamedsalah/cleaning-website.git cleaning
 cd cleaning
 ```
 
