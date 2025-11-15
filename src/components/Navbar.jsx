@@ -30,6 +30,7 @@ const Navbar = () => {
       const width = window.innerWidth;
       const isMobileView = width <= 768;
       
+      console.log('📱 Checking mobile view:', { width, isMobileView, currentIsMobile: isMobile });
       setIsMobile(isMobileView);
       
       // Close mobile menu if switching to desktop
@@ -63,7 +64,7 @@ const Navbar = () => {
       window.removeEventListener('orientationchange', checkMobile);
       window.removeEventListener('load', checkMobile);
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isMobile]);
 
   const isActive = (path) => location.pathname === path;
 
@@ -276,17 +277,24 @@ const Navbar = () => {
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             onClick={(e) => {
+              console.log('🍔 Hamburger button clicked!', { mobileMenuOpen });
               e.preventDefault();
               e.stopPropagation();
               setMobileMenuOpen(prev => {
                 const newState = !prev;
+                console.log('🔄 Menu state changed:', { prev, newState });
                 return newState;
               });
             }}
             onTouchEnd={(e) => {
+              console.log('👆 Hamburger button touched!', { mobileMenuOpen });
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => !prev);
+              setMobileMenuOpen(prev => {
+                const newState = !prev;
+                console.log('🔄 Menu state changed (touch):', { prev, newState });
+                return newState;
+              });
             }}
             style={{
               display: 'flex',
@@ -310,6 +318,7 @@ const Navbar = () => {
               WebkitTapHighlightColor: 'transparent',
               touchAction: 'manipulation',
               userSelect: 'none',
+              pointerEvents: 'auto', // Ensure pointer events are enabled
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
