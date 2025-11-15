@@ -278,10 +278,15 @@ const Navbar = () => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => !prev);
+              setMobileMenuOpen(prev => {
+                const newState = !prev;
+                return newState;
+              });
             }}
-            onTouchStart={(e) => {
+            onTouchEnd={(e) => {
+              e.preventDefault();
               e.stopPropagation();
+              setMobileMenuOpen(prev => !prev);
             }}
             style={{
               display: 'flex',
@@ -304,6 +309,7 @@ const Navbar = () => {
               flexShrink: 0,
               WebkitTapHighlightColor: 'transparent',
               touchAction: 'manipulation',
+              userSelect: 'none',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = mobileMenuOpen 
@@ -380,6 +386,8 @@ const Navbar = () => {
               overflowY: 'auto',
               pointerEvents: 'auto',
               touchAction: 'pan-y',
+              visibility: 'visible',
+              opacity: 1,
             }}
           >
           {/* Navigation Links */}
