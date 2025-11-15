@@ -31,7 +31,7 @@ export const initializeWhatsApp = async () => {
       if (!depsCheck.installed) {
         console.warn('⚠️  Missing Puppeteer dependencies detected!');
         console.warn(`📦 Missing libraries: ${depsCheck.missing.join(', ')}`);
-        console.warn(`📊 Status: ${depsCheck.installed}/${depsCheck.total} libraries installed`);
+        console.warn(`📊 Status: ${depsCheck.installed || 0}/${depsCheck.total} libraries installed`);
         
         // Try to install automatically (if has sudo)
         if (process.env.AUTO_INSTALL_DEPS === 'true') {
