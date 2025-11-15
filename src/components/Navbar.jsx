@@ -278,7 +278,14 @@ const Navbar = () => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setMobileMenuOpen(prev => !prev);
+              const newState = !mobileMenuOpen;
+              console.log('🔘 Hamburger clicked:', { 
+                current: mobileMenuOpen, 
+                new: newState, 
+                isMobile,
+                windowWidth: window.innerWidth 
+              });
+              setMobileMenuOpen(newState);
             }}
             onTouchStart={(e) => {
               e.stopPropagation();
@@ -337,32 +344,65 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMobile && mobileMenuOpen && (
-        <div
-          className="glass-card"
-          onClick={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
-          style={{
-            position: 'fixed',
-            top: scrolled ? '78px' : '88px',
-            left: '20px',
-            right: '20px',
-            padding: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            animation: 'fadeInUp 0.3s ease-out',
-            boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
-            background: '#ffffff',
-            border: '1px solid #e5e7eb',
-            borderRadius: '16px',
-            zIndex: 1002,
-            maxHeight: 'calc(100vh - 120px)',
-            overflowY: 'auto',
-            pointerEvents: 'auto',
-            touchAction: 'pan-y',
-          }}
-        >
+      {(() => {
+        const shouldShow = isMobile && mobileMenuOpen;
+        if (shouldShow) {
+          console.log('📱 Menu should show:', { isMobile, mobileMenuOpen, windowWidth: window.innerWidth });
+        }
+        return shouldShow;
+      })() && (
+        <>
+          {/* Overlay - must be before menu for proper z-index */}
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMobileMenuOpen(false);
+            }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMobileMenuOpen(false);
+            }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(2px)',
+              zIndex: 1001,
+              WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation',
+            }}
+          />
+          {/* Menu Content */}
+          <div
+            className="glass-card"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            style={{
+              position: 'fixed',
+              top: scrolled ? '78px' : '88px',
+              left: '20px',
+              right: '20px',
+              padding: '24px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              animation: 'fadeInUp 0.3s ease-out',
+              boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '16px',
+              zIndex: 1002,
+              maxHeight: 'calc(100vh - 120px)',
+              overflowY: 'auto',
+              pointerEvents: 'auto',
+              touchAction: 'pan-y',
+            }}
+          >
           {/* Navigation Links */}
           {[
             { path: '/', label: 'الرئيسية' },
@@ -481,34 +521,7 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
-      )}
-      
-      {/* Overlay to close menu when clicking outside */}
-      {isMobile && mobileMenuOpen && (
-        <div
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setMobileMenuOpen(false);
-          }}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setMobileMenuOpen(false);
-          }}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.3)',
-            backdropFilter: 'blur(2px)',
-            zIndex: 1001,
-            WebkitTapHighlightColor: 'transparent',
-            touchAction: 'manipulation',
-          }}
-        />
+        </>
       )}
     </nav>
   );
