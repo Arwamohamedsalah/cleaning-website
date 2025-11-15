@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { fetchWorkers } from '../store/slices/workersSlice';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -118,16 +123,16 @@ const Services = () => {
             {activeWorkers.map((worker, index) => {
               const status = getStatusBadge(worker.status);
               const workerName = worker.arabicName || worker.name || 'عاملة';
-              const workerImage = worker.photos && worker.photos.length > 0 
-                ? worker.photos[0] 
-                : null;
+              const workerPhotos = worker.photos && worker.photos.length > 0 
+                ? worker.photos 
+                : [];
               
               return (
                 <div
                   key={worker._id || worker.id}
                   className="dashboard-stats-card"
                   style={{
-                    padding: '30px',
+                    padding: '0',
                     textAlign: 'center',
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                     display: 'flex',
@@ -135,6 +140,7 @@ const Services = () => {
                     height: '100%',
                     transition: 'transform 0.3s, box-shadow 0.3s',
                     cursor: 'pointer',
+                    overflow: 'hidden',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
@@ -145,15 +151,14 @@ const Services = () => {
                     e.currentTarget.style.boxShadow = '';
                   }}
                 >
-                  {/* Worker Image */}
+                  {/* Worker Images Carousel */}
                   <div style={{
-                    width: '180px',
-                    height: '180px',
-                    borderRadius: '50%',
-                    margin: '0 auto 20px',
+                    width: '100%',
+                    height: '280px',
+                    marginBottom: '0',
                     overflow: 'hidden',
-                    border: '4px solid rgba(37, 150, 190, 0.3)',
-                    background: workerImage 
+                    position: 'relative',
+                    background: workerPhotos.length > 0 
                       ? 'transparent' 
                       : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
                     display: 'flex',
@@ -161,26 +166,57 @@ const Services = () => {
                     justifyContent: 'center',
                     fontSize: '60px',
                     color: 'white',
-                    boxShadow: '0 8px 24px rgba(37, 150, 190, 0.25)',
                   }}>
-                    {workerImage ? (
-                      <img 
-                        src={workerImage} 
-                        alt={workerName}
+                    {workerPhotos.length > 0 ? (
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        navigation={workerPhotos.length > 1}
+                        pagination={{ 
+                          clickable: true,
+                          dynamicBullets: true,
+                        }}
+                        autoplay={{
+                          delay: 3000,
+                          disableOnInteraction: false,
+                        }}
+                        loop={workerPhotos.length > 1}
                         style={{
                           width: '100%',
                           height: '100%',
-                          objectFit: 'cover',
                         }}
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.parentElement.style.fontSize = '60px';
-                        }}
-                      />
+                      >
+                        {workerPhotos.map((photo, photoIndex) => (
+                          <SwiperSlide key={photoIndex}>
+                            <img 
+                              src={photo} 
+                              alt={`${workerName} - ${photoIndex + 1}`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                display: 'block',
+                                background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.1) 0%, rgba(37, 150, 190, 0.05) 100%)',
+                              }}
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     ) : (
-                      <span>{workerName[0]}</span>
+                      <span style={{
+                        fontSize: '80px',
+                        fontWeight: 700,
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                      }}>{workerName[0]}</span>
                     )}
                   </div>
+
+                  {/* Card Content */}
+                  <div style={{ padding: '20px 30px 30px' }}>
 
                   {/* Worker Name */}
                   <h3 style={{ 
@@ -274,34 +310,35 @@ const Services = () => {
                     📊 {worker.totalOrders || 0} طلب مكتمل
                   </p>
 
-                  {/* View Details Button */}
-                  <button
-                    onClick={() => handleViewDetails(worker._id || worker.id)}
-                    style={{
-                      width: '100%',
-                      padding: '14px 24px',
-                      fontSize: '16px',
-                      fontWeight: 600,
-                      background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '12px',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
-                      transition: 'all 0.3s',
-                      marginTop: 'auto',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
-                    }}
-                  >
-                    المزيد من التفاصيل
-                  </button>
+                    {/* View Details Button */}
+                    <button
+                      onClick={() => handleViewDetails(worker._id || worker.id)}
+                      style={{
+                        width: '100%',
+                        padding: '14px 24px',
+                        fontSize: '16px',
+                        fontWeight: 600,
+                        background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '12px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                        transition: 'all 0.3s',
+                        marginTop: 'auto',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                      }}
+                    >
+                      المزيد من التفاصيل
+                    </button>
+                  </div>
                 </div>
               );
             })}

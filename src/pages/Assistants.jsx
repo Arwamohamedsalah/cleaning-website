@@ -3,6 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { fetchHousemaids } from '../store/slices/housemaidsSlice';
 import { fetchWorkers } from '../store/slices/workersSlice';
 import { discountsAPI, ordersAPI } from '../services/api';
@@ -504,9 +509,9 @@ const Assistants = () => {
               const status = getStatusBadge(assistant.status);
               const contractInfo = getContractTypeLabel(assistant.contractType);
               const assistantName = assistant.arabicName || assistant.name || 'مساعدة';
-              const assistantImage = assistant.photos && assistant.photos.length > 0 
-                ? assistant.photos[0] 
-                : null;
+              const assistantPhotos = assistant.photos && assistant.photos.length > 0 
+                ? assistant.photos 
+                : [];
               
               // Get price from assistant data or use default based on contract type
               const basePrice = assistant.price || (assistant.contractType === 'yearly' ? 5000 : 500);
@@ -517,13 +522,14 @@ const Assistants = () => {
                   key={assistant._id || assistant.id}
                   className="dashboard-stats-card"
                   style={{
-                    padding: '30px',
+                    padding: '0',
                     textAlign: 'center',
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                     display: 'flex',
                     flexDirection: 'column',
                     height: '100%',
                     transition: 'transform 0.3s, box-shadow 0.3s',
+                    overflow: 'hidden',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
@@ -534,15 +540,14 @@ const Assistants = () => {
                     e.currentTarget.style.boxShadow = '';
                   }}
                 >
-                  {/* Assistant Image */}
+                  {/* Assistant Images Carousel */}
                   <div style={{
-                    width: '180px',
-                    height: '180px',
-                    borderRadius: '50%',
-                    margin: '0 auto 20px',
+                    width: '100%',
+                    height: '280px',
+                    marginBottom: '0',
                     overflow: 'hidden',
-                    border: '4px solid rgba(37, 150, 190, 0.3)',
-                    background: assistantImage 
+                    position: 'relative',
+                    background: assistantPhotos.length > 0 
                       ? 'transparent' 
                       : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
                     display: 'flex',
@@ -550,26 +555,57 @@ const Assistants = () => {
                     justifyContent: 'center',
                     fontSize: '60px',
                     color: 'white',
-                    boxShadow: '0 8px 24px rgba(37, 150, 190, 0.25)',
                   }}>
-                    {assistantImage ? (
-                      <img 
-                        src={assistantImage} 
-                        alt={assistantName}
+                    {assistantPhotos.length > 0 ? (
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        navigation={assistantPhotos.length > 1}
+                        pagination={{ 
+                          clickable: true,
+                          dynamicBullets: true,
+                        }}
+                        autoplay={{
+                          delay: 3000,
+                          disableOnInteraction: false,
+                        }}
+                        loop={assistantPhotos.length > 1}
                         style={{
                           width: '100%',
                           height: '100%',
-                          objectFit: 'cover',
                         }}
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.parentElement.style.fontSize = '60px';
-                        }}
-                      />
+                      >
+                        {assistantPhotos.map((photo, photoIndex) => (
+                          <SwiperSlide key={photoIndex}>
+                            <img 
+                              src={photo} 
+                              alt={`${assistantName} - ${photoIndex + 1}`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                display: 'block',
+                                background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.1) 0%, rgba(37, 150, 190, 0.05) 100%)',
+                              }}
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     ) : (
-                      <span>{assistantName[0]}</span>
+                      <span style={{
+                        fontSize: '80px',
+                        fontWeight: 700,
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                      }}>{assistantName[0]}</span>
                     )}
                   </div>
+
+                  {/* Card Content */}
+                  <div style={{ padding: '20px 30px 30px' }}>
 
                   {/* Assistant Name */}
                   <h3 style={{ 
@@ -708,65 +744,66 @@ const Assistants = () => {
                     </div>
                   )}
 
-                  {/* Buttons */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 'auto' }}>
-                    <button
-                      onClick={handleContactForContract}
-                      style={{
-                        width: '100%',
-                        padding: '14px 24px',
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '12px',
-                        cursor: 'pointer',
-                        position: 'relative',
-                        zIndex: 10,
-                        boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
-                        transition: 'all 0.3s',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
-                      }}
-                    >
-                      استفسر عن العقد
-                    </button>
-                    <button
-                      onClick={() => handleViewDetails(assistant._id || assistant.id)}
-                      style={{
-                        width: '100%',
-                        padding: '12px 24px',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        color: '#000000',
-                        border: '2px solid rgba(37, 150, 190, 0.4)',
-                        borderRadius: '12px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s',
-                        position: 'relative',
-                        zIndex: 10,
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(37, 150, 190, 0.15)';
-                        e.target.style.borderColor = 'rgba(37, 150, 190, 1)';
-                        e.target.style.color = '#000000';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.9)';
-                        e.target.style.borderColor = 'rgba(37, 150, 190, 0.4)';
-                        e.target.style.color = '#000000';
-                      }}
-                    >
-                      المزيد من التفاصيل
-                    </button>
+                    {/* Buttons */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 'auto' }}>
+                      <button
+                        onClick={handleContactForContract}
+                        style={{
+                          width: '100%',
+                          padding: '14px 24px',
+                          fontSize: '16px',
+                          fontWeight: 600,
+                          background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '12px',
+                          cursor: 'pointer',
+                          position: 'relative',
+                          zIndex: 10,
+                          boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                          transition: 'all 0.3s',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.transform = 'translateY(-2px)';
+                          e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = 'translateY(0)';
+                          e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                        }}
+                      >
+                        استفسر عن العقد
+                      </button>
+                      <button
+                        onClick={() => handleViewDetails(assistant._id || assistant.id)}
+                        style={{
+                          width: '100%',
+                          padding: '12px 24px',
+                          fontSize: '14px',
+                          fontWeight: 600,
+                          background: 'rgba(255, 255, 255, 0.9)',
+                          color: '#000000',
+                          border: '2px solid rgba(37, 150, 190, 0.4)',
+                          borderRadius: '12px',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s',
+                          position: 'relative',
+                          zIndex: 10,
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = 'rgba(37, 150, 190, 0.15)';
+                          e.target.style.borderColor = 'rgba(37, 150, 190, 1)';
+                          e.target.style.color = '#000000';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                          e.target.style.borderColor = 'rgba(37, 150, 190, 0.4)';
+                          e.target.style.color = '#000000';
+                        }}
+                      >
+                        المزيد من التفاصيل
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -810,9 +847,9 @@ const Assistants = () => {
                 {activeWorkers.map((worker, index) => {
                   const status = getStatusBadge(worker.status);
                   const workerName = worker.arabicName || worker.name || 'عاملة';
-                  const workerImage = worker.photos && worker.photos.length > 0 
-                    ? worker.photos[0] 
-                    : null;
+                  const workerPhotos = worker.photos && worker.photos.length > 0 
+                    ? worker.photos 
+                    : [];
                   
                   // Calculate price with discount
                   const basePrice = getContractTypePrice(worker.contractType, worker.price);
@@ -822,13 +859,14 @@ const Assistants = () => {
                     <GlassCard
                       key={worker._id || worker.id}
                       style={{
-                        padding: '30px',
+                        padding: '0',
                         textAlign: 'center',
                         animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                         display: 'flex',
                         flexDirection: 'column',
                         height: '100%',
                         transition: 'transform 0.3s, box-shadow 0.3s',
+                        overflow: 'hidden',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'translateY(-8px)';
@@ -839,15 +877,14 @@ const Assistants = () => {
                         e.currentTarget.style.boxShadow = '';
                       }}
                     >
-                      {/* Worker Image */}
+                      {/* Worker Images Carousel */}
                       <div style={{
-                        width: '180px',
-                        height: '180px',
-                        borderRadius: '50%',
-                        margin: '0 auto 20px',
+                        width: '100%',
+                        height: '280px',
+                        marginBottom: '0',
                         overflow: 'hidden',
-                        border: '4px solid rgba(37, 150, 190, 0.3)',
-                        background: workerImage 
+                        position: 'relative',
+                        background: workerPhotos.length > 0 
                           ? 'transparent' 
                           : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
                         display: 'flex',
@@ -855,26 +892,56 @@ const Assistants = () => {
                         justifyContent: 'center',
                         fontSize: '60px',
                         color: 'white',
-                        boxShadow: '0 8px 24px rgba(37, 150, 190, 0.25)',
                       }}>
-                        {workerImage ? (
-                          <img 
-                            src={workerImage} 
-                            alt={workerName}
+                        {workerPhotos.length > 0 ? (
+                          <Swiper
+                            modules={[Navigation, Pagination, Autoplay]}
+                            spaceBetween={0}
+                            slidesPerView={1}
+                            navigation={workerPhotos.length > 1}
+                            pagination={{ 
+                              clickable: true,
+                              dynamicBullets: true,
+                            }}
+                            autoplay={{
+                              delay: 3000,
+                              disableOnInteraction: false,
+                            }}
+                            loop={workerPhotos.length > 1}
                             style={{
                               width: '100%',
                               height: '100%',
-                              objectFit: 'cover',
                             }}
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.parentElement.style.fontSize = '60px';
-                            }}
-                          />
+                          >
+                            {workerPhotos.map((photo, photoIndex) => (
+                              <SwiperSlide key={photoIndex}>
+                                <img 
+                                  src={photo} 
+                                  alt={`${workerName} - ${photoIndex + 1}`}
+                                  style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    display: 'block',
+                                  }}
+                                  onError={(e) => {
+                                    e.target.style.display = 'none';
+                                  }}
+                                />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
                         ) : (
-                          <span>{workerName[0]}</span>
+                          <span style={{
+                            fontSize: '80px',
+                            fontWeight: 700,
+                            textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                          }}>{workerName[0]}</span>
                         )}
                       </div>
+
+                      {/* Card Content */}
+                      <div style={{ padding: '20px 30px 30px' }}>
 
                       {/* Worker Name */}
                       <h3 style={{ 
@@ -1005,36 +1072,37 @@ const Assistants = () => {
                         </div>
                       )}
 
-                      {/* Buttons */}
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 'auto' }}>
-                        <button
-                          onClick={() => handleViewDetails(worker._id || worker.id)}
-                          style={{
-                            width: '100%',
-                            padding: '14px 24px',
-                            fontSize: '16px',
-                            fontWeight: 600,
-                            background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '12px',
-                            cursor: 'pointer',
-                            boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
-                            transition: 'all 0.3s',
-                            position: 'relative',
-                            zIndex: 10,
-                          }}
-                          onMouseEnter={(e) => {
-                            e.target.style.transform = 'translateY(-2px)';
-                            e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.transform = 'translateY(0)';
-                            e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
-                          }}
-                        >
-                          المزيد من التفاصيل
-                        </button>
+                        {/* Buttons */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 'auto' }}>
+                          <button
+                            onClick={() => handleViewDetails(worker._id || worker.id)}
+                            style={{
+                              width: '100%',
+                              padding: '14px 24px',
+                              fontSize: '16px',
+                              fontWeight: 600,
+                              background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '12px',
+                              cursor: 'pointer',
+                              boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                              transition: 'all 0.3s',
+                              position: 'relative',
+                              zIndex: 10,
+                            }}
+                            onMouseEnter={(e) => {
+                              e.target.style.transform = 'translateY(-2px)';
+                              e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.target.style.transform = 'translateY(0)';
+                              e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                            }}
+                          >
+                            المزيد من التفاصيل
+                          </button>
+                        </div>
                       </div>
                     </GlassCard>
                   );

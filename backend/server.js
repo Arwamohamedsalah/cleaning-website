@@ -87,8 +87,10 @@ app.get('/api/settings/test', (req, res) => {
   res.json({ success: true, message: 'Settings route is working' });
 });
 
-// Serve static files from React app in production
-if (process.env.NODE_ENV === 'production') {
+// Note: In VPS deployment, Nginx serves static files
+// Only serve static files if NODE_ENV is production AND no reverse proxy is used
+// For VPS with Nginx, this section is disabled
+if (process.env.NODE_ENV === 'production' && process.env.SERVE_STATIC === 'true') {
   // Path to the frontend build directory
   const frontendPath = path.join(__dirname, '..', 'dist');
   
