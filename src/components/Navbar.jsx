@@ -195,6 +195,7 @@ const Navbar = () => {
           />
           <div 
             id="mobile-menu-content"
+            className="mobile-menu-content"
             onClick={(e) => {
               console.log('🖱️ Menu content clicked');
               e.stopPropagation();
