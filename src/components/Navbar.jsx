@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/glassmorphism.css';
 import '../styles/dashboard.css';
+import '../styles/mobile-menu.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -186,13 +187,14 @@ const Navbar = () => {
               right: 0,
               bottom: 0,
               background: 'rgba(0,0,0,0.3)',
-              zIndex: 1000,
+              zIndex: 1002,
               cursor: 'pointer',
             }}
           />
 
           {/* Menu Content */}
           <div
+            id="mobile-menu-content"
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'fixed',
@@ -205,11 +207,13 @@ const Navbar = () => {
               gap: '12px',
               background: '#ffffff',
               borderRadius: '16px',
-              zIndex: 1001,
+              zIndex: 1003,
               boxShadow: '0 12px 48px rgba(0,0,0,0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
               minHeight: '300px',
+              visibility: 'visible',
+              opacity: 1,
             }}
           >
             {/* Navigation Links - نفس الروابط في الديسكتوب */}
