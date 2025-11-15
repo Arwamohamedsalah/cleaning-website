@@ -4,9 +4,24 @@
   visibility: visible !important;
   opacity: 1 !important;
   background: #ffffff !important;
+  z-index: 1004 !important;
 }
 
 .mobile-menu-content * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #0f172a !important;
+}
+
+.mobile-menu-content a {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #0f172a !important;
+}
+
+.mobile-menu-content button {
+  display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
 }

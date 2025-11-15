@@ -257,7 +257,7 @@ const Navbar = () => {
               transform: 'translateZ(0)',
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', visibility: 'visible', opacity: 1 }}>
               {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
                 <Link 
                   key={path} 
@@ -281,6 +281,8 @@ const Navbar = () => {
                     width: '100%',
                     minHeight: '44px',
                     lineHeight: '1.5',
+                    visibility: 'visible',
+                    opacity: 1,
                   }}
                 >
                   {['الرئيسية', 'الاستقدام', 'تنظيف اليوم', 'تواصل معنا'][i]}
@@ -294,7 +296,7 @@ const Navbar = () => {
                 console.log('🔗 Service request clicked');
                 setMobileMenuOpen(false);
               }} 
-              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
+              style={{ textDecoration: 'none', width: '100%', display: 'block', visibility: 'visible', opacity: 1 }}
             >
               <button style={{ 
                 width: '100%', 
@@ -309,6 +311,9 @@ const Navbar = () => {
                 boxShadow: '0 4px 16px rgba(37, 150, 190, 0.5)',
                 transition: 'all 0.3s',
                 minHeight: '44px',
+                visibility: 'visible',
+                opacity: 1,
+                display: 'block',
               }}>
                 طلب خدمة
               </button>
@@ -319,7 +324,7 @@ const Navbar = () => {
                 console.log('🔗 Login clicked');
                 setMobileMenuOpen(false);
               }} 
-              style={{ textDecoration: 'none', width: '100%', display: 'block' }}
+              style={{ textDecoration: 'none', width: '100%', display: 'block', visibility: 'visible', opacity: 1 }}
             >
               <button style={{ 
                 width: '100%', 
@@ -333,6 +338,9 @@ const Navbar = () => {
                 cursor: 'pointer',
                 transition: 'all 0.3s',
                 minHeight: '44px',
+                visibility: 'visible',
+                opacity: 1,
+                display: 'block',
               }}>
                 تسجيل دخول
               </button>
