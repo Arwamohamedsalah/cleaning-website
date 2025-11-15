@@ -220,17 +220,18 @@ const Navbar = () => {
               display: 'flex', 
               flexDirection: 'column', 
               gap: '12px', 
-              background: '#ffffff', 
+              background: '#ffffff !important', 
               borderRadius: '16px', 
               zIndex: 1004,
               boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
-              visibility: 'visible',
-              opacity: 1,
+              visibility: 'visible !important',
+              opacity: '1 !important',
               minHeight: '200px',
               width: 'calc(100% - 40px)',
               pointerEvents: 'auto',
+              transform: 'translateZ(0)',
             }}
           >
             {['/', '/assistants', '/workers', '/contact'].map((path, i) => (
