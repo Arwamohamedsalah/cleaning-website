@@ -30,7 +30,6 @@ const Navbar = () => {
       const width = window.innerWidth;
       const isMobileView = width <= 768;
       
-      console.log('📱 Checking mobile view:', { width, isMobileView, currentIsMobile: isMobile });
       setIsMobile(isMobileView);
       
       // Close mobile menu if switching to desktop
@@ -67,6 +66,13 @@ const Navbar = () => {
   }, [mobileMenuOpen, isMobile]);
 
   const isActive = (path) => location.pathname === path;
+
+  // Debug effect for mobile menu
+  useEffect(() => {
+    if (isMobile && mobileMenuOpen) {
+      console.log('📱 Mobile menu is open:', { isMobile, mobileMenuOpen });
+    }
+  }, [isMobile, mobileMenuOpen]);
 
   return (
     <nav className={`glass-navbar ${scrolled ? 'scrolled' : ''}`} style={{
@@ -350,12 +356,6 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {(() => {
-        if (isMobile && mobileMenuOpen) {
-          console.log('📱 Rendering mobile menu:', { isMobile, mobileMenuOpen });
-        }
-        return null;
-      })()}
       {isMobile && mobileMenuOpen && (
         <>
           {/* Overlay - must be before menu for proper z-index */}
