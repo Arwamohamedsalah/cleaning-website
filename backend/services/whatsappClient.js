@@ -65,18 +65,22 @@ export const initializeWhatsApp = async () => {
 
     // Only add puppeteer config if not disabled
     // إعدادات Puppeteer للسيرفر بدون واجهة رسومية
+    // هذه الإعدادات ضرورية لتشغيل Chromium على سيرفر بدون GUI
     if (process.env.DISABLE_PUPPETEER !== 'true') {
       clientConfig.puppeteer = {
         headless: true, // تشغيل بدون واجهة رسومية (مهم للسيرفر)
         args: [
-          '--no-sandbox', // تعطيل sandbox (مهم للسيرفر)
-          '--disable-setuid-sandbox', // تعطيل setuid sandbox
-          '--disable-dev-shm-usage', // حل مشاكل الذاكرة المشتركة
-          '--disable-accelerated-2d-canvas', // تعطيل تسريع Canvas
-          '--no-first-run', // تخطي أول تشغيل
-          '--no-zygote', // تعطيل zygote process
-          '--single-process', // تشغيل في process واحد (مهم للسيرفر محدود الموارد)
-          '--disable-gpu' // تعطيل GPU (غير متوفر في السيرفر)
+          // الإعدادات الأساسية المطلوبة (الأهم)
+          '--no-sandbox',                    // ✅ تعطيل sandbox (مهم جداً للسيرفر بدون GUI)
+          '--disable-setuid-sandbox',        // ✅ تعطيل setuid sandbox (مهم للسيرفر)
+          '--disable-dev-shm-usage',         // ✅ حل مشاكل الذاكرة المشتركة (مهم)
+          
+          // إعدادات إضافية لتحسين الأداء والاستقرار
+          '--disable-accelerated-2d-canvas',  // تعطيل تسريع Canvas
+          '--no-first-run',                  // تخطي أول تشغيل
+          '--no-zygote',                     // تعطيل zygote process
+          '--single-process',                // تشغيل في process واحد (مهم للسيرفر محدود الموارد)
+          '--disable-gpu'                    // تعطيل GPU (غير متوفر في السيرفر)
         ],
         // خيارات إضافية لبيئة السيرفر
         ignoreHTTPSErrors: true, // تجاهل أخطاء HTTPS
