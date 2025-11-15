@@ -350,9 +350,14 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
+      {(() => {
+        if (isMobile && mobileMenuOpen) {
+          console.log('📱 Rendering mobile menu:', { isMobile, mobileMenuOpen });
+        }
+        return null;
+      })()}
       {isMobile && mobileMenuOpen && (
         <>
-          {console.log('📱 Rendering mobile menu:', { isMobile, mobileMenuOpen })}
           {/* Overlay - must be before menu for proper z-index */}
           <div
             onClick={() => {
