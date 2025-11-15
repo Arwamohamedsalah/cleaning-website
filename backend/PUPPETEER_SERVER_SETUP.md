@@ -70,6 +70,17 @@ DISABLE_PUPPETEER=true
 
 ### 3. تثبيت Dependencies المطلوبة
 
+**الطريقة السريعة (مستحسن):**
+
+```bash
+# نسخ السكريبت إلى السيرفر
+# ثم تشغيله:
+chmod +x install-puppeteer-deps.sh
+./install-puppeteer-deps.sh
+```
+
+**أو التثبيت اليدوي:**
+
 ```bash
 # على Ubuntu/Debian
 sudo apt-get update
@@ -112,6 +123,8 @@ sudo apt-get install -y \
   wget \
   xdg-utils
 ```
+
+**⚠️ مهم:** إذا رأيت خطأ `libasound.so.2: cannot open shared object file`، فهذا يعني أن المكتبات غير مثبتة. راجع ملف `FIX_PUPPETEER_ERROR.md` للحل.
 
 ### 4. اختبار الإعدادات
 
