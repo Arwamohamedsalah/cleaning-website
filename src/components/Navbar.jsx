@@ -169,9 +169,9 @@ const Navbar = () => {
               style={{
                 padding: '12px 28px',
                 borderRadius: '12px',
-                background: '#111827',
-                color: 'white',
-                border: 'none',
+                background: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid rgba(15, 23, 42, 0.1)',
                 cursor: 'pointer',
                 fontWeight: 600,
                 fontSize: '15px',
@@ -197,7 +197,7 @@ const Navbar = () => {
                 borderRadius: '12px',
                 background: '#ffffff',
                 color: '#0f172a',
-                border: '1px solid rgba(15, 23, 42, 0.2)',
+                border: '1px solid rgba(15, 23, 42, 0.1)',
                 cursor: 'pointer',
                 fontWeight: 500,
                 fontSize: '15px',
@@ -210,7 +210,7 @@ const Navbar = () => {
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#ffffff';
-                e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.2)';
+                e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.1)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -229,12 +229,12 @@ const Navbar = () => {
             width: '44px',
             height: '44px',
             fontSize: '20px',
-            border: '1px solid rgba(15, 23, 42, 0.2)',
+            border: '1px solid rgba(15, 23, 42, 0.1)',
             borderRadius: '12px',
             background: mobileMenuOpen 
-              ? '#111827' 
+              ? '#ffffff' 
               : '#ffffff',
-            color: mobileMenuOpen ? '#ffffff' : '#2596be',
+            color: mobileMenuOpen ? '#2596be' : '#2596be',
             cursor: 'pointer',
             zIndex: 1005,
             display: 'flex',
@@ -363,9 +363,9 @@ const Navbar = () => {
                   width: '100%',
                   padding: '16px 24px',
                   borderRadius: '14px',
-                  background: '#111827',
-                  color: 'white',
-                  border: 'none',
+                  background: '#ffffff',
+                  color: '#0f172a',
+                  border: '1px solid rgba(15, 23, 42, 0.1)',
                   cursor: 'pointer',
                   fontWeight: 700,
                   fontSize: '17px',
@@ -393,7 +393,7 @@ const Navbar = () => {
                   borderRadius: '14px',
                   background: '#ffffff',
                   color: '#0f172a',
-                  border: '2px solid rgba(15, 23, 42, 0.25)',
+                  border: '1px solid rgba(15, 23, 42, 0.1)',
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '17px',
@@ -409,7 +409,7 @@ const Navbar = () => {
                 onTouchEnd={(e) => {
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.25)';
+                  e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.1)';
                 }}
               >
                 تسجيل دخول
