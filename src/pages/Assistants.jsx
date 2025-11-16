@@ -34,6 +34,51 @@ const Assistants = () => {
   const [selectedHousemaidId, setSelectedHousemaidId] = useState(null);
   const [inquiryType, setInquiryType] = useState('general'); // 'contract', 'booking', 'general'
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('all');
+
+  // Countries config (emoji flags as fallback). nationality field should match these labels.
+  const countries = [
+    { key: 'ethiopia', label: 'إثيوبيا', emoji: '🇪🇹', match: ['إثيوبيا', 'Ethiopia'] },
+    { key: 'uganda', label: 'أوغندا', emoji: '🇺🇬', match: ['أوغندا', 'Uganda'] },
+    { key: 'kenya', label: 'كينيا', emoji: '🇰🇪', match: ['كينيا', 'Kenya'] },
+    { key: 'ghana', label: 'غانا', emoji: '🇬🇭', match: ['غانا', 'Ghana'] },
+    { key: 'tanzania', label: 'تنزانيا', emoji: '🇹🇿', match: ['تنزانيا', 'Tanzania'] },
+    { key: 'burundi', label: 'بوروندي', emoji: '🇧🇮', match: ['بوروندي', 'Burundi'] },
+    { key: 'rwanda', label: 'رواندا', emoji: '🇷🇼', match: ['رواندا', 'Rwanda'] },
+    { key: 'myanmar', label: 'ميانمار', emoji: '🇲🇲', match: ['ميانمار', 'Myanmar'] },
+    { key: 'philippines', label: 'الفلبين', emoji: '🇵🇭', match: ['الفلبين', 'Philippines'] },
+  ];
+
+  // Helper: filter by selectedCountry using nationality
+  const nationalityMatches = (nation, country) => {
+    if (!nation) return false;
+    const lower = String(nation).toLowerCase();
+    return country.match.some(m => lower.includes(String(m).toLowerCase()));
+  };
+
+  // Filter assistants by country selection
+  const assistantsFiltered = selectedCountry === 'all'
+    ? housemaids
+    : housemaids.filter(a => nationalityMatches(a.nationality, countries.find(c => c.key === selectedCountry)));
+
+  // Date options helper (اليوم/غداً/بعد غد/موعد لاحق بتاريخ)
+  const buildDateOptions = () => {
+    const today = new Date();
+    const next = (d) => {
+      const x = new Date(today);
+      x.setDate(x.getDate() + d);
+      return x;
+    };
+    const fmt = (d) => d.toLocaleDateString('ar-SA', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    return [
+      { label: 'اليوم', sub: fmt(today) },
+      { label: 'غداً', sub: fmt(next(1)) },
+      { label: 'بعد غد', sub: fmt(next(2)) },
+      { label: 'موعد لاحق', sub: fmt(next(7)) },
+    ];
+  };
+
+  const dateOptions = buildDateOptions();
 
   const {
     register,
@@ -446,12 +491,70 @@ const Assistants = () => {
         </div>
       </section>
 
+      {/* Countries Flags Selector */}
+      <section style={{ padding: '20px', paddingTop: activeDiscounts.length > 0 ? '20px' : '100px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', textAlign: 'center' }}>
+            اختر الدولة
+          </h3>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))',
+            gap: '14px',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <button
+              onClick={() => setSelectedCountry('all')}
+              style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                gap: '8px', padding: '14px 10px', borderRadius: '16px', cursor: 'pointer',
+                background: selectedCountry === 'all' ? '#0f172a' : '#ffffff',
+                color: selectedCountry === 'all' ? '#ffffff' : '#0f172a',
+                border: '1px solid #e5e7eb', boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+              }}
+            >
+              <div style={{
+                width: '56px', height: '56px', borderRadius: '50%',
+                background: selectedCountry === 'all' ? '#ffffff' : '#f8fafc',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '22px', color: '#0f172a', border: '1px solid #e5e7eb'
+              }}>🌍</div>
+              <span style={{ fontSize: '13px', fontWeight: 700 }}>الكل</span>
+            </button>
+            {countries.map((c) => (
+              <button
+                key={c.key}
+                onClick={() => setSelectedCountry(c.key)}
+                style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  gap: '8px', padding: '14px 10px', borderRadius: '16px', cursor: 'pointer',
+                  background: selectedCountry === c.key ? '#0f172a' : '#ffffff',
+                  color: selectedCountry === c.key ? '#ffffff' : '#0f172a',
+                  border: '1px solid #e5e7eb', boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+                }}
+              >
+                <div style={{
+                  width: '56px', height: '56px', borderRadius: '50%', overflow: 'hidden',
+                  background: selectedCountry === c.key ? '#ffffff' : '#f8fafc',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '28px', border: '1px solid #e5e7eb'
+                }}>
+                  <span>{c.emoji}</span>
+                </div>
+                <span style={{ fontSize: '13px', fontWeight: 700 }}>{c.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Content Grid - Shows based on active tab */}
       <section style={{
-        padding: '80px 20px',
+        padding: '40px 20px',
         maxWidth: '1400px',
         margin: '0 auto',
-        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+        background: '#ffffff',
       }}>
         {/* Assistants Tab Content */}
         {activeTab === 'assistants' && (
@@ -481,7 +584,7 @@ const Assistants = () => {
                   إعادة المحاولة
                 </button>
               </div>
-            ) : assistants.length === 0 ? (
+            ) : assistantsFiltered.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '60px' }}>
                 <div style={{ fontSize: '24px', color: '#334155', marginBottom: '20px', fontWeight: 600 }}>
                   لا توجد مساعدات متاحة حالياً
@@ -505,7 +608,7 @@ const Assistants = () => {
             gap: '30px',
             justifyContent: 'center',
           }}>
-            {assistants.map((assistant, index) => {
+            {assistantsFiltered.map((assistant, index) => {
               const status = getStatusBadge(assistant.status);
               const contractInfo = getContractTypeLabel(assistant.contractType);
               const assistantName = assistant.arabicName || assistant.name || 'مساعدة';
