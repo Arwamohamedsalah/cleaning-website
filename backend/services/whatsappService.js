@@ -1,8 +1,9 @@
-import { sendWhatsAppMessage as sendViaWhatsAppWeb, initializeWhatsApp } from './whatsappClient.js';
+// WhatsApp integration is temporarily disabled on the server.
+// import { sendWhatsAppMessage as sendViaWhatsAppWeb, initializeWhatsApp } from './whatsappClient.js';
 
 /**
  * WhatsApp Service
- * يستخدم whatsapp-web.js للإرسال المباشر
+ * WhatsApp integration is currently disabled.
  */
 
 /**
@@ -12,17 +13,11 @@ import { sendWhatsAppMessage as sendViaWhatsAppWeb, initializeWhatsApp } from '.
  * @returns {Promise<Object>}
  */
 export const sendWhatsAppMessage = async (to, message) => {
-  try {
-    // Use whatsapp-web.js to send message
-    const result = await sendViaWhatsAppWeb(to, message);
-    return result;
-  } catch (error) {
-    console.error('❌ خطأ في إرسال رسالة واتساب:', error);
-    return {
-      success: false,
-      error: error.message || 'فشل إرسال رسالة واتساب',
-    };
-  }
+  console.log('ℹ️ WhatsApp integration is disabled. Message not sent.');
+  return {
+    success: false,
+    error: 'WhatsApp integration is disabled حالياً.',
+  };
 };
 
 /**
@@ -262,6 +257,12 @@ ${message.message}
     };
   }
 };
+
+// Disabled WhatsApp function
+const sendViaWhatsAppWeb = async () => ({
+  success: false,
+  error: 'WhatsApp integration is disabled حالياً.',
+});
 
 export default {
   sendWhatsAppMessage,
