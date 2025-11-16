@@ -85,6 +85,9 @@ const Assistants = () => {
     ? assistants
     : assistants.filter(a => nationalityMatches(a.nationality, selectedCountry));
 
+  // Fallback: if no results and 'all' selected, ensure assistants are shown
+  const assistantsToRender = selectedCountry === 'all' ? assistants : assistantsFiltered;
+
   // Date options helper (اليوم/غداً/بعد غد/موعد لاحق بتاريخ)
   const buildDateOptions = () => {
     const today = new Date();
@@ -567,7 +570,7 @@ const Assistants = () => {
                   إعادة المحاولة
                 </button>
               </div>
-            ) : assistantsFiltered.length === 0 ? (
+            ) : assistantsToRender.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '60px' }}>
                 <div style={{ fontSize: '24px', color: '#334155', marginBottom: '20px', fontWeight: 600 }}>
                   لا توجد مساعدات متاحة حالياً
@@ -587,11 +590,12 @@ const Assistants = () => {
             ) : (
           <div className="cards-grid-container" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '30px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gap: '20px',
             justifyContent: 'center',
+            alignItems: 'stretch',
           }}>
-            {assistantsFiltered.map((assistant, index) => {
+            {(assistantsToRender || []).map((assistant, index) => {
               const status = getStatusBadge(assistant.status);
               const contractInfo = getContractTypeLabel(assistant.contractType);
               const assistantName = assistant.arabicName || assistant.name || 'مساعدة';
@@ -607,16 +611,7 @@ const Assistants = () => {
                 <div
                   key={assistant._id || assistant.id}
                   className="dashboard-stats-card"
-                  style={{
-                    padding: '0',
-                    textAlign: 'center',
-                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    transition: 'transform 0.3s, box-shadow 0.3s',
-                    overflow: 'hidden',
-                  }}
+                  style={{ padding: '0', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', maxWidth: '420px', width: '100%', margin: '0 auto' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
                     e.currentTarget.style.boxShadow = '0 12px 40px rgba(37, 150, 190, 0.3)';
@@ -925,10 +920,7 @@ const Assistants = () => {
               </div>
             ) : (
               <div className="cards-grid-container" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                gap: '30px',
-                justifyContent: 'center',
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '20px', justifyContent: 'center', alignItems: 'stretch',
               }}>
                 {activeWorkers.map((worker, index) => {
                   const status = getStatusBadge(worker.status);
@@ -944,16 +936,7 @@ const Assistants = () => {
                   return (
                     <GlassCard
                       key={worker._id || worker.id}
-                      style={{
-                        padding: '0',
-                        textAlign: 'center',
-                        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
-                        transition: 'transform 0.3s, box-shadow 0.3s',
-                        overflow: 'hidden',
-                      }}
+                      style={{ padding: '0', textAlign: 'center', animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`, display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s, box-shadow 0.3s', overflow: 'hidden', maxWidth: '420px', width: '100%', margin: '0 auto' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'translateY(-8px)';
                         e.currentTarget.style.boxShadow = '0 12px 40px rgba(139, 92, 246, 0.5)';
