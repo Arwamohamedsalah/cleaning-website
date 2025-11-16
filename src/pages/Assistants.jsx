@@ -57,6 +57,20 @@ const Assistants = () => {
     return items;
   };
 
+  // All housemaids are assistants (monthly/yearly contracts)
+  const assistants = housemaids.filter(housemaid => 
+    housemaid.isActive !== false && 
+    housemaid.status !== 'inactive'
+  );
+
+  // Filter workers (hourly/daily contracts)
+  const activeWorkers = workers.filter(worker => 
+    worker.isActive !== false && 
+    worker.status !== 'inactive' &&
+    (worker.contractType === 'hourly' || worker.contractType === 'daily')
+  );
+
+  // Now build countries after the arrays are defined
   const countries = buildCountriesFromData();
 
   // Helper: filter by selectedCountry using nationality
@@ -244,19 +258,6 @@ const Assistants = () => {
     navigate('/contact');
   };
 
-  // All housemaids are assistants (monthly/yearly contracts)
-  const assistants = housemaids.filter(housemaid => 
-    housemaid.isActive !== false && 
-    housemaid.status !== 'inactive'
-  );
-
-  // Filter workers (hourly/daily contracts)
-  const activeWorkers = workers.filter(worker => 
-    worker.isActive !== false && 
-    worker.status !== 'inactive' &&
-    (worker.contractType === 'hourly' || worker.contractType === 'daily')
-  );
-  
   console.log('📋 Total housemaids from store:', housemaids.length);
   console.log('✅ Filtered assistants:', assistants.length);
   console.log('📋 Total workers from store:', workers.length);
