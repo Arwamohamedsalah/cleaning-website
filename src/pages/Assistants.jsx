@@ -383,7 +383,7 @@ const Assistants = () => {
         justifyContent: 'center',
         padding: '120px 20px 60px',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+        background: '#ffffff',
       }}>
         <FloatingShapes />
         <div style={{
@@ -428,28 +428,14 @@ const Assistants = () => {
                 fontSize: '18px',
                 fontWeight: 700,
                 background: activeTab === 'assistants'
-                  ? 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'
+                  ? '#f3f4f6'
                   : '#ffffff',
-                color: activeTab === 'assistants' ? '#ffffff' : '#0f172a',
-                border: `3px solid ${activeTab === 'assistants' ? '#3b82f6' : '#e5e7eb'}`,
+                color: '#0f172a',
+                border: `3px solid ${activeTab === 'assistants' ? '#e5e7eb' : '#e5e7eb'}`,
                 borderRadius: '16px',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
-                boxShadow: activeTab === 'assistants'
-                  ? '0 8px 24px rgba(59, 130, 246, 0.3)'
-                  : '0 2px 8px rgba(0, 0, 0, 0.05)',
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== 'assistants') {
-                  e.currentTarget.style.borderColor = '#3b82f6';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'assistants') {
-                  e.currentTarget.style.borderColor = '#e5e7eb';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
               }}
             >
               📅 المساعدات (بعقد)
@@ -461,28 +447,14 @@ const Assistants = () => {
                 fontSize: '18px',
                 fontWeight: 700,
                 background: activeTab === 'workers'
-                  ? 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'
+                  ? '#f3f4f6'
                   : '#ffffff',
-                color: activeTab === 'workers' ? '#ffffff' : '#0f172a',
-                border: `3px solid ${activeTab === 'workers' ? '#3b82f6' : '#e5e7eb'}`,
+                color: '#0f172a',
+                border: `3px solid ${activeTab === 'workers' ? '#e5e7eb' : '#e5e7eb'}`,
                 borderRadius: '16px',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
-                boxShadow: activeTab === 'workers'
-                  ? '0 8px 24px rgba(59, 130, 246, 0.3)'
-                  : '0 2px 8px rgba(0, 0, 0, 0.05)',
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== 'workers') {
-                  e.currentTarget.style.borderColor = '#3b82f6';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'workers') {
-                  e.currentTarget.style.borderColor = '#e5e7eb';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
               }}
             >
               ⏰ العاملات (وقت محدد)
@@ -652,7 +624,7 @@ const Assistants = () => {
                     position: 'relative',
                     background: assistantPhotos.length > 0 
                       ? 'transparent' 
-                      : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
+                      : '#f8fafc',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -689,7 +661,7 @@ const Assistants = () => {
                                 height: '100%',
                                 objectFit: 'contain',
                                 display: 'block',
-                                background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.1) 0%, rgba(37, 150, 190, 0.05) 100%)',
+                                background: 'transparent',
                               }}
                               onError={(e) => {
                                 e.target.style.display = 'none';
@@ -769,7 +741,7 @@ const Assistants = () => {
                           </span>
                         </div>
                         <div style={{
-                          background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+                          background: '#ef4444',
                           color: 'white',
                           padding: '4px 12px',
                           borderRadius: '8px',
@@ -856,23 +828,23 @@ const Assistants = () => {
                           padding: '14px 24px',
                           fontSize: '16px',
                           fontWeight: 600,
-                          background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
-                          color: 'white',
-                          border: 'none',
+                          background: '#ffffff',
+                          color: '#0f172a',
+                          border: '1px solid #e5e7eb',
                           borderRadius: '12px',
                           cursor: 'pointer',
                           position: 'relative',
                           zIndex: 10,
-                          boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                           transition: 'all 0.3s',
                         }}
                         onMouseEnter={(e) => {
                           e.target.style.transform = 'translateY(-2px)';
-                          e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
+                          e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.12)';
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.transform = 'translateY(0)';
-                          e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                          e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
                         }}
                       >
                         استفسر عن العقد
@@ -989,7 +961,7 @@ const Assistants = () => {
                         position: 'relative',
                         background: workerPhotos.length > 0 
                           ? 'transparent' 
-                          : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
+                          : '#f8fafc',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1184,23 +1156,23 @@ const Assistants = () => {
                               padding: '14px 24px',
                               fontSize: '16px',
                               fontWeight: 600,
-                              background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.6) 0%, rgba(37, 150, 190, 0.8) 50%, rgba(37, 150, 190, 1) 100%)',
-                              color: 'white',
-                              border: 'none',
+                              background: '#ffffff',
+                              color: '#0f172a',
+                              border: '1px solid #e5e7eb',
                               borderRadius: '12px',
                               cursor: 'pointer',
-                              boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                               transition: 'all 0.3s',
                               position: 'relative',
                               zIndex: 10,
                             }}
                             onMouseEnter={(e) => {
                               e.target.style.transform = 'translateY(-2px)';
-                              e.target.style.boxShadow = '0 6px 24px rgba(37, 150, 190, 0.5)';
+                              e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.12)';
                             }}
                             onMouseLeave={(e) => {
                               e.target.style.transform = 'translateY(0)';
-                              e.target.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                              e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
                             }}
                           >
                             المزيد من التفاصيل
@@ -1292,10 +1264,10 @@ const Assistants = () => {
             style={{ 
               fontSize: '18px', 
               padding: '15px 40px',
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
-              border: 'none',
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
               borderRadius: '12px',
-              color: '#ffffff',
+              color: '#0f172a',
               fontWeight: 600,
               cursor: 'pointer',
               transition: 'all 0.3s',
@@ -1448,10 +1420,10 @@ const Assistants = () => {
                   disabled={isSubmitting}
                   style={{
                     padding: '12px 24px',
-                    background: isSubmitting ? '#94a3b8' : 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                    border: 'none',
+                    background: isSubmitting ? '#94a3b8' : '#ffffff',
+                    border: '1px solid #e5e7eb',
                     borderRadius: '8px',
-                    color: '#ffffff',
+                    color: '#0f172a',
                     fontWeight: 600,
                     cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   }}
