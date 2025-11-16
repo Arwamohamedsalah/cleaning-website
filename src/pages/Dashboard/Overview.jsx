@@ -179,14 +179,15 @@ const Overview = () => {
         />
         <div style={{ 
           padding: isMobile ? '16px' : '40px', 
-          flex: 1 
+          flex: 1,
+          paddingTop: isMobile ? '90px' : '40px',
         }} className="dashboard-content-area">
           {/* Stats Cards */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: isMobile ? '16px' : '24px',
-            marginBottom: isMobile ? '24px' : '40px',
+            gap: isMobile ? '12px' : '24px',
+            marginBottom: isMobile ? '20px' : '40px',
           }}>
             {stats.map((stat, index) => (
               <div key={index} className="dashboard-stats-card">
@@ -226,33 +227,37 @@ const Overview = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
-            gap: isMobile ? '20px' : '30px',
-            marginBottom: isMobile ? '24px' : '40px',
+            gap: isMobile ? '16px' : '30px',
+            marginBottom: isMobile ? '20px' : '40px',
           }}>
-            <div className="dashboard-chart-card">
-              <h3>الطلبات - آخر 7 أيام</h3>
-              <Chart 
-                data={ordersData}
-                dataKey="orders"
-                name="عدد الطلبات"
-                color="#8b5cf6"
-                height={300}
-              />
+            <div className="dashboard-chart-card" style={{ padding: isMobile ? '16px' : '32px' }}>
+              <h3 style={{ fontSize: isMobile ? '16px' : '20px', marginBottom: isMobile ? '12px' : '28px' }}>الطلبات - آخر 7 أيام</h3>
+              <div style={{ height: isMobile ? '200px' : '300px', width: '100%' }}>
+                <Chart 
+                  data={ordersData}
+                  dataKey="orders"
+                  name="عدد الطلبات"
+                  color="#8b5cf6"
+                  height={isMobile ? 200 : 300}
+                />
+              </div>
             </div>
-            <div className="dashboard-chart-card">
-              <h3>توزيع أنواع الخدمات</h3>
-              <PieChart 
-                data={serviceDistribution}
-                dataKey="value"
-                nameKey="name"
-                height={300}
-              />
+            <div className="dashboard-chart-card" style={{ padding: isMobile ? '16px' : '32px' }}>
+              <h3 style={{ fontSize: isMobile ? '16px' : '20px', marginBottom: isMobile ? '12px' : '28px' }}>توزيع أنواع الخدمات</h3>
+              <div style={{ height: isMobile ? '200px' : '300px', width: '100%' }}>
+                <PieChart 
+                  data={serviceDistribution}
+                  dataKey="value"
+                  nameKey="name"
+                  height={isMobile ? 200 : 300}
+                />
+              </div>
             </div>
           </div>
 
           {/* Recent Orders Table */}
-          <div className="dashboard-table-card">
-            <h3>آخر 10 طلبات</h3>
+          <div className="dashboard-table-card" style={{ padding: isMobile ? '16px' : '32px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '22px', marginBottom: isMobile ? '12px' : '24px' }}>آخر 10 طلبات</h3>
             <div style={{ overflowX: 'auto' }}>
               <table className="dashboard-table">
                 <thead>

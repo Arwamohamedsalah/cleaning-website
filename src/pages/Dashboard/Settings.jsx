@@ -306,11 +306,11 @@ const Settings = () => {
   };
 
   const renderGeneralSettings = () => (
-    <GlassCard style={{ padding: '30px' }}>
-      <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#ffffff' }}>الإعدادات العامة</h3>
+    <GlassCard style={{ padding: isMobile ? '20px' : '30px' }}>
+      <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, marginBottom: isMobile ? '16px' : '25px', color: isMobile ? '#0f172a' : '#ffffff' }}>الإعدادات العامة</h3>
       <div style={{ display: 'grid', gap: '20px' }}>
         <div>
-          <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>اسم الموقع</label>
+          <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: isMobile ? '#0f172a' : '#ffffff', fontSize: isMobile ? '14px' : '16px' }}>اسم الموقع</label>
           <input
             type="text"
             className="glass-input"
@@ -388,8 +388,8 @@ const Settings = () => {
   );
 
   const renderCompanySettings = () => (
-    <GlassCard style={{ padding: '30px' }}>
-      <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#ffffff' }}>معلومات الشركة</h3>
+    <GlassCard style={{ padding: isMobile ? '20px' : '30px' }}>
+      <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, marginBottom: isMobile ? '16px' : '25px', color: isMobile ? '#0f172a' : '#ffffff' }}>معلومات الشركة</h3>
       <div style={{ display: 'grid', gap: '20px' }}>
         <div>
           <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>اسم الشركة</label>
@@ -451,8 +451,8 @@ const Settings = () => {
   );
 
   const renderWhatsAppSettings = () => (
-    <GlassCard style={{ padding: '30px' }}>
-      <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#ffffff' }}>إعدادات واتساب API</h3>
+    <GlassCard style={{ padding: isMobile ? '20px' : '30px' }}>
+      <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, marginBottom: isMobile ? '16px' : '25px', color: isMobile ? '#0f172a' : '#ffffff' }}>إعدادات واتساب API</h3>
       <div style={{ display: 'grid', gap: '20px' }}>
         <div>
           <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>مفتاح API</label>
@@ -608,8 +608,8 @@ const Settings = () => {
     }
 
     return (
-      <GlassCard style={{ padding: '30px' }}>
-        <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#ffffff' }}>إدارة المستخدمين</h3>
+      <GlassCard style={{ padding: isMobile ? '20px' : '30px' }}>
+        <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, marginBottom: isMobile ? '16px' : '25px', color: isMobile ? '#0f172a' : '#ffffff' }}>إدارة المستخدمين</h3>
         <div style={{ overflowX: 'auto' }}>
           <table className="dashboard-table">
             <thead>
@@ -831,9 +831,9 @@ const Settings = () => {
 
     return (
       <div>
-        <GlassCard style={{ padding: '30px', marginBottom: '30px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff' }}>إدارة صلاحيات المشرفين</h3>
+        <GlassCard style={{ padding: isMobile ? '20px' : '30px', marginBottom: isMobile ? '20px' : '30px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isMobile ? '16px' : '25px', flexWrap: isMobile ? 'wrap' : 'nowrap', gap: isMobile ? '12px' : '0' }}>
+            <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, color: isMobile ? '#0f172a' : '#ffffff' }}>إدارة صلاحيات المشرفين</h3>
             <GlassButton onClick={() => setShowCreateModal(true)}>إضافة مشرف جديد</GlassButton>
           </div>
 
@@ -1062,48 +1062,130 @@ const Settings = () => {
           pageTitle="الإعدادات"
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: '40px', flex: 1 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '30px' }}>
-            {/* Tabs */}
-            <GlassCard style={{ padding: '20px', height: 'fit-content' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    style={{
-                      padding: '12px 15px',
-                      borderRadius: '10px',
-                      border: 'none',
-                      background: activeTab === tab.id
-                        ? 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #6366F1 100%)'
-                        : 'rgba(255, 255, 255, 0.3)',
-                      color: activeTab === tab.id ? 'white' : 'var(--text-primary)',
-                      fontWeight: activeTab === tab.id ? 700 : 500,
-                      cursor: 'pointer',
-                      transition: 'all 0.3s',
-                      textAlign: 'right',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                    }}
-                  >
-                    <span>{tab.icon}</span>
-                    <span>{tab.label}</span>
-                  </button>
-                ))}
-              </div>
-            </GlassCard>
-
-            {/* Content */}
-            <div>
-              {activeTab === 'general' && renderGeneralSettings()}
-              {activeTab === 'company' && renderCompanySettings()}
-              {activeTab === 'whatsapp' && renderWhatsAppSettings()}
-              {activeTab === 'users' && renderUsersSettings()}
-              {activeTab === 'permissions' && renderPermissionsSettings()}
+        <div style={{ padding: isMobile ? '16px' : '40px', flex: 1 }}>
+          {isMobile ? (
+            /* Mobile: Show tabs as cards that navigate to separate views */
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {tabs.map((tab) => (
+                <div
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className="dashboard-stats-card"
+                  style={{
+                    padding: '16px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '24px' }}>{tab.icon}</span>
+                    <span style={{ fontSize: '16px', fontWeight: 600, color: '#0f172a' }}>{tab.label}</span>
+                    <span style={{ marginLeft: 'auto', fontSize: '18px', color: '#64748b' }}>→</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            /* Desktop: Show tabs sidebar with content */
+            <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '30px' }}>
+              {/* Tabs */}
+              <GlassCard style={{ padding: '20px', height: 'fit-content' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      style={{
+                        padding: '12px 15px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        background: activeTab === tab.id
+                          ? 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #6366F1 100%)'
+                          : 'rgba(255, 255, 255, 0.3)',
+                        color: activeTab === tab.id ? 'white' : 'var(--text-primary)',
+                        fontWeight: activeTab === tab.id ? 700 : 500,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+                        textAlign: 'right',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                      }}
+                    >
+                      <span>{tab.icon}</span>
+                      <span>{tab.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </GlassCard>
+
+              {/* Content */}
+              <div>
+                {activeTab === 'general' && renderGeneralSettings()}
+                {activeTab === 'company' && renderCompanySettings()}
+                {activeTab === 'whatsapp' && renderWhatsAppSettings()}
+                {activeTab === 'users' && renderUsersSettings()}
+                {activeTab === 'permissions' && renderPermissionsSettings()}
+              </div>
+            </div>
+          )}
+          
+          {/* Mobile: Show content in full screen when tab is selected */}
+          {isMobile && activeTab && (
+            <div style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: '#f5f7fa',
+              zIndex: 2000,
+              padding: '16px',
+              overflowY: 'auto',
+            }}>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '12px', 
+                marginBottom: '20px',
+                paddingBottom: '16px',
+                borderBottom: '1px solid #e5e7eb',
+              }}>
+                <button
+                  onClick={() => setActiveTab(null)}
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '10px',
+                    padding: '10px',
+                    cursor: 'pointer',
+                    fontSize: '20px',
+                    color: '#0f172a',
+                  }}
+                >
+                  ←
+                </button>
+                <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  {tabs.find(t => t.id === activeTab)?.label}
+                </h2>
+              </div>
+              <div style={{ paddingBottom: '20px' }}>
+                {activeTab === 'general' && renderGeneralSettings()}
+                {activeTab === 'company' && renderCompanySettings()}
+                {activeTab === 'whatsapp' && renderWhatsAppSettings()}
+                {activeTab === 'users' && renderUsersSettings()}
+                {activeTab === 'permissions' && renderPermissionsSettings()}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

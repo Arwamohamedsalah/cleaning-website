@@ -197,26 +197,26 @@ const Profile = () => {
           pageTitle="الملف الشخصي" 
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: '40px', flex: 1 }}>
+        <div style={{ padding: isMobile ? '16px' : '40px', flex: 1, overflowY: 'auto' }}>
           {/* Profile Header */}
-          <div className="dashboard-chart-card" style={{ padding: '40px', marginBottom: '30px' }}>
-            <div style={{ display: 'flex', gap: '30px', alignItems: 'start' }}>
+          <div className="dashboard-chart-card" style={{ padding: isMobile ? '20px' : '40px', marginBottom: isMobile ? '20px' : '30px' }}>
+            <div style={{ display: 'flex', gap: isMobile ? '15px' : '30px', alignItems: 'start', flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
               <div style={{
-                width: '120px',
-                height: '120px',
+                width: isMobile ? '80px' : '120px',
+                height: isMobile ? '80px' : '120px',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '48px',
+                fontSize: isMobile ? '32px' : '48px',
                 color: 'white',
                 flexShrink: 0,
                 boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)',
               }}>
                 {formData.name?.[0] || '👤'}
               </div>
-              <div style={{ flex: 1 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
                 {isEditMode ? (
                   <div style={{ display: 'grid', gap: '15px' }}>
                     <input
@@ -257,20 +257,20 @@ const Profile = () => {
                   </div>
                 ) : (
                   <>
-                    <h2 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '10px', color: '#0f172a', letterSpacing: '-0.3px' }}>
+                    <h2 style={{ fontSize: isMobile ? '20px' : '28px', fontWeight: 800, marginBottom: '10px', color: '#0f172a', letterSpacing: '-0.3px' }}>
                       {formData.name}
                     </h2>
-                    <p style={{ color: '#334155', marginBottom: '15px', fontSize: '16px', fontWeight: 500, lineHeight: 1.6 }}>
+                    <p style={{ color: '#334155', marginBottom: '15px', fontSize: isMobile ? '14px' : '16px', fontWeight: 500, lineHeight: 1.6 }}>
                       {formData.bio}
                     </p>
-                    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                      <p style={{ color: '#334155', fontSize: '15px', fontWeight: 500 }}>
+                    <div style={{ display: 'flex', gap: isMobile ? '10px' : '20px', flexWrap: 'wrap' }}>
+                      <p style={{ color: '#334155', fontSize: isMobile ? '13px' : '15px', fontWeight: 500 }}>
                         <strong style={{ color: '#0f172a', fontWeight: 700 }}>البريد:</strong> {formData.email}
                       </p>
-                      <p style={{ color: '#334155', fontSize: '15px', fontWeight: 500 }}>
+                      <p style={{ color: '#334155', fontSize: isMobile ? '13px' : '15px', fontWeight: 500 }}>
                         <strong style={{ color: '#0f172a', fontWeight: 700 }}>الهاتف:</strong> {formData.phone}
                       </p>
-                      <p style={{ color: '#334155', fontSize: '15px', fontWeight: 500 }}>
+                      <p style={{ color: '#334155', fontSize: isMobile ? '13px' : '15px', fontWeight: 500 }}>
                         <strong style={{ color: '#0f172a', fontWeight: 700 }}>تاريخ الانضمام:</strong> {formatDate(formData.joinDate)}
                       </p>
                     </div>
@@ -337,10 +337,11 @@ const Profile = () => {
                       background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%)',
                       border: '1px solid rgba(139, 92, 246, 0.5)',
                       color: '#ffffff',
-                      padding: '12px 24px',
+                      padding: isMobile ? '8px 16px' : '12px 24px',
                       borderRadius: '12px',
                       cursor: 'pointer',
                       fontWeight: 600,
+                      fontSize: isMobile ? '13px' : '15px',
                       transition: 'all 0.3s',
                     }}
                     onMouseEnter={(e) => {
@@ -352,7 +353,7 @@ const Profile = () => {
                       e.target.style.boxShadow = 'none';
                     }}
                   >
-                    تعديل الملف الشخصي
+                    {isMobile ? 'تعديل' : 'تعديل الملف الشخصي'}
                   </button>
                 )}
               </div>
@@ -360,24 +361,24 @@ const Profile = () => {
           </div>
 
           {/* Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '30px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))', gap: isMobile ? '12px' : '20px', marginBottom: isMobile ? '20px' : '30px' }}>
             {stats.map((stat, index) => (
-              <div key={index} className="dashboard-stats-card" style={{ padding: '25px', textAlign: 'center' }}>
-                <div style={{ fontSize: '48px', marginBottom: '16px', opacity: 0.9 }}>{stat.icon}</div>
-                <h3 style={{ fontSize: '42px', fontWeight: 800, marginBottom: '10px', color: '#0f172a', letterSpacing: '-0.5px' }}>
+              <div key={index} className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '25px', textAlign: 'center' }}>
+                <div style={{ fontSize: isMobile ? '36px' : '48px', marginBottom: isMobile ? '12px' : '16px', opacity: 0.9 }}>{stat.icon}</div>
+                <h3 style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, marginBottom: '10px', color: '#0f172a', letterSpacing: '-0.5px' }}>
                   {stat.value}
                 </h3>
-                <p style={{ color: '#334155', fontSize: '16px', fontWeight: 600 }}>{stat.label}</p>
+                <p style={{ color: '#334155', fontSize: isMobile ? '13px' : '16px', fontWeight: 600 }}>{stat.label}</p>
               </div>
             ))}
           </div>
 
           {/* Personal Information */}
-          <div className="dashboard-chart-card" style={{ padding: '30px', marginBottom: '30px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-              <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>المعلومات الشخصية</h3>
+          <div className="dashboard-chart-card" style={{ padding: isMobile ? '20px' : '30px', marginBottom: isMobile ? '20px' : '30px', overflow: 'visible' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isMobile ? '16px' : '25px' }}>
+              <h3 style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>المعلومات الشخصية</h3>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))', gap: isMobile ? '12px' : '20px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 700, color: '#0f172a', fontSize: '15px' }}>الاسم الكامل</label>
                 {isEditMode ? (
@@ -512,9 +513,9 @@ const Profile = () => {
           </div>
 
           {/* Security Settings */}
-          <div className="dashboard-chart-card" style={{ padding: '30px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-              <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>الأمان</h3>
+          <div className="dashboard-chart-card" style={{ padding: isMobile ? '20px' : '30px', overflow: 'visible' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isMobile ? '16px' : '25px' }}>
+              <h3 style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>الأمان</h3>
             </div>
             <div style={{ display: 'grid', gap: '20px' }}>
               <div>

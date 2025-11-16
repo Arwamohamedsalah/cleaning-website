@@ -177,19 +177,19 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
                 e.currentTarget.style.color = '#64748b';
               }}
             >
-              <span style={{ fontSize: '18px' }}>←</span>
-              <span style={{ fontWeight: 600 }}>الصفحة الرئيسية</span>
+              <span style={{ fontSize: '16px' }}>←</span>
+              <span style={{ fontWeight: 600, fontSize: '14px' }}>الرئيسية</span>
             </div>
           </Link>
         )}
 
         {/* Account Profile */}
         <div style={{ position: 'relative' }}>
-          <GlassCard
+          <div
             onClick={() => setShowProfileDropdown(!showProfileDropdown)}
             style={{
-              width: '50px',
-              height: '50px',
+              width: isMobile ? '40px' : '50px',
+              height: isMobile ? '40px' : '50px',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -197,7 +197,8 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               cursor: 'pointer',
               background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
               color: 'white',
-              fontSize: '20px',
+              fontSize: isMobile ? '18px' : '20px',
+              fontWeight: '700',
               boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
             }}
@@ -211,7 +212,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
             }}
           >
             {user?.name?.[0] || '👤'}
-          </GlassCard>
+          </div>
           {showProfileDropdown && (
             <div style={{
               position: 'absolute',
