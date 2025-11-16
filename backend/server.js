@@ -5,7 +5,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/database.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import { initializeWhatsApp } from './services/whatsappClient.js';
+// WhatsApp temporarily disabled
+// import { initializeWhatsApp } from './services/whatsappClient.js';
 
 // Load env vars
 dotenv.config();
@@ -17,10 +18,10 @@ const __dirname = path.dirname(__filename);
 // Connect to database
 connectDB();
 
-// Initialize WhatsApp Client (async, but don't block server startup)
-initializeWhatsApp().catch((error) => {
-  console.error('⚠️ Failed to initialize WhatsApp Client:', error.message);
-});
+// Initialize WhatsApp Client — disabled for now
+// initializeWhatsApp().catch((error) => {
+//   console.error('⚠️ Failed to initialize WhatsApp Client:', error?.message || error);
+// });
 
 const app = express();
 
