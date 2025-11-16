@@ -138,7 +138,7 @@ const Workers = () => {
         justifyContent: 'center',
         padding: '120px 20px 60px',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+        background: '#ffffff',
       }}>
         <FloatingShapes />
         <div style={{
@@ -175,7 +175,7 @@ const Workers = () => {
         padding: '80px 20px',
         maxWidth: '1400px',
         margin: '0 auto',
-        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+        background: '#ffffff',
       }}>
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px' }}>
@@ -235,7 +235,7 @@ const Workers = () => {
                     position: 'relative',
                     background: workerPhotos.length > 0 
                       ? 'transparent' 
-                      : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
+                      : '#f8fafc',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -272,7 +272,7 @@ const Workers = () => {
                                 height: '100%',
                                 objectFit: 'contain',
                                 display: 'block',
-                                background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.1) 0%, rgba(37, 150, 190, 0.05) 100%)',
+                                background: '#f8fafc',
                               }}
                               onError={(e) => {
                                 e.target.style.display = 'none';

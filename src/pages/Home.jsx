@@ -237,7 +237,7 @@ const Home = () => {
           justifyContent: 'center',
           padding: isMobile ? '100px 0 40px' : '120px 0 60px',
           overflow: 'hidden',
-          background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+          background: '#ffffff',
         }}>
           <FloatingShapes />
           
@@ -288,15 +288,15 @@ const Home = () => {
                   margin: '20px 0',
                 }}>
                   <li style={{ marginBottom: '12px', paddingRight: '24px', position: 'relative' }}>
-                    <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>✓</span>
+                    <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>✓</span>
                     تنظيف المنازل
                   </li>
                   <li style={{ marginBottom: '12px', paddingRight: '24px', position: 'relative' }}>
-                    <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>✓</span>
+                    <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>✓</span>
                     إدارة المنزل
                   </li>
                   <li style={{ marginBottom: '12px', paddingRight: '24px', position: 'relative' }}>
-                    <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>✓</span>
+                    <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>✓</span>
                     خدمات الضيافة
                   </li>
                 </ul>
@@ -326,9 +326,9 @@ const Home = () => {
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#10b981';
+                  e.currentTarget.style.borderColor = '#0f172a';
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.2)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = '#e5e7eb';
@@ -341,7 +341,7 @@ const Home = () => {
                     width: '56px',
                     height: '56px',
                     borderRadius: '50%',
-                    background: '#10b981',
+                    background: '#0f172a',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -458,7 +458,7 @@ const Home = () => {
         <section style={{
           position: 'relative',
           padding: '80px 20px',
-          background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+          background: '#ffffff',
         }}>
           <div style={{
             maxWidth: '1200px',
