@@ -23,7 +23,13 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
   }, []);
 
   return (
-    <div className="dashboard-topbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+    <div className="dashboard-topbar" style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'space-between', 
+      gap: isMobile ? '10px' : '20px',
+      flexWrap: isMobile ? 'wrap' : 'nowrap',
+    }}>
       {/* Hamburger Menu Button */}
       {isMobile && (
         <button
@@ -61,8 +67,14 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       )}
       
       {/* Left Side: Page Title */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: '0 0 auto' }}>
-        <h1 style={{ margin: 0 }}>{pageTitle}</h1>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '20px', 
+        flex: isMobile ? '1 1 auto' : '0 0 auto',
+        minWidth: 0,
+      }}>
+        <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px' }}>{pageTitle}</h1>
       </div>
 
       {/* Center: Search Bar */}
@@ -124,44 +136,52 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       )}
 
       {/* Right Side: Home Button and Account */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: '0 0 auto' }}>
-        <Link
-          to="/"
-          style={{ textDecoration: 'none' }}
-        >
-          <div
-            style={{
-              padding: '11px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              cursor: 'pointer',
-              background: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '10px',
-              transition: 'all 0.2s ease',
-              color: '#64748b',
-              fontWeight: '500',
-              fontSize: '15px',
-              boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateX(-2px)';
-              e.currentTarget.style.background = '#f1f5f9';
-              e.currentTarget.style.borderColor = '#e2e8f0';
-              e.currentTarget.style.color = '#3b82f6';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateX(0)';
-              e.currentTarget.style.background = '#ffffff';
-              e.currentTarget.style.borderColor = '#e5e7eb';
-              e.currentTarget.style.color = '#64748b';
-            }}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: isMobile ? '10px' : '20px', 
+        flex: '0 0 auto',
+        flexShrink: 0,
+      }}>
+        {!isMobile && (
+          <Link
+            to="/"
+            style={{ textDecoration: 'none' }}
           >
-            <span style={{ fontSize: '18px' }}>←</span>
-            <span style={{ fontWeight: 600 }}>الصفحة الرئيسية</span>
-          </div>
-        </Link>
+            <div
+              style={{
+                padding: '11px 16px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                cursor: 'pointer',
+                background: '#ffffff',
+                border: '1px solid #e5e7eb',
+                borderRadius: '10px',
+                transition: 'all 0.2s ease',
+                color: '#64748b',
+                fontWeight: '500',
+                fontSize: '15px',
+                boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateX(-2px)';
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                e.currentTarget.style.color = '#3b82f6';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateX(0)';
+                e.currentTarget.style.background = '#ffffff';
+                e.currentTarget.style.borderColor = '#e5e7eb';
+                e.currentTarget.style.color = '#64748b';
+              }}
+            >
+              <span style={{ fontSize: '18px' }}>←</span>
+              <span style={{ fontWeight: 600 }}>الصفحة الرئيسية</span>
+            </div>
+          </Link>
+        )}
 
         {/* Account Profile */}
         <div style={{ position: 'relative' }}>

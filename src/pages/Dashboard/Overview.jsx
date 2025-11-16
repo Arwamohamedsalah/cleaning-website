@@ -177,13 +177,16 @@ const Overview = () => {
           pageTitle="نظرة عامة" 
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: '40px', flex: 1 }} className="dashboard-content-area">
+        <div style={{ 
+          padding: isMobile ? '16px' : '40px', 
+          flex: 1 
+        }} className="dashboard-content-area">
           {/* Stats Cards */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '24px',
-            marginBottom: '40px',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: isMobile ? '16px' : '24px',
+            marginBottom: isMobile ? '24px' : '40px',
           }}>
             {stats.map((stat, index) => (
               <div key={index} className="dashboard-stats-card">
@@ -222,9 +225,9 @@ const Overview = () => {
           {/* Charts Section */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '2fr 1fr',
-            gap: '30px',
-            marginBottom: '40px',
+            gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
+            gap: isMobile ? '20px' : '30px',
+            marginBottom: isMobile ? '24px' : '40px',
           }}>
             <div className="dashboard-chart-card">
               <h3>الطلبات - آخر 7 أيام</h3>
