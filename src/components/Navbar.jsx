@@ -61,8 +61,8 @@ const Navbar = () => {
         backdropFilter: 'blur(20px) saturate(180%)',
         WebkitBackdropFilter: 'blur(20px) saturate(180%)',
         borderBottom: scrolled 
-          ? '1px solid rgba(37, 150, 190, 0.1)' 
-          : '1px solid rgba(37, 150, 190, 0.05)',
+          ? '1px solid rgba(15, 23, 42, 0.08)' 
+          : '1px solid rgba(15, 23, 42, 0.05)',
         boxShadow: scrolled 
           ? '0 4px 20px rgba(0, 0, 0, 0.08), 0 0 40px rgba(37, 150, 190, 0.1)' 
           : '0 2px 8px rgba(0, 0, 0, 0.05)',
@@ -92,7 +92,7 @@ const Navbar = () => {
             objectFit: 'contain', 
             borderRadius: '14px',
             boxShadow: '0 4px 20px rgba(37, 150, 190, 0.3)',
-            border: '2px solid rgba(37, 150, 190, 0.1)',
+            border: '2px solid rgba(15, 23, 42, 0.08)',
             transition: 'all 0.3s ease',
           }}
         />
@@ -131,13 +131,11 @@ const Navbar = () => {
                   textDecoration: 'none',
                   padding: '12px 24px',
                   borderRadius: '12px',
-                  background: active 
-                    ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.15), rgba(59, 130, 246, 0.1))' 
-                    : 'transparent',
-                  color: active ? '#2596be' : '#0f172a',
+                  background: active ? '#f3f4f6' : 'transparent',
+                  color: active ? '#0f172a' : '#0f172a',
                   fontWeight: active ? 700 : 500,
                   fontSize: '15px',
-                  border: active ? '1px solid rgba(37, 150, 190, 0.2)' : '1px solid transparent',
+                  border: active ? '1px solid rgba(15, 23, 42, 0.2)' : '1px solid transparent',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   position: 'relative',
                 }}
@@ -171,22 +169,22 @@ const Navbar = () => {
               style={{
                 padding: '12px 28px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
+                background: '#111827',
                 color: 'white',
                 border: 'none',
                 cursor: 'pointer',
                 fontWeight: 600,
                 fontSize: '15px',
-                boxShadow: '0 4px 16px rgba(37, 150, 190, 0.4)',
+                boxShadow: '0 4px 16px rgba(37, 150, 190, 0.25)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.5)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.4)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.25)';
               }}
             >
               طلب خدمة
@@ -199,7 +197,7 @@ const Navbar = () => {
                 borderRadius: '12px',
                 background: '#ffffff',
                 color: '#0f172a',
-                border: '1px solid rgba(37, 150, 190, 0.2)',
+                border: '1px solid rgba(15, 23, 42, 0.2)',
                 cursor: 'pointer',
                 fontWeight: 500,
                 fontSize: '15px',
@@ -212,7 +210,7 @@ const Navbar = () => {
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#ffffff';
-                e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.2)';
+                e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.2)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -231,10 +229,10 @@ const Navbar = () => {
             width: '44px',
             height: '44px',
             fontSize: '20px',
-            border: '1px solid rgba(37, 150, 190, 0.2)',
+            border: '1px solid rgba(15, 23, 42, 0.2)',
             borderRadius: '12px',
             background: mobileMenuOpen 
-              ? 'linear-gradient(135deg, #2596be, #3ba8d0)' 
+              ? '#111827' 
               : '#ffffff',
             color: mobileMenuOpen ? '#ffffff' : '#2596be',
             cursor: 'pointer',
@@ -296,7 +294,7 @@ const Navbar = () => {
               flexDirection: 'column',
               gap: '10px',
               zIndex: 1003,
-              border: '2px solid rgba(37, 150, 190, 0.15)',
+              border: '2px solid rgba(15, 23, 42, 0.15)',
               maxHeight: 'calc(100vh - 120px)',
               overflowY: 'auto',
               animation: 'fadeInDown 0.3s ease-out',
@@ -324,8 +322,8 @@ const Navbar = () => {
                     fontWeight: active ? 700 : 600,
                     fontSize: '17px',
                     border: active 
-                      ? '2px solid rgba(37, 150, 190, 0.3)' 
-                      : '1px solid rgba(37, 150, 190, 0.1)',
+                      ? '2px solid rgba(15, 23, 42, 0.3)' 
+                      : '1px solid rgba(15, 23, 42, 0.1)',
                     transition: 'all 0.3s ease',
                     display: 'block',
                     width: '100%',
@@ -365,23 +363,23 @@ const Navbar = () => {
                   width: '100%',
                   padding: '16px 24px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%)',
+                  background: '#111827',
                   color: 'white',
                   border: 'none',
                   cursor: 'pointer',
                   fontWeight: 700,
                   fontSize: '17px',
-                  boxShadow: '0 6px 20px rgba(37, 150, 190, 0.4)',
+                  boxShadow: '0 6px 20px rgba(37, 150, 190, 0.25)',
                   transition: 'all 0.3s ease',
                   display: 'block',
                 }}
                 onTouchStart={(e) => {
                   e.currentTarget.style.transform = 'scale(0.98)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.3)';
                 }}
                 onTouchEnd={(e) => {
                   e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.25)';
                 }}
               >
                 طلب خدمة
@@ -395,7 +393,7 @@ const Navbar = () => {
                   borderRadius: '14px',
                   background: '#ffffff',
                   color: '#0f172a',
-                  border: '2px solid rgba(37, 150, 190, 0.25)',
+                  border: '2px solid rgba(15, 23, 42, 0.25)',
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '17px',
@@ -411,7 +409,7 @@ const Navbar = () => {
                 onTouchEnd={(e) => {
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.25)';
+                  e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.25)';
                 }}
               >
                 تسجيل دخول
