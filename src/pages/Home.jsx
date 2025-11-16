@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlassCard from '../components/GlassCard';
 import GlassButton from '../components/GlassButton';
-import FloatingShapes from '../components/FloatingShapes';
 import { ordersAPI } from '../services/api';
 import '../styles/globals.css';
 import '../styles/glassmorphism.css';
@@ -239,7 +238,7 @@ const Home = () => {
           overflow: 'hidden',
           background: '#ffffff',
         }}>
-          <FloatingShapes />
+          
           
           <div style={{
             maxWidth: '1400px',
@@ -386,7 +385,7 @@ const Home = () => {
                     background: '#000000',
                     borderRadius: '40px',
                     padding: '12px',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(59, 130, 246, 0.1)',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(15, 23, 42, 0.06)',
                     position: 'relative',
                   }}>
                     <div style={{
@@ -434,7 +433,7 @@ const Home = () => {
                         right: '20px',
                         width: '60px',
                         height: '60px',
-                        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, rgba(15, 23, 42, 0.06) 0%, transparent 70%)',
                         borderRadius: '50%',
                       }} />
                       <div style={{
@@ -443,7 +442,7 @@ const Home = () => {
                         left: '20px',
                         width: '40px',
                         height: '40px',
-                        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, rgba(15, 23, 42, 0.05) 0%, transparent 70%)',
                         borderRadius: '50%',
                       }} />
                     </div>

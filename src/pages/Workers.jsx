@@ -12,7 +12,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlassCard from '../components/GlassCard';
 import GlassButton from '../components/GlassButton';
-import FloatingShapes from '../components/FloatingShapes';
 import '../styles/globals.css';
 import '../styles/glassmorphism.css';
 import '../styles/dashboard.css';
@@ -140,7 +139,6 @@ const Workers = () => {
         overflow: 'hidden',
         background: '#ffffff',
       }}>
-        <FloatingShapes />
         <div style={{
           maxWidth: '1200px',
           width: '100%',

@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import WorkersPage from './pages/Workers';
 import Assistants from './pages/Assistants';
 import WorkerDetails from './pages/WorkerDetails';
-import ServiceRequest from './pages/ServiceRequest';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Overview from './pages/Dashboard/Overview';
@@ -51,7 +50,7 @@ function App() {
         <Route path="/workers" element={<WorkersPage />} />
         <Route path="/assistants" element={<Assistants />} />
         <Route path="/worker/:id" element={<WorkerDetails />} />
-        <Route path="/service-request" element={<ServiceRequest />} />
+        {/* ServiceRequest route removed per request */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         

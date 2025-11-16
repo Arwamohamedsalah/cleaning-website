@@ -8,6 +8,11 @@ import Footer from '../components/Footer';
 import GlassCard from '../components/GlassCard';
 import GlassButton from '../components/GlassButton';
 import FloatingShapes from '../components/FloatingShapes';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import '../styles/globals.css';
 import '../styles/glassmorphism.css';
 import '../styles/dashboard.css';
@@ -184,7 +189,7 @@ const WorkerDetails = () => {
   }
 
   const workerName = worker.arabicName || worker.name || 'عاملة';
-  const workerImage = worker.photos && worker.photos.length > 0 ? worker.photos[0] : null;
+  const workerPhotos = Array.isArray(worker.photos) && worker.photos.length > 0 ? worker.photos : [];
   
   const getStatusBadge = (status) => {
     const badges = {
@@ -259,40 +264,57 @@ const WorkerDetails = () => {
             alignItems: 'center',
             textAlign: 'center',
           }}>
-            {/* Worker Image */}
-            <div style={{
-              width: '200px',
-              height: '200px',
-              borderRadius: '50%',
-              marginBottom: '30px',
-              overflow: 'hidden',
-              border: '5px solid rgba(37, 150, 190, 0.3)',
-              background: workerImage 
-                ? 'transparent' 
-                : 'linear-gradient(135deg, rgba(37, 150, 190, 0.9) 0%, rgba(37, 150, 190, 0.8) 25%, rgba(37, 150, 190, 0.7) 50%, rgba(29, 120, 152, 0.8) 75%, rgba(22, 90, 114, 0.9) 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '80px',
-              color: 'white',
-              boxShadow: '0 12px 40px rgba(37, 150, 190, 0.3)',
-            }}>
-              {workerImage ? (
-                <img 
-                  src={workerImage} 
-                  alt={workerName}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.style.fontSize = '80px';
-                  }}
-                />
+            {/* Worker Images - Square slider */}
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '320px',
+                marginBottom: '30px',
+                overflow: 'hidden',
+                borderRadius: '16px',
+                border: '1px solid #e5e7eb',
+                background: workerPhotos.length > 0 ? '#ffffff' : '#f8fafc',
+                boxShadow: '0 6px 24px rgba(0,0,0,0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {workerPhotos.length > 0 ? (
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  navigation={workerPhotos.length > 1}
+                  pagination={{ clickable: true, dynamicBullets: true }}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  loop={workerPhotos.length > 1}
+                  style={{ width: '100%', height: '100%' }}
+                >
+                  {workerPhotos.map((photo, idx) => (
+                    <SwiperSlide key={idx}>
+                      <img
+                        src={photo}
+                        alt={`${workerName} - ${idx + 1}`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block',
+                          background: '#f8fafc',
+                        }}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               ) : (
-                <span>{workerName[0]}</span>
+                <span style={{ fontSize: '80px', fontWeight: 800, color: '#0f172a' }}>
+                  {workerName[0]}
+                </span>
               )}
             </div>
 

@@ -68,7 +68,7 @@ export const initializeWhatsApp = async () => {
     // هذه الإعدادات ضرورية لتشغيل Chromium على سيرفر بدون GUI
     if (process.env.DISABLE_PUPPETEER !== 'true') {
       clientConfig.puppeteer = {
-        headless: true, // تشغيل بدون واجهة رسومية (مهم للسيرفر)
+        headless: 'new', // وضع headless الحديث في Chromium
         args: [
           // الإعدادات الأساسية المطلوبة (الأهم)
           '--no-sandbox',                    // ✅ تعطيل sandbox (مهم جداً للسيرفر بدون GUI)

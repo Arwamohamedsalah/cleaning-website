@@ -64,7 +64,7 @@ const Navbar = () => {
           ? '1px solid rgba(15, 23, 42, 0.08)' 
           : '1px solid rgba(15, 23, 42, 0.05)',
         boxShadow: scrolled 
-          ? '0 4px 20px rgba(0, 0, 0, 0.08), 0 0 40px rgba(37, 150, 190, 0.1)' 
+          ? '0 4px 20px rgba(0, 0, 0, 0.08), 0 0 40px rgba(15, 23, 42, 0.06)' 
           : '0 2px 8px rgba(0, 0, 0, 0.05)',
         zIndex: 1000,
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -91,7 +91,7 @@ const Navbar = () => {
             height: isMobile ? '45px' : '56px', 
             objectFit: 'contain', 
             borderRadius: '14px',
-            boxShadow: '0 4px 20px rgba(37, 150, 190, 0.3)',
+            boxShadow: '0 4px 20px rgba(15, 23, 42, 0.15)',
             border: '2px solid rgba(15, 23, 42, 0.08)',
             transition: 'all 0.3s ease',
           }}
@@ -161,64 +161,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Desktop Buttons */}
-      {!isMobile && (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <Link to="/service-request" style={{ textDecoration: 'none' }}>
-            <button
-              style={{
-                padding: '12px 28px',
-                borderRadius: '12px',
-                background: '#ffffff',
-                color: '#0f172a',
-                border: '1px solid rgba(15, 23, 42, 0.1)',
-                cursor: 'pointer',
-                fontWeight: 600,
-                fontSize: '15px',
-                boxShadow: '0 4px 16px rgba(37, 150, 190, 0.25)',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.25)';
-              }}
-            >
-              طلب خدمة
-            </button>
-          </Link>
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-            <button
-              style={{
-                padding: '12px 24px',
-                borderRadius: '12px',
-                background: '#ffffff',
-                color: '#0f172a',
-                border: '1px solid rgba(15, 23, 42, 0.1)',
-                cursor: 'pointer',
-                fontWeight: 500,
-                fontSize: '15px',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(37, 150, 190, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#ffffff';
-                e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.1)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              تسجيل دخول
-            </button>
-          </Link>
-        </div>
-      )}
+      {/* Desktop Buttons - removed per request */}
 
       {/* Hamburger - Mobile */}
       {isMobile && (
@@ -234,7 +177,7 @@ const Navbar = () => {
             background: mobileMenuOpen 
               ? '#ffffff' 
               : '#ffffff',
-            color: mobileMenuOpen ? '#2596be' : '#2596be',
+            color: mobileMenuOpen ? '#0f172a' : '#0f172a',
             cursor: 'pointer',
             zIndex: 1005,
             display: 'flex',
@@ -242,7 +185,7 @@ const Navbar = () => {
             justifyContent: 'center',
             transition: 'all 0.3s ease',
             boxShadow: mobileMenuOpen 
-              ? '0 4px 12px rgba(37, 150, 190, 0.4)' 
+              ? '0 4px 12px rgba(0, 0, 0, 0.15)' 
               : '0 2px 8px rgba(0, 0, 0, 0.1)',
             fontWeight: 'bold',
           }}
@@ -288,7 +231,7 @@ const Navbar = () => {
               backdropFilter: 'blur(20px) saturate(180%)',
               WebkitBackdropFilter: 'blur(20px) saturate(180%)',
               borderRadius: '20px',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2), 0 0 40px rgba(37, 150, 190, 0.15)',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2), 0 0 40px rgba(15, 23, 42, 0.12)',
               padding: '20px',
               display: 'flex',
               flexDirection: 'column',
@@ -314,34 +257,34 @@ const Navbar = () => {
                     padding: '16px 20px',
                     borderRadius: '14px',
                     background: active 
-                      ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.2), rgba(59, 130, 246, 0.15))' 
-                      : 'rgba(37, 150, 190, 0.08)',
-                    color: active ? '#2596be' : '#0f172a',
+                  ? '#f3f4f6' 
+                  : 'rgba(15, 23, 42, 0.05)',
+                color: '#0f172a',
                     textAlign: 'center',
                     textDecoration: 'none',
                     fontWeight: active ? 700 : 600,
                     fontSize: '17px',
                     border: active 
-                      ? '2px solid rgba(15, 23, 42, 0.3)' 
-                      : '1px solid rgba(15, 23, 42, 0.1)',
+                  ? '2px solid rgba(15, 23, 42, 0.25)' 
+                  : '1px solid rgba(15, 23, 42, 0.1)',
                     transition: 'all 0.3s ease',
                     display: 'block',
                     width: '100%',
                     boxShadow: active 
-                      ? '0 4px 12px rgba(37, 150, 190, 0.2)' 
+                  ? '0 4px 12px rgba(0, 0, 0, 0.08)' 
                       : '0 2px 6px rgba(0, 0, 0, 0.05)',
                   }}
                   onTouchStart={(e) => {
                     e.currentTarget.style.transform = 'scale(0.98)';
-                    e.currentTarget.style.background = active 
-                      ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.25), rgba(59, 130, 246, 0.2))' 
-                      : 'rgba(37, 150, 190, 0.12)';
+                e.currentTarget.style.background = active 
+                  ? '#e5e7eb' 
+                  : 'rgba(15, 23, 42, 0.08)';
                   }}
                   onTouchEnd={(e) => {
                     e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.background = active 
-                      ? 'linear-gradient(135deg, rgba(37, 150, 190, 0.2), rgba(59, 130, 246, 0.15))' 
-                      : 'rgba(37, 150, 190, 0.08)';
+                e.currentTarget.style.background = active 
+                  ? '#f3f4f6' 
+                  : 'rgba(15, 23, 42, 0.05)';
                   }}
                 >
                   {item.label}
@@ -352,69 +295,12 @@ const Navbar = () => {
             {/* Divider */}
             <div style={{ 
               height: '2px', 
-              background: 'linear-gradient(90deg, transparent 0%, rgba(37, 150, 190, 0.4) 50%, transparent 100%)', 
+          background: 'linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%)', 
               margin: '12px 0',
               borderRadius: '2px',
             }} />
             
-            <Link to="/service-request" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', width: '100%' }}>
-              <button
-                style={{
-                  width: '100%',
-                  padding: '16px 24px',
-                  borderRadius: '14px',
-                  background: '#ffffff',
-                  color: '#0f172a',
-                  border: '1px solid rgba(15, 23, 42, 0.1)',
-                  cursor: 'pointer',
-                  fontWeight: 700,
-                  fontSize: '17px',
-                  boxShadow: '0 6px 20px rgba(37, 150, 190, 0.25)',
-                  transition: 'all 0.3s ease',
-                  display: 'block',
-                }}
-                onTouchStart={(e) => {
-                  e.currentTarget.style.transform = 'scale(0.98)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(37, 150, 190, 0.3)';
-                }}
-                onTouchEnd={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 150, 190, 0.25)';
-                }}
-              >
-                طلب خدمة
-              </button>
-            </Link>
-            <Link to="/login" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', width: '100%' }}>
-              <button
-                style={{
-                  width: '100%',
-                  padding: '16px 24px',
-                  borderRadius: '14px',
-                  background: '#ffffff',
-                  color: '#0f172a',
-                  border: '1px solid rgba(15, 23, 42, 0.1)',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  fontSize: '17px',
-                  transition: 'all 0.3s ease',
-                  display: 'block',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                }}
-                onTouchStart={(e) => {
-                  e.currentTarget.style.transform = 'scale(0.98)';
-                  e.currentTarget.style.background = 'rgba(37, 150, 190, 0.08)';
-                  e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.35)';
-                }}
-                onTouchEnd={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.borderColor = 'rgba(15, 23, 42, 0.1)';
-                }}
-              >
-                تسجيل دخول
-              </button>
-            </Link>
+            {/* Service request button removed per request */}
           </div>
         </>
       )}

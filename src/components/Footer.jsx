@@ -10,10 +10,11 @@ const Footer = () => {
 
   return (
     <footer style={{
-      background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
-      borderTop: '1px solid #e5e7eb',
+      background: '#ffffff',
+      borderTop: '1px solid rgba(15, 23, 42, 0.08)',
       padding: '60px 40px 20px',
       marginTop: '80px',
+      boxShadow: '0 -4px 20px rgba(0,0,0,0.04)',
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -62,9 +63,9 @@ const Footer = () => {
         <div>
           <h3 style={{ marginBottom: '20px', fontSize: '20px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>روابط سريعة</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <Link to="/workers" style={{ color: '#334155', textDecoration: 'none', transition: 'color 0.3s', fontWeight: 500 }} onMouseEnter={(e) => e.target.style.color = '#3b82f6'} onMouseLeave={(e) => e.target.style.color = '#334155'}>تنظيف اليوم</Link>
-            <Link to="/assistants" style={{ color: '#334155', textDecoration: 'none', transition: 'color 0.3s', fontWeight: 500 }} onMouseEnter={(e) => e.target.style.color = '#3b82f6'} onMouseLeave={(e) => e.target.style.color = '#334155'}>الاستقدام</Link>
-            <Link to="/contact" style={{ color: '#334155', textDecoration: 'none', transition: 'color 0.3s', fontWeight: 500 }} onMouseEnter={(e) => e.target.style.color = '#3b82f6'} onMouseLeave={(e) => e.target.style.color = '#334155'}>تواصل معنا</Link>
+            <Link to="/workers" style={{ color: '#334155', textDecoration: 'none', transition: 'all 0.2s', fontWeight: 500, padding: '6px 0' }} onMouseEnter={(e) => { e.target.style.color = '#0f172a'; e.target.style.transform = 'translateX(-4px)'; }} onMouseLeave={(e) => { e.target.style.color = '#334155'; e.target.style.transform = 'translateX(0)'; }}>تنظيف اليوم</Link>
+            <Link to="/assistants" style={{ color: '#334155', textDecoration: 'none', transition: 'all 0.2s', fontWeight: 500, padding: '6px 0' }} onMouseEnter={(e) => { e.target.style.color = '#0f172a'; e.target.style.transform = 'translateX(-4px)'; }} onMouseLeave={(e) => { e.target.style.color = '#334155'; e.target.style.transform = 'translateX(0)'; }}>الاستقدام</Link>
+            <Link to="/contact" style={{ color: '#334155', textDecoration: 'none', transition: 'all 0.2s', fontWeight: 500, padding: '6px 0' }} onMouseEnter={(e) => { e.target.style.color = '#0f172a'; e.target.style.transform = 'translateX(-4px)'; }} onMouseLeave={(e) => { e.target.style.color = '#334155'; e.target.style.transform = 'translateX(0)'; }}>تواصل معنا</Link>
             <button
               onClick={() => setShowPrivacyModal(true)}
               style={{
@@ -72,7 +73,7 @@ const Footer = () => {
                 border: 'none',
                 color: '#334155',
                 textDecoration: 'none',
-                transition: 'color 0.3s',
+                transition: 'all 0.2s',
                 fontWeight: 500,
                 cursor: 'pointer',
                 textAlign: 'right',
@@ -80,8 +81,8 @@ const Footer = () => {
                 fontSize: 'inherit',
                 fontFamily: 'inherit',
               }}
-              onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
-              onMouseLeave={(e) => e.target.style.color = '#334155'}
+              onMouseEnter={(e) => { e.target.style.color = '#0f172a'; e.target.style.transform = 'translateX(-4px)'; }}
+              onMouseLeave={(e) => { e.target.style.color = '#334155'; e.target.style.transform = 'translateX(0)'; }}
             >
               سياسة الخصوصية
             </button>
@@ -113,6 +114,8 @@ const Footer = () => {
                   justifyContent: 'center',
                   cursor: 'pointer',
                   fontSize: '24px',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                 }}
               >
                 {social === 'Facebook' && '📘'}
@@ -126,7 +129,7 @@ const Footer = () => {
       </div>
 
       <div style={{
-        borderTop: '1px solid #e5e7eb',
+        borderTop: '1px solid rgba(15, 23, 42, 0.08)',
         paddingTop: '20px',
         textAlign: 'center',
         color: '#64748b',
@@ -189,15 +192,15 @@ const Footer = () => {
                 fontSize: '14px',
               }}>
                 <li style={{ marginBottom: '8px', paddingRight: '20px', position: 'relative' }}>
-                  <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>•</span>
+                  <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>•</span>
                   الاسم الكامل ورقم الهاتف والعنوان
                 </li>
                 <li style={{ marginBottom: '8px', paddingRight: '20px', position: 'relative' }}>
-                  <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>•</span>
+                  <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>•</span>
                   معلومات الحجز والطلبات
                 </li>
                 <li style={{ marginBottom: '8px', paddingRight: '20px', position: 'relative' }}>
-                  <span style={{ position: 'absolute', right: 0, color: '#3b82f6' }}>•</span>
+                  <span style={{ position: 'absolute', right: 0, color: '#0f172a' }}>•</span>
                   أي معلومات أخرى تقدمها طواعية
                 </li>
               </ul>

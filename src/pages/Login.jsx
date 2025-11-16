@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlassCard from '../components/GlassCard';
 import GlassButton from '../components/GlassButton';
-import FloatingShapes from '../components/FloatingShapes';
+// FloatingShapes removed for neutral design
 import { loginSchema } from '../schemas/validationSchemas';
 import { loginUser } from '../store/slices/authSlice';
 import '../styles/globals.css';
@@ -96,7 +96,7 @@ const Login = () => {
     <div className="dashboard-container" style={{
       minHeight: '100vh',
       paddingTop: '100px',
-      background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)',
+      background: '#ffffff',
     }}>
       {/* Stars Background */}
       {stars.map(star => (
@@ -111,7 +111,6 @@ const Login = () => {
         />
       ))}
       <Navbar />
-      <FloatingShapes />
       
       <div style={{
         minHeight: 'calc(100vh - 200px)',
@@ -129,7 +128,7 @@ const Login = () => {
           background: '#ffffff',
           borderRadius: '32px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1)',
-          border: '1px solid rgba(59, 130, 246, 0.1)',
+          border: '1px solid rgba(15, 23, 42, 0.08)',
         }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <img 
@@ -141,7 +140,7 @@ const Login = () => {
                 objectFit: 'contain',
                 borderRadius: '16px',
                 margin: '0 auto 20px',
-                boxShadow: '0 8px 30px rgba(59, 130, 246, 0.2)',
+              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
               }}
             />
             <div style={{
@@ -207,8 +206,8 @@ const Login = () => {
                   transition: 'all 0.3s',
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#3b82f6';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  e.target.style.borderColor = '#0f172a';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(15, 23, 42, 0.08)';
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = '#e5e7eb';
@@ -250,8 +249,8 @@ const Login = () => {
                     transition: 'all 0.3s',
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#3b82f6';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                    e.target.style.borderColor = '#0f172a';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(15, 23, 42, 0.08)';
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = '#e5e7eb';
@@ -302,7 +301,7 @@ const Login = () => {
                     height: '18px',
                     marginLeft: '10px',
                     cursor: 'pointer',
-                    accentColor: '#3b82f6',
+                    accentColor: '#0f172a',
                   }}
                 />
                 <span style={{ color: '#334155', fontWeight: 500 }}>تذكرني</span>
@@ -311,8 +310,8 @@ const Login = () => {
 
             {errors.root && (
               <div style={{
-                background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%)',
-                border: '1px solid #dc2626',
+                background: 'rgba(220, 38, 38, 0.06)',
+                border: '1px solid rgba(220, 38, 38, 0.4)',
                 borderRadius: '12px',
                 padding: '15px',
                 marginBottom: '20px',
@@ -332,9 +331,11 @@ const Login = () => {
                 padding: '16px',
                 fontSize: '18px',
                 fontWeight: 700,
-                background: loading ? '#94a3b8' : 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                background: loading ? '#94a3b8' : '#ffffff',
                 cursor: loading ? 'not-allowed' : 'pointer',
-                boxShadow: loading ? 'none' : '0 10px 25px rgba(59, 130, 246, 0.3)',
+                border: loading ? '1px solid #cbd5e1' : '1px solid rgba(15, 23, 42, 0.2)',
+                color: '#0f172a',
+                boxShadow: loading ? 'none' : '0 8px 20px rgba(0, 0, 0, 0.08)',
               }}
             >
               {loading ? (
