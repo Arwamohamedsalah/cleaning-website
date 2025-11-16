@@ -1,7 +1,5 @@
-import pkg from 'whatsapp-web.js';
-const { Client, LocalAuth } = pkg;
+import makeWASocket, { useMultiFileAuthState, Browsers, DisconnectReason } from '@whiskeysockets/baileys';
 import qrcode from 'qrcode-terminal';
-import { checkPuppeteerDependencies, installPuppeteerDependencies } from '../utils/checkPuppeteerDeps.js';
 
 let whatsappClient = null;
 let isInitialized = false;
@@ -15,137 +13,46 @@ export const initializeWhatsApp = async () => {
     return whatsappClient;
   }
 
-  // Check if Puppeteer is disabled
-  if (process.env.DISABLE_PUPPETEER === 'true') {
-    console.log("⚠️ Puppeteer disabled on this server.");
-    console.log("📱 WhatsApp Client will not be initialized.");
-    return null;
-  }
-
   try {
-    // Check Puppeteer dependencies before initializing
-    if (process.env.CHECK_PUPPETEER_DEPS !== 'false') {
-      console.log('🔍 Checking Puppeteer dependencies...');
-      const depsCheck = await checkPuppeteerDependencies();
-      
-      if (!depsCheck.installed) {
-        console.warn('⚠️  Missing Puppeteer dependencies detected!');
-        console.warn(`📦 Missing libraries: ${depsCheck.missing.join(', ')}`);
-        console.warn(`📊 Status: ${depsCheck.installed || 0}/${depsCheck.total} libraries installed`);
-        
-        // Try to install automatically (if has sudo)
-        if (process.env.AUTO_INSTALL_DEPS === 'true') {
-          console.log('🔧 Attempting to install dependencies automatically...');
-          const installResult = await installPuppeteerDependencies();
-          
-          if (!installResult.success) {
-            console.error('❌ Auto-installation failed. Please install manually:');
-            console.error(installResult.command || installResult.message);
-            console.error('\n📝 Or run: ./install-puppeteer-deps.sh');
-            console.error('📝 Or set DISABLE_PUPPETEER=true in .env to disable WhatsApp');
-          } else {
-            console.log('✅ Dependencies installed successfully!');
-          }
-        } else {
-          console.error('❌ Please install missing dependencies:');
-          console.error(`   ${depsCheck.installCommand || 'See FIX_PUPPETEER_ERROR.md'}`);
-          console.error('📝 Or run: ./install-puppeteer-deps.sh');
-          console.error('📝 Or set DISABLE_PUPPETEER=true in .env to disable WhatsApp');
-        }
-      } else {
-        console.log('✅ All Puppeteer dependencies are installed');
+    // Auth state stored in folder
+    const { state, saveCreds } = await useMultiFileAuthState('./whatsapp-session');
+
+    whatsappClient = makeWASocket({
+      auth: state,
+      printQRInTerminal: true,
+      browser: Browsers.appropriate('Desktop'),
+      syncFullHistory: false,
+    });
+
+    // QR printed automatically; also show a terminal QR if needed via event
+    whatsappClient.ev.on('connection.update', (update) => {
+      const { connection, lastDisconnect, qr } = update;
+      if (qr) {
+        console.log('📱 امسح رمز QR التالي باستخدام WhatsApp:');
+        qrcode.generate(qr, { small: true });
       }
-    }
-
-    const clientConfig = {
-      authStrategy: new LocalAuth({
-        dataPath: './whatsapp-session'
-      })
-    };
-
-    // Only add puppeteer config if not disabled
-    // إعدادات Puppeteer للسيرفر بدون واجهة رسومية
-    // هذه الإعدادات ضرورية لتشغيل Chromium على سيرفر بدون GUI
-    if (process.env.DISABLE_PUPPETEER !== 'true') {
-      clientConfig.puppeteer = {
-        headless: 'new', // وضع headless الحديث في Chromium
-        args: [
-          // الإعدادات الأساسية المطلوبة (الأهم)
-          '--no-sandbox',                    // ✅ تعطيل sandbox (مهم جداً للسيرفر بدون GUI)
-          '--disable-setuid-sandbox',        // ✅ تعطيل setuid sandbox (مهم للسيرفر)
-          '--disable-dev-shm-usage',         // ✅ حل مشاكل الذاكرة المشتركة (مهم)
-          
-          // إعدادات إضافية لتحسين الأداء والاستقرار
-          '--disable-accelerated-2d-canvas',  // تعطيل تسريع Canvas
-          '--no-first-run',                  // تخطي أول تشغيل
-          '--no-zygote',                     // تعطيل zygote process
-          '--single-process',                // تشغيل في process واحد (مهم للسيرفر محدود الموارد)
-          '--disable-gpu'                    // تعطيل GPU (غير متوفر في السيرفر)
-        ],
-        // خيارات إضافية لبيئة السيرفر
-        ignoreHTTPSErrors: true, // تجاهل أخطاء HTTPS
-        timeout: 60000, // مهلة 60 ثانية
-      };
-    }
-
-    whatsappClient = new Client(clientConfig);
-
-    // QR Code event
-    whatsappClient.on('qr', (qr) => {
-      console.log('📱 امسح رمز QR هذا باستخدام WhatsApp:');
-      qrcode.generate(qr, { small: true });
-      console.log('\nأو افتح WhatsApp على هاتفك واذهب إلى:');
-      console.log('الإعدادات > الأجهزة المرتبطة > ربط جهاز');
+      if (connection === 'open') {
+        console.log('✅ WhatsApp Client جاهز!');
+        isReady = true;
+      } else if (connection === 'close') {
+        const shouldReconnect = (lastDisconnect?.error)?.output?.statusCode !== DisconnectReason.loggedOut;
+        console.log('⚠️ تم قطع الاتصال. willReconnect=', shouldReconnect);
+        isReady = false;
+        if (shouldReconnect) {
+          isInitialized = false;
+          whatsappClient = null;
+          initializeWhatsApp(); // try to re-init
+        }
+      }
     });
 
-    // Ready event
-    whatsappClient.on('ready', () => {
-      console.log('✅ WhatsApp Client جاهز!');
-      isReady = true;
-    });
+    // persist creds
+    whatsappClient.ev.on('creds.update', saveCreds);
 
-    // Authentication event
-    whatsappClient.on('authenticated', () => {
-      console.log('✅ تم المصادقة بنجاح!');
-    });
-
-    // Authentication failure
-    whatsappClient.on('auth_failure', (msg) => {
-      console.error('❌ فشل المصادقة:', msg);
-      isReady = false;
-    });
-
-    // Disconnected
-    whatsappClient.on('disconnected', (reason) => {
-      console.log('⚠️ تم قطع الاتصال:', reason);
-      isReady = false;
-      isInitialized = false;
-      whatsappClient = null;
-    });
-
-    // Initialize
-    whatsappClient.initialize();
     isInitialized = true;
-
     return whatsappClient;
   } catch (error) {
     console.error('❌ خطأ في تهيئة WhatsApp Client:', error);
-    
-    // Check if it's a dependency error
-    if (error.message && (
-      error.message.includes('libasound') ||
-      error.message.includes('shared libraries') ||
-      error.message.includes('cannot open shared object file')
-    )) {
-      console.error('\n🔧 هذا خطأ في المكتبات المطلوبة!');
-      console.error('📝 الحل:');
-      console.error('   1. شغّل: ./install-puppeteer-deps.sh');
-      console.error('   2. أو: sudo apt-get install -y libasound2 libatk-bridge2.0-0 libgtk-3-0 ...');
-      console.error('   3. أو: اضبط AUTO_INSTALL_DEPS=true في .env');
-      console.error('   4. أو: اضبط DISABLE_PUPPETEER=true في .env لتعطيل WhatsApp');
-      console.error('\n📚 راجع: FIX_PUPPETEER_ERROR.md للتفاصيل');
-    }
-    
     return null;
   }
 };
@@ -158,42 +65,27 @@ export const initializeWhatsApp = async () => {
  */
 export const sendWhatsAppMessage = async (to, message) => {
   try {
-    // Initialize client if not already done
     if (!isInitialized || !whatsappClient) {
       whatsappClient = await initializeWhatsApp();
     }
 
-    // Wait for client to be ready (max 30 seconds)
+    // Wait for ready up to 30 seconds
     let attempts = 0;
     while (!isReady && attempts < 30) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(r => setTimeout(r, 1000));
       attempts++;
     }
 
     if (!isReady) {
-      return {
-        success: false,
-        error: 'WhatsApp Client غير جاهز. يرجى مسح رمز QR أولاً.',
-      };
+      return { success: false, error: 'WhatsApp Client غير جاهز. يرجى مسح رمز QR أولاً.' };
     }
 
-    // Format phone number
     const formattedPhone = formatPhoneNumber(to);
-    const chatId = `${formattedPhone}@c.us`;
+    const jid = `${formattedPhone}@s.whatsapp.net`;
 
-    console.log(`📤 محاولة إرسال رسالة واتساب إلى: ${formattedPhone}`);
-    console.log(`📝 محتوى الرسالة: ${message.substring(0, 100)}...`);
+    const result = await whatsappClient.sendMessage(jid, { text: message });
 
-    // Send message
-    const result = await whatsappClient.sendMessage(chatId, message);
-
-    console.log('✅ تم إرسال الرسالة بنجاح:', result.id._serialized);
-
-    return {
-      success: true,
-      messageId: result.id._serialized,
-      data: result,
-    };
+    return { success: true, messageId: result?.key?.id || '', data: result };
   } catch (error) {
     console.error('❌ خطأ في إرسال رسالة واتساب:');
     console.error('Error:', error.message);
