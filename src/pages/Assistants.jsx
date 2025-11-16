@@ -385,7 +385,7 @@ const Assistants = () => {
         overflow: 'hidden',
         background: '#ffffff',
       }}>
-        <FloatingShapes />
+        {/* FloatingShapes removed */}
         <div style={{
           maxWidth: '1200px',
           width: '100%',

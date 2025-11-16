@@ -141,8 +141,8 @@ const Navbar = () => {
                 }}
                 onMouseEnter={(e) => {
                   if (!active) {
-                    e.currentTarget.style.background = 'rgba(37, 150, 190, 0.08)';
-                    e.currentTarget.style.color = '#2596be';
+                    e.currentTarget.style.background = '#f3f4f6';
+                    e.currentTarget.style.color = '#0f172a';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }
                 }}
