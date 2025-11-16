@@ -36,30 +36,40 @@ const Assistants = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('all');
 
-  // Countries config (emoji flags as fallback). nationality field should match these labels.
-  const countries = [
-    { key: 'ethiopia', label: 'إثيوبيا', emoji: '🇪🇹', match: ['إثيوبيا', 'Ethiopia'] },
-    { key: 'uganda', label: 'أوغندا', emoji: '🇺🇬', match: ['أوغندا', 'Uganda'] },
-    { key: 'kenya', label: 'كينيا', emoji: '🇰🇪', match: ['كينيا', 'Kenya'] },
-    { key: 'ghana', label: 'غانا', emoji: '🇬🇭', match: ['غانا', 'Ghana'] },
-    { key: 'tanzania', label: 'تنزانيا', emoji: '🇹🇿', match: ['تنزانيا', 'Tanzania'] },
-    { key: 'burundi', label: 'بوروندي', emoji: '🇧🇮', match: ['بوروندي', 'Burundi'] },
-    { key: 'rwanda', label: 'رواندا', emoji: '🇷🇼', match: ['رواندا', 'Rwanda'] },
-    { key: 'myanmar', label: 'ميانمار', emoji: '🇲🇲', match: ['ميانمار', 'Myanmar'] },
-    { key: 'philippines', label: 'الفلبين', emoji: '🇵🇭', match: ['الفلبين', 'Philippines'] },
-  ];
+  // Build countries dynamically from data nationalities; optional emoji map
+  const nationalityToEmoji = {
+    'إثيوبيا': '🇪🇹', Ethiopia: '🇪🇹',
+    'أوغندا': '🇺🇬', Uganda: '🇺🇬',
+    'كينيا': '🇰🇪', Kenya: '🇰🇪',
+    'غانا': '🇬🇭', Ghana: '🇬🇭',
+    'تنزانيا': '🇹🇿', Tanzania: '🇹🇿',
+    'بوروندي': '🇧🇮', Burundi: '🇧🇮',
+    'رواندا': '🇷🇼', Rwanda: '🇷🇼',
+    'ميانمار': '🇲🇲', Myanmar: '🇲🇲',
+    'الفلبين': '🇵🇭', Philippines: '🇵🇭',
+  };
+
+  const buildCountriesFromData = () => {
+    const names = new Set();
+    assistants.forEach(a => a.nationality && names.add(String(a.nationality).trim()));
+    activeWorkers.forEach(w => w.nationality && names.add(String(w.nationality).trim()));
+    const items = Array.from(names).map(n => ({ key: n.toLowerCase(), label: n, emoji: nationalityToEmoji[n] || '🌍' }));
+    return items;
+  };
+
+  const countries = buildCountriesFromData();
 
   // Helper: filter by selectedCountry using nationality
-  const nationalityMatches = (nation, country) => {
+  const nationalityMatches = (nation, selectedKey) => {
     if (!nation) return false;
-    const lower = String(nation).toLowerCase();
-    return country.match.some(m => lower.includes(String(m).toLowerCase()));
+    if (selectedKey === 'all') return true;
+    return String(nation).toLowerCase().includes(String(selectedKey).toLowerCase());
   };
 
   // Filter assistants by country selection
   const assistantsFiltered = selectedCountry === 'all'
-    ? housemaids
-    : housemaids.filter(a => nationalityMatches(a.nationality, countries.find(c => c.key === selectedCountry)));
+    ? assistants
+    : assistants.filter(a => nationalityMatches(a.nationality, selectedCountry));
 
   // Date options helper (اليوم/غداً/بعد غد/موعد لاحق بتاريخ)
   const buildDateOptions = () => {
@@ -481,14 +491,14 @@ const Assistants = () => {
               style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 gap: '8px', padding: '14px 10px', borderRadius: '16px', cursor: 'pointer',
-                background: selectedCountry === 'all' ? '#0f172a' : '#ffffff',
-                color: selectedCountry === 'all' ? '#ffffff' : '#0f172a',
+                background: '#ffffff',
+                color: '#0f172a',
                 border: '1px solid #e5e7eb', boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
               }}
             >
               <div style={{
                 width: '56px', height: '56px', borderRadius: '50%',
-                background: selectedCountry === 'all' ? '#ffffff' : '#f8fafc',
+                background: '#f8fafc',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: '22px', color: '#0f172a', border: '1px solid #e5e7eb'
               }}>🌍</div>
@@ -501,14 +511,14 @@ const Assistants = () => {
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                   gap: '8px', padding: '14px 10px', borderRadius: '16px', cursor: 'pointer',
-                  background: selectedCountry === c.key ? '#0f172a' : '#ffffff',
-                  color: selectedCountry === c.key ? '#ffffff' : '#0f172a',
+                  background: '#ffffff',
+                  color: '#0f172a',
                   border: '1px solid #e5e7eb', boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
                 }}
               >
                 <div style={{
                   width: '56px', height: '56px', borderRadius: '50%', overflow: 'hidden',
-                  background: selectedCountry === c.key ? '#ffffff' : '#f8fafc',
+                  background: '#f8fafc',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: '28px', border: '1px solid #e5e7eb'
                 }}>
