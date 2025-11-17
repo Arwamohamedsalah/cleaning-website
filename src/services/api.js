@@ -56,37 +56,42 @@ const apiRequest = async (endpoint, options = {}) => {
       
       // If it's HTML, it's likely a 404 or error page
       if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-        throw new Error(`لم يتم إرجاع بيانات JSON (ربما الـ endpoint غير موجود أو الـ backend غير شغال). تحقق من: ${url}`);
+        throw new Error('error');
       }
       
       // If it's not JSON but also not HTML, try to parse as JSON anyway
       try {
         const data = JSON.parse(text);
         if (!response.ok) {
-          throw new Error(data.message || `خطأ ${response.status}: ${response.statusText}`);
+          throw new Error(data.message || 'error');
         }
         return data;
       } catch (parseError) {
-        throw new Error(`استجابة غير متوقعة. تحقق من أن الـ backend يعمل على ${API_BASE_URL}`);
+        throw new Error('error');
       }
     }
     
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || `خطأ ${response.status}: ${response.statusText}`);
+      throw new Error(data.message || 'error');
     }
 
     return data;
   } catch (error) {
     console.error('❌ API Request Error:', error);
     if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.message.includes('ERR_CONNECTION_REFUSED')) {
-      throw new Error(`لا يمكن الاتصال بالـ backend. تأكد من أن الـ backend يعمل على ${API_BASE_URL}. قم بتشغيل: cd backend && npm start`);
+      throw new Error('error');
     }
     if (error.message.includes('<!DOCTYPE') || error.message.includes('<html')) {
-      throw new Error(`تم إرجاع صفحة HTML بدلاً من JSON. تحقق من أن الـ endpoint صحيح وأن الـ backend يعمل.`);
+      throw new Error('error');
     }
-    throw error;
+    // If error message is already 'error', throw it as is
+    if (error.message === 'error') {
+      throw error;
+    }
+    // Otherwise, throw a simple 'error' message
+    throw new Error('error');
   }
 };
 
