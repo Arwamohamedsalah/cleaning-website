@@ -31,7 +31,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       flexWrap: 'nowrap',
       direction: 'ltr', // LTR layout for proper positioning
     }}>
-      {/* Left Side: Page Title + Hamburger (mobile) or Home Button (desktop) */}
+      {/* Left Side: On mobile - Title + Hamburger, On desktop - Home Button */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center',
@@ -39,46 +39,68 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         flex: '0 0 auto',
         flexShrink: 0,
         order: 1,
-        marginLeft: 0, // Ensure it's on the left
+        marginLeft: 0,
+        minWidth: 0, // Allow shrinking if needed
       }}>
-        {/* Hamburger Menu Button - Mobile only, on the left */}
+        {/* Mobile: Title first, then Hamburger */}
         {isMobile && (
-          <button
-            className="hamburger-menu"
-            onClick={onMenuToggle}
-            style={{
-              display: 'flex',
+          <>
+            {/* Page Title - Left of hamburger on mobile */}
+            <div style={{ 
+              display: 'flex', 
               alignItems: 'center',
-              justifyContent: 'center',
-              background: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '10px',
-              padding: '10px',
-              cursor: 'pointer',
-              color: '#1e293b',
-              fontSize: '24px',
-              zIndex: 1001,
-              boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
-              transition: 'all 0.3s',
-              width: '44px',
-              height: '44px',
-              flexShrink: 0,
-              flex: '0 0 44px', // Fixed width to prevent layout shift
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#f1f5f9';
-              e.currentTarget.style.borderColor = '#3b82f6';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#ffffff';
-              e.currentTarget.style.borderColor = '#e5e7eb';
-            }}
-          >
-            ☰
-          </button>
+              flex: '0 0 auto',
+              minWidth: 0,
+              overflow: 'hidden', // Prevent overflow
+            }}>
+              <h1 style={{ 
+                margin: 0, 
+                fontSize: '18px', 
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '200px', // Limit width to prevent overlap
+              }}>{pageTitle}</h1>
+            </div>
+            
+            {/* Hamburger Menu Button - Right of title on mobile */}
+            <button
+              className="hamburger-menu"
+              onClick={onMenuToggle}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#ffffff',
+                border: '1px solid #e5e7eb',
+                borderRadius: '10px',
+                padding: '10px',
+                cursor: 'pointer',
+                color: '#1e293b',
+                fontSize: '24px',
+                zIndex: 1001,
+                boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
+                transition: 'all 0.3s',
+                width: '44px',
+                height: '44px',
+                flexShrink: 0,
+                flex: '0 0 44px', // Fixed width
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#3b82f6';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#ffffff';
+                e.currentTarget.style.borderColor = '#e5e7eb';
+              }}
+            >
+              ☰
+            </button>
+          </>
         )}
 
-        {/* Home Button - Desktop only, on the left */}
+        {/* Desktop: Home Button only */}
         {!isMobile && (
           <Link
             to="/"
@@ -118,16 +140,6 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
             </div>
           </Link>
         )}
-
-        {/* Page Title - Left side on all screens */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center',
-        }}>
-          <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px', whiteSpace: 'nowrap' }}>{pageTitle}</h1>
-        </div>
-      </div>
-        </div>
       </div>
 
       {/* Center: Search Bar - Desktop only */}
@@ -188,15 +200,32 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         </div>
       )}
       
-      {/* Right Side: Account Profile Icon */}
+      {/* Right Side: On desktop - Page Title, On all screens - Account Profile Icon */}
       <div style={{ 
         display: 'flex', 
-        alignItems: 'center', 
+        alignItems: 'center',
+        gap: '20px',
         flex: '0 0 auto',
         flexShrink: 0,
         order: 3,
-        marginRight: 0, // Ensure it's on the right
+        marginRight: 0,
       }}>
+        {/* Page Title - Desktop only, on the right */}
+        {!isMobile && (
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            flex: '0 0 auto',
+          }}>
+            <h1 style={{ 
+              margin: 0, 
+              fontSize: '24px', 
+              whiteSpace: 'nowrap' 
+            }}>{pageTitle}</h1>
+          </div>
+        )}
+
+        {/* Account Profile Icon - All screens, on the right */}
         <div style={{ position: 'relative' }}>
           <div
             onClick={() => setShowProfileDropdown(!showProfileDropdown)}
