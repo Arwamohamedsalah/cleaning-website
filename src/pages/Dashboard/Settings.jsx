@@ -856,9 +856,9 @@ const Settings = () => {
           </div>
 
           {loading && supervisors.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#ffffff' }}>جاري التحميل...</div>
+            <div style={{ textAlign: 'center', padding: '40px', color: '#0f172a' }}>جاري التحميل...</div>
           ) : supervisors.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#ffffff' }}>لا يوجد مشرفين</div>
+            <div style={{ textAlign: 'center', padding: '40px', color: '#0f172a' }}>لا يوجد مشرفين</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               {supervisors.map((supervisor) => {
@@ -872,11 +872,11 @@ const Settings = () => {
                   <GlassCard key={supervisor._id} style={{ padding: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                       <div>
-                        <h4 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '5px' }}>
+                        <h4 style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a', marginBottom: '5px' }}>
                           {supervisor.name}
                         </h4>
-                        <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px', marginBottom: '3px' }}>📧 {supervisor.email}</p>
-                        <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px' }}>📞 {supervisor.phone || 'غير محدد'}</p>
+                        <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '3px' }}>📧 {supervisor.email}</p>
+                        <p style={{ color: '#64748b', fontSize: '14px' }}>📞 {supervisor.phone || 'غير محدد'}</p>
                       </div>
                       <GlassButton
                         onClick={() => setSelectedSupervisor(selectedSupervisor?._id === supervisor._id ? null : supervisor)}
@@ -887,7 +887,7 @@ const Settings = () => {
                     </div>
 
                     {selectedSupervisor?._id === supervisor._id && (
-                      <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                      <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e5e7eb' }}>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginBottom: '20px' }}>
                           {Object.entries(permissionLabels).map(([key, label]) => (
                             <label
@@ -899,7 +899,8 @@ const Settings = () => {
                                 cursor: 'pointer',
                                 padding: '10px',
                                 borderRadius: '8px',
-                                background: currentPermissions[key] ? 'rgba(37, 150, 190, 0.1)' : 'transparent',
+                                background: currentPermissions[key] ? '#f0f9ff' : '#ffffff',
+                                border: '1px solid #e5e7eb',
                               }}
                             >
                               <input
@@ -908,12 +909,12 @@ const Settings = () => {
                                 onChange={(e) => handlePermissionChange(supervisor._id, key, e.target.checked)}
                                 className="glass-checkbox"
                               />
-                              <span style={{ fontWeight: 600, color: '#ffffff' }}>{label}</span>
+                              <span style={{ fontWeight: 600, color: '#0f172a' }}>{label}</span>
                             </label>
                           ))}
                         </div>
                         {hasChanges && (
-                          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '20px', paddingTop: '20px', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e5e7eb' }}>
                             <GlassButton
                               onClick={() => {
                                 setTempPermissions(prev => {
@@ -945,10 +946,10 @@ const Settings = () => {
 
         {showCreateModal && (
           <GlassCard style={{ padding: '30px', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1000, maxWidth: '500px', width: '90%' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#ffffff' }}>إضافة مشرف جديد</h3>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '25px', color: '#0f172a' }}>إضافة مشرف جديد</h3>
             <div style={{ display: 'grid', gap: '15px' }}>
               <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>الاسم</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>الاسم</label>
                 <input
                   type="text"
                   className="glass-input"
@@ -957,7 +958,7 @@ const Settings = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>البريد الإلكتروني</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>البريد الإلكتروني</label>
                 <input
                   type="email"
                   className="glass-input"
@@ -966,7 +967,7 @@ const Settings = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>كلمة المرور</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>كلمة المرور</label>
                 <input
                   type="password"
                   className="glass-input"
@@ -975,7 +976,7 @@ const Settings = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>رقم الهاتف</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>رقم الهاتف</label>
                 <input
                   type="tel"
                   className="glass-input"
