@@ -229,6 +229,41 @@ const Settings = () => {
     }
   };
 
+  const handleDeleteSupervisor = async (supervisorId) => {
+    const supervisor = supervisors.find(s => s._id === supervisorId);
+    if (!supervisor) return;
+
+    const confirmDelete = window.confirm(
+      `هل أنت متأكد من حذف المشرف "${supervisor.name}"؟\n\nسيتم حذف المشرف وجميع صلاحياته من قاعدة البيانات نهائياً.\n\nهذا الإجراء لا يمكن التراجع عنه.`
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      setLoading(true);
+      const response = await permissionsAPI.deleteSupervisor(supervisorId);
+      if (response.success) {
+        alert('تم حذف المشرف بنجاح');
+        // Clear selected supervisor if it was the deleted one
+        if (selectedSupervisor?._id === supervisorId) {
+          setSelectedSupervisor(null);
+        }
+        // Clear temp permissions for this supervisor
+        setTempPermissions(prev => {
+          const newTemp = { ...prev };
+          delete newTemp[supervisorId];
+          return newTemp;
+        });
+        loadSupervisors();
+      }
+    } catch (error) {
+      console.error('Error deleting supervisor:', error);
+      alert(error.message || 'حدث خطأ أثناء حذف المشرف');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const tabs = [
     { id: 'general', icon: '⚙️', label: 'عام' },
     { id: 'company', icon: '🏢', label: 'معلومات الشركة' },
@@ -870,20 +905,42 @@ const Settings = () => {
                 
                 return (
                   <GlassCard key={supervisor._id} style={{ padding: '20px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                      <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
+                      <div style={{ flex: '1 1 auto', minWidth: '200px' }}>
                         <h4 style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a', marginBottom: '5px' }}>
                           {supervisor.name}
                         </h4>
                         <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '3px' }}>📧 {supervisor.email}</p>
                         <p style={{ color: '#64748b', fontSize: '14px' }}>📞 {supervisor.phone || 'غير محدد'}</p>
                       </div>
-                      <GlassButton
-                        onClick={() => setSelectedSupervisor(selectedSupervisor?._id === supervisor._id ? null : supervisor)}
-                        style={{ padding: '8px 16px' }}
-                      >
-                        {selectedSupervisor?._id === supervisor._id ? 'إخفاء الصلاحيات' : 'عرض/تعديل الصلاحيات'}
-                      </GlassButton>
+                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                        <GlassButton
+                          onClick={() => setSelectedSupervisor(selectedSupervisor?._id === supervisor._id ? null : supervisor)}
+                          style={{ padding: '8px 16px' }}
+                        >
+                          {selectedSupervisor?._id === supervisor._id ? 'إخفاء الصلاحيات' : 'عرض/تعديل الصلاحيات'}
+                        </GlassButton>
+                        <GlassButton
+                          onClick={() => handleDeleteSupervisor(supervisor._id)}
+                          disabled={loading}
+                          style={{ 
+                            padding: '8px 16px',
+                            background: 'rgba(244, 67, 54, 0.1)',
+                            color: '#f44336',
+                            border: '1px solid rgba(244, 67, 54, 0.3)'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(244, 67, 54, 0.2)';
+                            e.currentTarget.style.borderColor = 'rgba(244, 67, 54, 0.5)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(244, 67, 54, 0.1)';
+                            e.currentTarget.style.borderColor = 'rgba(244, 67, 54, 0.3)';
+                          }}
+                        >
+                          🗑️ حذف
+                        </GlassButton>
+                      </div>
                     </div>
 
                     {selectedSupervisor?._id === supervisor._id && (

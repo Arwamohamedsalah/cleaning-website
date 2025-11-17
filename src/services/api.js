@@ -428,6 +428,12 @@ export const permissionsAPI = {
       body: { permissions },
     });
   },
+
+  deleteSupervisor: async (supervisorId) => {
+    return apiRequest(`/permissions/${supervisorId}`, {
+      method: 'DELETE',
+    });
+  },
 };
 
 // Discounts API

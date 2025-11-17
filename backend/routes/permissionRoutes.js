@@ -4,6 +4,7 @@ import {
   getMyPermissions,
   updateSupervisorPermissions,
   getAllSupervisorsPermissions,
+  deleteSupervisor,
 } from '../controllers/permissionController.js';
 import { protect, authorize } from '../middleware/auth.js';
 
@@ -20,6 +21,9 @@ router.get('/:supervisorId', protect, authorize('admin'), getSupervisorPermissio
 
 // Update permissions for supervisor (Admin only)
 router.put('/:supervisorId', protect, authorize('admin'), updateSupervisorPermissions);
+
+// Delete supervisor (Admin only)
+router.delete('/:supervisorId', protect, authorize('admin'), deleteSupervisor);
 
 export default router;
 

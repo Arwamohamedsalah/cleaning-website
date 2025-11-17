@@ -194,3 +194,41 @@ export const getAllSupervisorsPermissions = async (req, res, next) => {
     next(error);
   }
 };
+
+// @desc    Delete supervisor (Admin only)
+// @route   DELETE /api/permissions/:supervisorId
+// @access  Private (Admin only)
+export const deleteSupervisor = async (req, res, next) => {
+  try {
+    const { supervisorId } = req.params;
+
+    // Check if supervisor exists and is actually a supervisor
+    const supervisor = await User.findById(supervisorId);
+    if (!supervisor) {
+      return res.status(404).json({ 
+        success: false,
+        message: 'المشرف غير موجود' 
+      });
+    }
+
+    if (supervisor.role !== 'supervisor') {
+      return res.status(400).json({ 
+        success: false,
+        message: 'المستخدم المحدد ليس مشرفاً' 
+      });
+    }
+
+    // Delete permission document if exists
+    await Permission.deleteOne({ supervisorId });
+
+    // Delete the supervisor user
+    await supervisor.deleteOne();
+
+    res.json({
+      success: true,
+      message: 'تم حذف المشرف بنجاح',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
