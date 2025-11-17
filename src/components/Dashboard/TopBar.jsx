@@ -28,121 +28,55 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       alignItems: 'center', 
       justifyContent: 'space-between', 
       gap: isMobile ? '10px' : '20px',
-      flexWrap: isMobile ? 'wrap' : 'nowrap',
+      flexWrap: 'nowrap',
+      flexDirection: 'row-reverse', // RTL layout
     }}>
-      {/* Hamburger Menu Button */}
-      {isMobile && (
-        <button
-          className="hamburger-menu"
-          onClick={onMenuToggle}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: '#ffffff',
-            border: '1px solid #e5e7eb',
-            borderRadius: '10px',
-            padding: '10px',
-            cursor: 'pointer',
-            color: '#1e293b',
-            fontSize: '24px',
-            zIndex: 1001,
-            boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
-            transition: 'all 0.3s',
-            width: '44px',
-            height: '44px',
-            flexShrink: 0,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#f1f5f9';
-            e.currentTarget.style.borderColor = '#3b82f6';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ffffff';
-            e.currentTarget.style.borderColor = '#e5e7eb';
-          }}
-        >
-          ☰
-        </button>
-      )}
-      
-      {/* Left Side: Page Title */}
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '20px', 
-        flex: isMobile ? '1 1 auto' : '0 0 auto',
-        minWidth: 0,
-      }}>
-        <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px' }}>{pageTitle}</h1>
-      </div>
-
-      {/* Center: Search Bar */}
-      {!isMobile && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flex: '1 1 auto', paddingRight: '20px' }}>
-          <div style={{
-            padding: '11px 16px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            position: 'relative',
-            background: '#ffffff',
-            border: '1px solid #e5e7eb',
-            borderRadius: '10px',
-            boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
-          }}>
-            <input
-              type="text"
-              placeholder="بحث..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                if (onSearch) {
-                  onSearch(e.target.value);
-                }
-              }}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter' && onSearch) {
-                  onSearch(searchTerm);
-                }
-              }}
-              style={{ 
-                border: 'none', 
-                background: 'transparent', 
-                padding: '0', 
-                width: '200px',
-                position: 'relative',
-                zIndex: 10,
-                color: '#1e293b',
-                outline: 'none',
-                fontSize: '15px',
-              }}
-            />
-            <span 
-              style={{ 
-                cursor: 'pointer',
-                position: 'relative',
-                zIndex: 10,
-                fontSize: '18px',
-              }}
-              onClick={() => {
-                if (onSearch) {
-                  onSearch(searchTerm);
-                }
-              }}
-            >🔍</span>
-          </div>
-        </div>
-      )}
-
-      {/* Right Side: Home Button and Account */}
+      {/* Right Side: Hamburger + Account (on mobile) or Home + Account (on desktop) */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
         gap: isMobile ? '10px' : '20px', 
         flex: '0 0 auto',
         flexShrink: 0,
+        order: isMobile ? 1 : 3,
       }}>
+        {/* Hamburger Menu Button - Mobile only, on the right */}
+        {isMobile && (
+          <button
+            className="hamburger-menu"
+            onClick={onMenuToggle}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '10px',
+              padding: '10px',
+              cursor: 'pointer',
+              color: '#1e293b',
+              fontSize: '24px',
+              zIndex: 1001,
+              boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
+              transition: 'all 0.3s',
+              width: '44px',
+              height: '44px',
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#f1f5f9';
+              e.currentTarget.style.borderColor = '#3b82f6';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#ffffff';
+              e.currentTarget.style.borderColor = '#e5e7eb';
+            }}
+          >
+            ☰
+          </button>
+        )}
+
+        {/* Home Button - Desktop only */}
         {!isMobile && (
           <Link
             to="/"
@@ -201,6 +135,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               fontWeight: '700',
               boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              lineHeight: '1',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
@@ -217,7 +152,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
             <div style={{
               position: 'absolute',
               left: 0,
-              top: '60px',
+              top: isMobile ? '50px' : '60px',
               minWidth: '200px',
               padding: '10px 0',
               zIndex: 1000,
@@ -281,6 +216,78 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           )}
         </div>
       </div>
+
+      {/* Center: Search Bar - Desktop only */}
+      {!isMobile && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flex: '1 1 auto', paddingRight: '20px', order: 2 }}>
+          <div style={{
+            padding: '11px 16px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            position: 'relative',
+            background: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '10px',
+            boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
+          }}>
+            <input
+              type="text"
+              placeholder="بحث..."
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                if (onSearch) {
+                  onSearch(e.target.value);
+                }
+              }}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' && onSearch) {
+                  onSearch(searchTerm);
+                }
+              }}
+              style={{ 
+                border: 'none', 
+                background: 'transparent', 
+                padding: '0', 
+                width: '200px',
+                position: 'relative',
+                zIndex: 10,
+                color: '#1e293b',
+                outline: 'none',
+                fontSize: '15px',
+              }}
+            />
+            <span 
+              style={{ 
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 10,
+                fontSize: '18px',
+              }}
+              onClick={() => {
+                if (onSearch) {
+                  onSearch(searchTerm);
+                }
+              }}
+            >🔍</span>
+          </div>
+        </div>
+      )}
+      
+      {/* Left Side: Page Title */}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '20px', 
+        flex: isMobile ? '1 1 auto' : '0 0 auto',
+        minWidth: 0,
+        order: isMobile ? 2 : 1,
+        justifyContent: isMobile ? 'flex-start' : 'flex-start',
+      }}>
+        <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px' }}>{pageTitle}</h1>
+      </div>
+
       
       {/* Close dropdown overlay */}
       {showProfileDropdown && (
