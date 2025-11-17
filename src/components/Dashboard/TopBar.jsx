@@ -207,6 +207,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         order: 3,
         justifyContent: isMobile ? 'flex-end' : 'flex-end',
         marginRight: 0, // Ensure it's on the right
+        width: isMobile ? 'auto' : 'auto', // Ensure consistent width
       }}>
         {/* Hamburger Menu Button - Mobile only, on the right */}
         {isMobile && (
@@ -230,6 +231,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               width: '44px',
               height: '44px',
               flexShrink: 0,
+              flex: '0 0 44px', // Fixed width to prevent layout shift
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#f1f5f9';
@@ -285,12 +287,14 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           </Link>
         )}
 
-        {/* Page Title - Right side on all screens */}
+        {/* Page Title - Right side on all screens with consistent spacing */}
         <div style={{ 
           display: 'flex', 
           alignItems: 'center',
+          flex: '0 0 auto', // Prevent shrinking
+          marginLeft: isMobile ? '0' : '0', // Ensure spacing is always present
         }}>
-          <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px' }}>{pageTitle}</h1>
+          <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px', whiteSpace: 'nowrap' }}>{pageTitle}</h1>
         </div>
       </div>
 
