@@ -851,7 +851,7 @@ const Settings = () => {
       <div>
         <GlassCard style={{ padding: isMobile ? '20px' : '30px', marginBottom: isMobile ? '20px' : '30px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isMobile ? '16px' : '25px', flexWrap: isMobile ? 'wrap' : 'nowrap', gap: isMobile ? '12px' : '0' }}>
-            <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, color: isMobile ? '#0f172a' : '#ffffff' }}>إدارة صلاحيات المشرفين</h3>
+            <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, color: '#0f172a' }}>إدارة صلاحيات المشرفين</h3>
             <GlassButton onClick={() => setShowCreateModal(true)}>إضافة مشرف جديد</GlassButton>
           </div>
 
