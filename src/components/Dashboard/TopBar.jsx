@@ -127,79 +127,6 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px', whiteSpace: 'nowrap' }}>{pageTitle}</h1>
         </div>
       </div>
-          {showProfileDropdown && (
-            <div style={{
-              position: 'absolute',
-              left: 0, // Dropdown opens from left (since profile is on left)
-              top: isMobile ? '50px' : '60px',
-              minWidth: '200px',
-              padding: '8px 0',
-              zIndex: 1000,
-              background: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '12px',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-            }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <button
-                  onClick={() => {
-                    navigate('/dashboard/profile');
-                    setShowProfileDropdown(false);
-                  }}
-                  style={{
-                    padding: '12px 20px',
-                    border: 'none',
-                    background: 'transparent',
-                    textAlign: 'right',
-                    cursor: 'pointer',
-                    color: '#0f172a',
-                    fontWeight: 600,
-                    fontSize: '15px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#f1f5f9';
-                    e.target.style.color = '#3b82f6';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#0f172a';
-                  }}
-                >
-                  الملف الشخصي
-                </button>
-                <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
-                <button
-                  onClick={() => {
-                    dispatch(logout());
-                    navigate('/login');
-                    setShowProfileDropdown(false);
-                  }}
-                  style={{
-                    padding: '12px 20px',
-                    border: 'none',
-                    background: 'transparent',
-                    textAlign: 'right',
-                    cursor: 'pointer',
-                    color: '#ef4444',
-                    fontWeight: 600,
-                    fontSize: '15px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#fef2f2';
-                    e.target.style.color = '#dc2626';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#ef4444';
-                  }}
-                >
-                  تسجيل خروج
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -300,8 +227,82 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           >
             {user?.name?.[0] || '👤'}
           </div>
+          {showProfileDropdown && (
+            <div style={{
+              position: 'absolute',
+              right: 0, // Dropdown opens from right (since profile is on right)
+              top: isMobile ? '50px' : '60px',
+              minWidth: '200px',
+              padding: '8px 0',
+              zIndex: 1000,
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '12px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+            }}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <button
+                  onClick={() => {
+                    navigate('/dashboard/profile');
+                    setShowProfileDropdown(false);
+                  }}
+                  style={{
+                    padding: '12px 20px',
+                    border: 'none',
+                    background: 'transparent',
+                    textAlign: 'right',
+                    cursor: 'pointer',
+                    color: '#0f172a',
+                    fontWeight: 600,
+                    fontSize: '15px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = '#f1f5f9';
+                    e.target.style.color = '#3b82f6';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#0f172a';
+                  }}
+                >
+                  الملف الشخصي
+                </button>
+                <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
+                <button
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate('/login');
+                    setShowProfileDropdown(false);
+                  }}
+                  style={{
+                    padding: '12px 20px',
+                    border: 'none',
+                    background: 'transparent',
+                    textAlign: 'right',
+                    cursor: 'pointer',
+                    color: '#ef4444',
+                    fontWeight: 600,
+                    fontSize: '15px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = '#fef2f2';
+                    e.target.style.color = '#dc2626';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#ef4444';
+                  }}
+                >
+                  تسجيل خروج
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
-      
       {/* Close dropdown overlay */}
       {showProfileDropdown && (
         <div
