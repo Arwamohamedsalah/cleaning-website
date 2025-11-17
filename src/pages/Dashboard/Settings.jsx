@@ -426,9 +426,9 @@ const Settings = () => {
             onChange={(e) => handleInputChange('company', 'address', e.target.value)}
             rows={3}
             style={{
-              background: isMobile ? '#ffffff' : undefined,
-              color: isMobile ? '#0f172a' : undefined,
-              border: isMobile ? '1px solid #e5e7eb' : undefined,
+              background: '#ffffff',
+              color: '#0f172a',
+              border: '1px solid #e5e7eb',
             }}
           />
         </div>
@@ -507,9 +507,9 @@ const Settings = () => {
               onChange={(e) => handleInputChange('whatsapp', 'replyMessage', e.target.value)}
               rows={3}
               style={{
-                background: isMobile ? '#ffffff' : undefined,
-                color: isMobile ? '#0f172a' : undefined,
-                border: isMobile ? '1px solid #e5e7eb' : undefined,
+                background: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid #e5e7eb',
               }}
             />
           </div>
