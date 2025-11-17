@@ -200,7 +200,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
-        gap: isMobile ? '20px' : '20px',
+        gap: isMobile ? '24px' : '20px',
         flex: isMobile ? '1 1 auto' : '0 0 auto',
         minWidth: 0,
         order: 3,
@@ -283,11 +283,10 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           </Link>
         )}
 
-        {/* Page Title */}
+        {/* Page Title - Right side on all screens */}
         <div style={{ 
           display: 'flex', 
           alignItems: 'center',
-          marginRight: isMobile ? '0' : '0',
         }}>
           <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px' }}>{pageTitle}</h1>
         </div>
