@@ -76,13 +76,12 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               left: 0, // Dropdown opens from left (since profile is on left)
               top: isMobile ? '50px' : '60px',
               minWidth: '200px',
-              padding: '10px 0',
+              padding: '8px 0',
               zIndex: 1000,
-              background: 'linear-gradient(135deg, rgba(30, 58, 95, 0.95) 0%, rgba(45, 74, 122, 0.95) 100%)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(139, 92, 246, 0.3)',
-              borderRadius: '16px',
-              boxShadow: '0 8px 32px rgba(30, 58, 95, 0.4)',
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '12px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
             }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <button
@@ -96,22 +95,23 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
                     background: 'transparent',
                     textAlign: 'right',
                     cursor: 'pointer',
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    color: '#0f172a',
                     fontWeight: 600,
-                    transition: 'all 0.3s',
+                    fontSize: '15px',
+                    transition: 'all 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(139, 92, 246, 0.2)';
-                    e.target.style.transform = 'translateX(-3px)';
+                    e.target.style.background = '#f1f5f9';
+                    e.target.style.color = '#3b82f6';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.background = 'transparent';
-                    e.target.style.transform = 'translateX(0)';
+                    e.target.style.color = '#0f172a';
                   }}
                 >
                   الملف الشخصي
                 </button>
-                <div style={{ height: '1px', background: 'rgba(139, 92, 246, 0.3)', margin: '5px 0' }} />
+                <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
                 <button
                   onClick={() => {
                     dispatch(logout());
@@ -126,10 +126,17 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
                     cursor: 'pointer',
                     color: '#ef4444',
                     fontWeight: 600,
-                    transition: 'all 0.3s',
+                    fontSize: '15px',
+                    transition: 'all 0.2s ease',
                   }}
-                  onMouseEnter={(e) => e.target.style.background = 'rgba(239, 68, 68, 0.2)'}
-                  onMouseLeave={(e) => e.target.style.background = 'transparent'}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = '#fef2f2';
+                    e.target.style.color = '#dc2626';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#ef4444';
+                  }}
                 >
                   تسجيل خروج
                 </button>
