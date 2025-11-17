@@ -254,10 +254,21 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         flex: isMobile ? '1 1 auto' : '0 0 auto',
         minWidth: 0,
         order: 3,
-        justifyContent: isMobile ? 'flex-end' : 'flex-end',
+        justifyContent: isMobile ? 'space-between' : 'flex-end',
         marginRight: 0, // Ensure it's on the right
         width: isMobile ? 'auto' : 'auto', // Ensure consistent width
       }}>
+        {/* Page Title - Shifted to left on mobile, right on desktop */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          flex: isMobile ? '1 1 auto' : '0 0 auto',
+          marginLeft: isMobile ? '16px' : '0', // Add left margin on mobile to shift it left
+          marginRight: isMobile ? 'auto' : '0',
+        }}>
+          <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px', whiteSpace: 'nowrap' }}>{pageTitle}</h1>
+        </div>
+
         {/* Hamburger Menu Button - Mobile only, on the right */}
         {isMobile && (
           <button
@@ -281,6 +292,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               height: '44px',
               flexShrink: 0,
               flex: '0 0 44px', // Fixed width to prevent layout shift
+              marginLeft: 'auto', // Push to the right
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#f1f5f9';
@@ -294,16 +306,6 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
             ☰
           </button>
         )}
-
-        {/* Page Title - Right side on all screens with consistent spacing */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center',
-          flex: '0 0 auto', // Prevent shrinking
-          marginLeft: isMobile ? '0' : '0', // Ensure spacing is always present
-        }}>
-          <h1 style={{ margin: 0, fontSize: isMobile ? '18px' : '24px', whiteSpace: 'nowrap' }}>{pageTitle}</h1>
-        </div>
       </div>
 
       
