@@ -14,7 +14,7 @@ const Settings = () => {
   const dispatch = useDispatch();
   const { theme, sidebarWidth } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.auth);
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeTab, setActiveTab] = useState(null); // Start with null to show selection page first
   const [supervisors, setSupervisors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedSupervisor, setSelectedSupervisor] = useState(null);
@@ -419,12 +419,17 @@ const Settings = () => {
           />
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>العنوان</label>
+          <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: isMobile ? '#0f172a' : '#ffffff', fontSize: isMobile ? '14px' : '16px' }}>العنوان</label>
           <textarea
             className="glass-textarea"
             value={settings.company.address}
             onChange={(e) => handleInputChange('company', 'address', e.target.value)}
             rows={3}
+            style={{
+              background: isMobile ? '#ffffff' : undefined,
+              color: isMobile ? '#0f172a' : undefined,
+              border: isMobile ? '1px solid #e5e7eb' : undefined,
+            }}
           />
         </div>
         <div>
@@ -495,12 +500,17 @@ const Settings = () => {
         </div>
         {settings.whatsapp.autoReply && (
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#ffffff' }}>رسالة الرد التلقائي</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: isMobile ? '#0f172a' : '#ffffff', fontSize: isMobile ? '14px' : '16px' }}>رسالة الرد التلقائي</label>
             <textarea
               className="glass-textarea"
               value={settings.whatsapp.replyMessage}
               onChange={(e) => handleInputChange('whatsapp', 'replyMessage', e.target.value)}
               rows={3}
+              style={{
+                background: isMobile ? '#ffffff' : undefined,
+                color: isMobile ? '#0f172a' : undefined,
+                border: isMobile ? '1px solid #e5e7eb' : undefined,
+              }}
             />
           </div>
         )}
@@ -610,8 +620,16 @@ const Settings = () => {
     return (
       <GlassCard style={{ padding: isMobile ? '20px' : '30px' }}>
         <h3 style={{ fontSize: isMobile ? '18px' : '20px', fontWeight: 700, marginBottom: isMobile ? '16px' : '25px', color: isMobile ? '#0f172a' : '#ffffff' }}>إدارة المستخدمين</h3>
-        <div style={{ overflowX: 'auto' }}>
-          <table className="dashboard-table">
+        <div style={{ 
+          overflowX: 'auto', 
+          overflowY: 'visible',
+          width: '100%',
+          WebkitOverflowScrolling: 'touch',
+        }}>
+          <table className="dashboard-table" style={{ 
+            minWidth: isMobile ? '600px' : '100%',
+            width: '100%',
+          }}>
             <thead>
               <tr>
                 <th>الاسم</th>
@@ -1129,11 +1147,20 @@ const Settings = () => {
 
               {/* Content */}
               <div>
-                {activeTab === 'general' && renderGeneralSettings()}
-                {activeTab === 'company' && renderCompanySettings()}
-                {activeTab === 'whatsapp' && renderWhatsAppSettings()}
-                {activeTab === 'users' && renderUsersSettings()}
-                {activeTab === 'permissions' && renderPermissionsSettings()}
+                {!activeTab ? (
+                  <GlassCard style={{ padding: '40px', textAlign: 'center' }}>
+                    <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '16px', color: '#ffffff' }}>اختر قسم الإعدادات</h3>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '16px' }}>اختر أحد الأقسام من القائمة على اليمين للبدء</p>
+                  </GlassCard>
+                ) : (
+                  <>
+                    {activeTab === 'general' && renderGeneralSettings()}
+                    {activeTab === 'company' && renderCompanySettings()}
+                    {activeTab === 'whatsapp' && renderWhatsAppSettings()}
+                    {activeTab === 'users' && renderUsersSettings()}
+                    {activeTab === 'permissions' && renderPermissionsSettings()}
+                  </>
+                )}
               </div>
             </div>
           )}
