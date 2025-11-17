@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import GlassCard from '../GlassCard';
@@ -8,11 +8,33 @@ import '../../styles/dashboard.css';
 
 const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
+  // Menu items with icons (same as Sidebar)
+  const allMenuItems = [
+    { path: '/dashboard', icon: '📊', label: 'نظرة عامة', permissionKey: 'overview' },
+    { path: '/dashboard/orders', icon: '📋', label: 'الطلبات', permissionKey: 'orders' },
+    { path: '/dashboard/customers', icon: '👥', label: 'العملاء', permissionKey: 'customers' },
+    { path: '/dashboard/assistants', icon: '👔', label: 'الاستقدام', permissionKey: 'assistants' },
+    { path: '/dashboard/discounts', icon: '🎁', label: 'الخصومات', permissionKey: 'discounts' },
+    { path: '/dashboard/messages', icon: '💬', label: 'الرسائل', permissionKey: 'messages' },
+    { path: '/dashboard/reports', icon: '📊', label: 'التقارير', permissionKey: 'reports' },
+    { path: '/dashboard/profile', icon: '👤', label: 'الملف الشخصي' },
+    { path: '/dashboard/settings', icon: '⚙️', label: 'الإعدادات' },
+  ];
+
+  // Get current page icon
+  const getCurrentPageIcon = () => {
+    const currentItem = allMenuItems.find(item => item.path === location.pathname);
+    return currentItem?.icon || '📄';
+  };
+
+  const currentPageIcon = getCurrentPageIcon();
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,21 +102,32 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               ☰
             </button>
             
-            {/* Page Title - After hamburger on mobile */}
+            {/* Page Icon + Title - After hamburger on mobile */}
             <div style={{ 
               display: 'flex', 
               alignItems: 'center',
+              gap: '8px',
               flex: '0 0 auto',
               minWidth: 0,
               overflow: 'hidden', // Prevent overflow
             }}>
+              {/* Page Icon */}
+              <span style={{ 
+                fontSize: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>{currentPageIcon}</span>
+              
+              {/* Page Title */}
               <h1 style={{ 
                 margin: 0, 
                 fontSize: '18px', 
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                maxWidth: '150px', // Limit width to prevent overlap
+                maxWidth: '120px', // Limit width to prevent overlap
               }}>{pageTitle}</h1>
             </div>
 
