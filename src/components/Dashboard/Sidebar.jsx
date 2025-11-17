@@ -71,14 +71,14 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const sidebarStyles = {
     background: '#ffffff',
-    boxShadow: '2px 0 15px rgba(0, 0, 0, 0.05)',
-    borderRight: '1px solid #e5e7eb',
+    boxShadow: '-2px 0 15px rgba(0, 0, 0, 0.05)',
+    borderLeft: '1px solid #e5e7eb',
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
     overflow: 'hidden',
     position: 'fixed',
-    right: 0,
+    left: 0,
     top: 0,
   };
 
@@ -207,11 +207,11 @@ const Sidebar = ({ isOpen, onClose }) => {
           width: `${sidebarWidth}px`,
           ...sidebarStyles,
           position: 'fixed',
-          right: isMobile && !isOpen ? '-100%' : 0,
+          left: isMobile && !isOpen ? '-100%' : 0,
           top: 0,
           zIndex: 1000,
           transition: 'all 0.3s ease',
-          boxShadow: isMobile && isOpen ? '0 0 30px rgba(0, 0, 0, 0.3)' : '2px 0 15px rgba(0, 0, 0, 0.05)',
+          boxShadow: isMobile && isOpen ? '0 0 30px rgba(0, 0, 0, 0.3)' : '-2px 0 15px rgba(0, 0, 0, 0.05)',
         }}
       >
       {/* Header */}

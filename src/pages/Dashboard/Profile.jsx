@@ -189,9 +189,9 @@ const Profile = () => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        marginRight: isMobile ? '0' : `${sidebarWidth || 280}px`,
+        marginLeft: isMobile ? '0' : `${sidebarWidth || 280}px`,
         paddingTop: '80px',
-        transition: 'margin-right 0.3s ease',
+        transition: 'margin-left 0.3s ease',
       }}>
         <TopBar 
           pageTitle="الملف الشخصي" 

@@ -163,9 +163,9 @@ const Orders = () => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        marginRight: window.innerWidth <= 1024 ? '0' : `${sidebarWidth}px`,
+        marginLeft: window.innerWidth <= 1024 ? '0' : `${sidebarWidth}px`,
         paddingTop: '80px',
-        transition: 'margin-right 0.3s ease',
+        transition: 'margin-left 0.3s ease',
       }}>
         <TopBar 
           pageTitle="إدارة الطلبات" 
