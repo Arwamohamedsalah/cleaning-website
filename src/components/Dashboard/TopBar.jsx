@@ -200,7 +200,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
-        gap: isMobile ? '16px' : '20px',
+        gap: isMobile ? '20px' : '20px',
         flex: isMobile ? '1 1 auto' : '0 0 auto',
         minWidth: 0,
         order: 3,
