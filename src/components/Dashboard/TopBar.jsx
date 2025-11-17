@@ -29,15 +29,16 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       justifyContent: 'space-between', 
       gap: isMobile ? '10px' : '20px',
       flexWrap: 'nowrap',
-      direction: 'rtl', // RTL layout
+      direction: 'ltr', // LTR layout for proper positioning
     }}>
-      {/* Left Side (North in RTL): Account Profile */}
+      {/* Left Side: Account Profile Icon */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
         flex: '0 0 auto',
         flexShrink: 0,
         order: 1,
+        marginLeft: 0, // Ensure it's on the left
       }}>
         <div style={{ position: 'relative' }}>
           <div
@@ -72,7 +73,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
           {showProfileDropdown && (
             <div style={{
               position: 'absolute',
-              right: 0,
+              left: 0, // Dropdown opens from left (since profile is on left)
               top: isMobile ? '50px' : '60px',
               minWidth: '200px',
               padding: '10px 0',
@@ -196,7 +197,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         </div>
       )}
       
-      {/* Right Side (South in RTL): Page Title + Hamburger (mobile) or Home Button (desktop) */}
+      {/* Right Side: Page Title + Hamburger (mobile) or Home Button (desktop) */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
@@ -205,6 +206,7 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         minWidth: 0,
         order: 3,
         justifyContent: isMobile ? 'flex-end' : 'flex-end',
+        marginRight: 0, // Ensure it's on the right
       }}>
         {/* Hamburger Menu Button - Mobile only, on the right */}
         {isMobile && (
