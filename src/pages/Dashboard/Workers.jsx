@@ -348,9 +348,9 @@ const Workers = () => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        marginLeft: isMobile ? '0' : `${sidebarWidth}px`,
+        marginRight: isMobile ? '0' : `${sidebarWidth}px`,
         paddingTop: '80px',
-        transition: 'margin-left 0.3s ease',
+        transition: 'margin-right 0.3s ease',
       }}>
         <TopBar 
           pageTitle="إدارة العاملات" 

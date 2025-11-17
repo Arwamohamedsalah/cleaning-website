@@ -446,9 +446,9 @@ const Reports = () => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        marginLeft: isMobile ? '0' : `${sidebarWidthValue}px`,
+        marginRight: isMobile ? '0' : `${sidebarWidthValue}px`,
         paddingTop: '80px',
-        transition: 'margin-left 0.3s ease',
+        transition: 'margin-right 0.3s ease',
       }}>
         <TopBar 
           pageTitle="التقارير"
