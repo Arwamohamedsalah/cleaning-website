@@ -31,39 +31,21 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
       flexWrap: 'nowrap',
       direction: 'ltr', // LTR layout for proper positioning
     }}>
-      {/* Left Side: On mobile - Title + Hamburger, On desktop - Home Button */}
+      {/* Left Side: On mobile - Hamburger + Title + Profile Icon, On desktop - Home Button */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center',
-        gap: isMobile ? '16px' : '20px',
+        gap: isMobile ? '12px' : '20px',
         flex: '0 0 auto',
         flexShrink: 0,
         order: 1,
         marginLeft: 0,
         minWidth: 0, // Allow shrinking if needed
       }}>
-        {/* Mobile: Title first, then Hamburger */}
+        {/* Mobile: Hamburger first (leftmost), then Title, then Profile Icon */}
         {isMobile && (
           <>
-            {/* Page Title - Left of hamburger on mobile */}
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              flex: '0 0 auto',
-              minWidth: 0,
-              overflow: 'hidden', // Prevent overflow
-            }}>
-              <h1 style={{ 
-                margin: 0, 
-                fontSize: '18px', 
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '200px', // Limit width to prevent overlap
-              }}>{pageTitle}</h1>
-            </div>
-            
-            {/* Hamburger Menu Button - Right of title on mobile */}
+            {/* Hamburger Menu Button - Leftmost on mobile */}
             <button
               className="hamburger-menu"
               onClick={onMenuToggle}
@@ -97,6 +79,130 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
             >
               ☰
             </button>
+            
+            {/* Page Title - After hamburger on mobile */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              flex: '0 0 auto',
+              minWidth: 0,
+              overflow: 'hidden', // Prevent overflow
+            }}>
+              <h1 style={{ 
+                margin: 0, 
+                fontSize: '18px', 
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '150px', // Limit width to prevent overlap
+              }}>{pageTitle}</h1>
+            </div>
+
+            {/* Account Profile Icon - After title on mobile */}
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              <div
+                onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  lineHeight: '1',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
+                  e.currentTarget.style.boxShadow = '0 6px 30px rgba(139, 92, 246, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                }}
+              >
+                {user?.name?.[0] || '👤'}
+              </div>
+              {showProfileDropdown && (
+                <div style={{
+                  position: 'absolute',
+                  left: 0, // Dropdown opens from left on mobile
+                  top: '50px',
+                  minWidth: '200px',
+                  padding: '8px 0',
+                  zIndex: 1000,
+                  background: '#ffffff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                }}>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <button
+                      onClick={() => {
+                        navigate('/dashboard/profile');
+                        setShowProfileDropdown(false);
+                      }}
+                      style={{
+                        padding: '12px 20px',
+                        border: 'none',
+                        background: 'transparent',
+                        textAlign: 'right',
+                        cursor: 'pointer',
+                        color: '#0f172a',
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#f1f5f9';
+                        e.target.style.color = '#3b82f6';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#0f172a';
+                      }}
+                    >
+                      الملف الشخصي
+                    </button>
+                    <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
+                    <button
+                      onClick={() => {
+                        dispatch(logout());
+                        navigate('/login');
+                        setShowProfileDropdown(false);
+                      }}
+                      style={{
+                        padding: '12px 20px',
+                        border: 'none',
+                        background: 'transparent',
+                        textAlign: 'right',
+                        cursor: 'pointer',
+                        color: '#ef4444',
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.color = '#dc2626';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#ef4444';
+                      }}
+                    >
+                      تسجيل خروج
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </>
         )}
 
@@ -200,18 +306,18 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
         </div>
       )}
       
-      {/* Right Side: On desktop - Page Title, On all screens - Account Profile Icon */}
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center',
-        gap: '20px',
-        flex: '0 0 auto',
-        flexShrink: 0,
-        order: 3,
-        marginRight: 0,
-      }}>
-        {/* Page Title - Desktop only, on the right */}
-        {!isMobile && (
+      {/* Right Side: On desktop - Page Title + Account Profile Icon */}
+      {!isMobile && (
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          gap: '20px',
+          flex: '0 0 auto',
+          flexShrink: 0,
+          order: 3,
+          marginRight: 0,
+        }}>
+          {/* Page Title - Desktop only, on the right */}
           <div style={{ 
             display: 'flex', 
             alignItems: 'center',
@@ -223,114 +329,114 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
               whiteSpace: 'nowrap' 
             }}>{pageTitle}</h1>
           </div>
-        )}
 
-        {/* Account Profile Icon - All screens, on the right */}
-        <div style={{ position: 'relative' }}>
-          <div
-            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-            style={{
-              width: isMobile ? '40px' : '50px',
-              height: isMobile ? '40px' : '50px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
-              color: 'white',
-              fontSize: isMobile ? '18px' : '20px',
-              fontWeight: '700',
-              boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              lineHeight: '1',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
-              e.currentTarget.style.boxShadow = '0 6px 30px rgba(139, 92, 246, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
-              e.currentTarget.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
-            }}
-          >
-            {user?.name?.[0] || '👤'}
-          </div>
-          {showProfileDropdown && (
-            <div style={{
-              position: 'absolute',
-              right: 0, // Dropdown opens from right (since profile is on right)
-              top: isMobile ? '50px' : '60px',
-              minWidth: '200px',
-              padding: '8px 0',
-              zIndex: 1000,
-              background: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '12px',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-            }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <button
-                  onClick={() => {
-                    navigate('/dashboard/profile');
-                    setShowProfileDropdown(false);
-                  }}
-                  style={{
-                    padding: '12px 20px',
-                    border: 'none',
-                    background: 'transparent',
-                    textAlign: 'right',
-                    cursor: 'pointer',
-                    color: '#0f172a',
-                    fontWeight: 600,
-                    fontSize: '15px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#f1f5f9';
-                    e.target.style.color = '#3b82f6';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#0f172a';
-                  }}
-                >
-                  الملف الشخصي
-                </button>
-                <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
-                <button
-                  onClick={() => {
-                    dispatch(logout());
-                    navigate('/login');
-                    setShowProfileDropdown(false);
-                  }}
-                  style={{
-                    padding: '12px 20px',
-                    border: 'none',
-                    background: 'transparent',
-                    textAlign: 'right',
-                    cursor: 'pointer',
-                    color: '#ef4444',
-                    fontWeight: 600,
-                    fontSize: '15px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#fef2f2';
-                    e.target.style.color = '#dc2626';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#ef4444';
-                  }}
-                >
-                  تسجيل خروج
-                </button>
-              </div>
+          {/* Account Profile Icon - Desktop only, on the right */}
+          <div style={{ position: 'relative' }}>
+            <div
+              onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: '700',
+                boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                lineHeight: '1',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
+                e.currentTarget.style.boxShadow = '0 6px 30px rgba(139, 92, 246, 0.6)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+              }}
+            >
+              {user?.name?.[0] || '👤'}
             </div>
-          )}
+            {showProfileDropdown && (
+              <div style={{
+                position: 'absolute',
+                right: 0, // Dropdown opens from right on desktop
+                top: '60px',
+                minWidth: '200px',
+                padding: '8px 0',
+                zIndex: 1000,
+                background: '#ffffff',
+                border: '1px solid #e5e7eb',
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+              }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <button
+                    onClick={() => {
+                      navigate('/dashboard/profile');
+                      setShowProfileDropdown(false);
+                    }}
+                    style={{
+                      padding: '12px 20px',
+                      border: 'none',
+                      background: 'transparent',
+                      textAlign: 'right',
+                      cursor: 'pointer',
+                      color: '#0f172a',
+                      fontWeight: 600,
+                      fontSize: '15px',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = '#f1f5f9';
+                      e.target.style.color = '#3b82f6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'transparent';
+                      e.target.style.color = '#0f172a';
+                    }}
+                  >
+                    الملف الشخصي
+                  </button>
+                  <div style={{ height: '1px', background: '#e5e7eb', margin: '4px 0' }} />
+                  <button
+                    onClick={() => {
+                      dispatch(logout());
+                      navigate('/login');
+                      setShowProfileDropdown(false);
+                    }}
+                    style={{
+                      padding: '12px 20px',
+                      border: 'none',
+                      background: 'transparent',
+                      textAlign: 'right',
+                      cursor: 'pointer',
+                      color: '#ef4444',
+                      fontWeight: 600,
+                      fontSize: '15px',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = '#fef2f2';
+                      e.target.style.color = '#dc2626';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'transparent';
+                      e.target.style.color = '#ef4444';
+                    }}
+                  >
+                    تسجيل خروج
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Close dropdown overlay */}
       {showProfileDropdown && (
