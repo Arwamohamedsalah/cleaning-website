@@ -321,7 +321,7 @@ const Profile = () => {
                       onClick={handleSave}
                       className="dashboard-button"
                       style={{
-                        background: '#3b82f6',
+                        background: '#374dbe',
                         border: 'none',
                         color: '#ffffff',
                         padding: '12px 24px',
@@ -332,13 +332,15 @@ const Profile = () => {
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.transform = 'scale(1.05)';
-                        e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
-                        e.target.style.background = '#2563eb';
+                        e.target.style.boxShadow = '0 4px 20px rgba(55, 77, 190, 0.4)';
+                        e.target.style.background = '#2d3fa0';
+                        e.target.style.color = '#ffffff';
                       }}
                       onMouseLeave={(e) => {
                         e.target.style.transform = 'scale(1)';
                         e.target.style.boxShadow = 'none';
-                        e.target.style.background = '#3b82f6';
+                        e.target.style.background = '#374dbe';
+                        e.target.style.color = '#ffffff';
                       }}
                     >
                       حفظ
@@ -373,7 +375,7 @@ const Profile = () => {
                     onClick={() => setIsEditMode(true)}
                     className="dashboard-button"
                     style={{
-                      background: '#3b82f6',
+                      background: '#374dbe',
                       border: 'none',
                       color: '#ffffff',
                       padding: isMobile ? '8px 16px' : '12px 24px',
@@ -385,13 +387,15 @@ const Profile = () => {
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = 'scale(1.05)';
-                      e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
-                      e.target.style.background = '#2563eb';
+                      e.target.style.boxShadow = '0 4px 20px rgba(55, 77, 190, 0.4)';
+                      e.target.style.background = '#2d3fa0';
+                      e.target.style.color = '#ffffff';
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = 'scale(1)';
                       e.target.style.boxShadow = 'none';
-                      e.target.style.background = '#3b82f6';
+                      e.target.style.background = '#374dbe';
+                      e.target.style.color = '#ffffff';
                     }}
                   >
                     {isMobile ? 'تعديل' : 'تعديل الملف الشخصي'}
@@ -711,7 +715,7 @@ const Profile = () => {
                 disabled={passwordLoading}
                 className="dashboard-button"
                 style={{
-                  background: passwordLoading ? '#93c5fd' : '#3b82f6',
+                  background: passwordLoading ? '#7c8fd4' : '#374dbe',
                   cursor: passwordLoading ? 'not-allowed' : 'pointer',
                   opacity: passwordLoading ? 0.6 : 1,
                   border: 'none',
@@ -725,14 +729,16 @@ const Profile = () => {
                 onMouseEnter={(e) => {
                   if (!passwordLoading) {
                     e.target.style.transform = 'scale(1.05)';
-                    e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
-                    e.target.style.background = '#2563eb';
+                    e.target.style.boxShadow = '0 4px 20px rgba(55, 77, 190, 0.4)';
+                    e.target.style.background = '#2d3fa0';
+                    e.target.style.color = '#ffffff';
                   }
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = 'scale(1)';
                   e.target.style.boxShadow = 'none';
-                  e.target.style.background = passwordLoading ? '#93c5fd' : '#3b82f6';
+                  e.target.style.background = passwordLoading ? '#7c8fd4' : '#374dbe';
+                  e.target.style.color = '#ffffff';
                 }}
               >
                 تغيير كلمة المرور

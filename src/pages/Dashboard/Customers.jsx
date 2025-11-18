@@ -180,8 +180,8 @@ const Customers = () => {
             <GlassButton
               onClick={handleAddNew}
               style={{
-                background: '#3b82f6',
-                color: 'white',
+                background: '#374dbe',
+                color: '#ffffff',
                 fontWeight: 700,
                 padding: '12px 24px',
                 fontSize: '16px',

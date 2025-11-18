@@ -219,7 +219,7 @@ const Orders = () => {
               />
               <button style={{
                 padding: '12px 24px',
-                background: '#3b82f6',
+                background: '#374dbe',
                 border: 'none',
                 borderRadius: '12px',
                 color: '#ffffff',
@@ -229,13 +229,15 @@ const Orders = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
-                e.currentTarget.style.background = '#2563eb';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(55, 77, 190, 0.4)';
+                e.currentTarget.style.background = '#2d3fa0';
+                e.currentTarget.style.color = '#ffffff';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.background = '#3b82f6';
+                e.currentTarget.style.background = '#374dbe';
+                e.currentTarget.style.color = '#ffffff';
               }}
               >تصفية</button>
             </div>

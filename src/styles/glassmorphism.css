@@ -266,7 +266,7 @@ p, span, div {
 
 /* Modern Button Design - Unified Blue Color */
 .glass-button {
-  background: #3b82f6 !important;
+  background: #374dbe !important;
   border: none !important;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -276,11 +276,11 @@ p, span, div {
   overflow: hidden;
   border-radius: 12px;
   padding: 14px 36px;
-  color: white !important;
+  color: #ffffff !important;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 15px rgba(55, 77, 190, 0.4);
   text-transform: none;
   letter-spacing: 0.5px;
 }
@@ -320,17 +320,19 @@ p, span, div {
 
 .glass-button:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5),
-              0 0 0 3px rgba(59, 130, 246, 0.2);
-  background: #2563eb !important;
+  box-shadow: 0 8px 25px rgba(55, 77, 190, 0.5),
+              0 0 0 3px rgba(55, 77, 190, 0.2);
+  background: #2d3fa0 !important;
   border: none !important;
+  color: #ffffff !important;
 }
 
 .glass-button:active {
   transform: translateY(-1px) scale(0.98);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.6);
-  background: #1d4ed8 !important;
+  box-shadow: 0 4px 15px rgba(55, 77, 190, 0.6);
+  background: #253082 !important;
+  color: #ffffff !important;
 }
 
 .glass-button:active::after {
@@ -1282,36 +1284,39 @@ textarea::placeholder {
 .dashboard-content-area .glass-button,
 .dashboard-content .glass-button,
 .dashboard-container .glass-button {
-  background: #3b82f6 !important;
+  background: #374dbe !important;
   border: none !important;
-  color: white !important;
+  color: #ffffff !important;
 }
 
 .dashboard-content-area .glass-button:hover,
 .dashboard-content .glass-button:hover,
 .dashboard-container .glass-button:hover {
-  background: #2563eb !important;
+  background: #2d3fa0 !important;
   border: none !important;
+  color: #ffffff !important;
 }
 
 .dashboard-content-area .glass-button:active,
 .dashboard-content .glass-button:active,
 .dashboard-container .glass-button:active {
-  background: #1d4ed8 !important;
+  background: #253082 !important;
   border: none !important;
+  color: #ffffff !important;
 }
 
 /* Dashboard regular buttons - Unified Blue Color */
-.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]),
-.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]),
-.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]) {
-  background: #3b82f6 !important;
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]),
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]),
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]) {
+  background: #374dbe !important;
   border: none !important;
-  color: white !important;
+  color: #ffffff !important;
 }
 
-.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover,
-.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover,
-.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover {
-  background: #2563eb !important;
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover,
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover,
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover {
+  background: #2d3fa0 !important;
+  color: #ffffff !important;
 }
