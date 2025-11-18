@@ -337,7 +337,22 @@
 
 .dashboard-sidebar .menu-item.active span,
 .dashboard-sidebar .menu-item.active .icon,
-.dashboard-sidebar a[style*="background: #374dbe"] span {
+.dashboard-sidebar a[style*="background: #374dbe"] span,
+.dashboard-sidebar a[style*="background: #374dbe"] * {
+  color: #ffffff !important;
+}
+
+/* Force white text for all children of active menu items */
+.dashboard-sidebar a[style*="background: #374dbe"] {
+  color: #ffffff !important;
+}
+
+.dashboard-sidebar a[style*="background: #374dbe"] > span {
+  color: #ffffff !important;
+}
+
+.dashboard-sidebar a[style*="background: #374dbe"] > span:first-child,
+.dashboard-sidebar a[style*="background: #374dbe"] > span:last-child {
   color: #ffffff !important;
 }
 

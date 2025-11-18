@@ -134,7 +134,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const menuItemActiveStyles = {
     ...menuItemBaseStyles,
     background: '#374dbe',
-    color: '#ffffff',
+    color: '#ffffff !important',
     border: '1px solid #374dbe',
   };
 
@@ -268,11 +268,14 @@ const Sidebar = ({ isOpen, onClose }) => {
           >
             <span style={{
               ...iconStyles, 
-              color: isActive(item.path) ? '#ffffff' : 'inherit',
+              color: isActive(item.path) ? '#ffffff !important' : 'inherit',
               background: 'transparent',
               backgroundColor: 'transparent',
             }}>{item.icon}</span>
-            <span style={{ color: isActive(item.path) ? '#ffffff' : 'inherit' }}>{item.label}</span>
+            <span style={{ 
+              color: isActive(item.path) ? '#ffffff !important' : 'inherit',
+              fontWeight: isActive(item.path) ? '600' : '500',
+            }}>{item.label}</span>
           </Link>
         ))}
         {/* Profile - Available for all users */}
@@ -297,11 +300,14 @@ const Sidebar = ({ isOpen, onClose }) => {
         >
           <span style={{
             ...iconStyles, 
-            color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit',
+            color: isActive('/dashboard/profile') ? '#ffffff !important' : 'inherit',
             background: 'transparent',
             backgroundColor: 'transparent',
           }}>👤</span>
-          <span style={{ color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit' }}>الملف الشخصي</span>
+          <span style={{ 
+            color: isActive('/dashboard/profile') ? '#ffffff !important' : 'inherit',
+            fontWeight: isActive('/dashboard/profile') ? '600' : '500',
+          }}>الملف الشخصي</span>
         </Link>
         {settingsItem && (
           <Link 
@@ -325,11 +331,14 @@ const Sidebar = ({ isOpen, onClose }) => {
           >
             <span style={{
               ...iconStyles, 
-              color: isActive(settingsItem.path) ? '#ffffff' : 'inherit',
+              color: isActive(settingsItem.path) ? '#ffffff !important' : 'inherit',
               background: 'transparent',
               backgroundColor: 'transparent',
             }}>{settingsItem.icon}</span>
-            <span style={{ color: isActive(settingsItem.path) ? '#ffffff' : 'inherit' }}>{settingsItem.label}</span>
+            <span style={{ 
+              color: isActive(settingsItem.path) ? '#ffffff !important' : 'inherit',
+              fontWeight: isActive(settingsItem.path) ? '600' : '500',
+            }}>{settingsItem.label}</span>
           </Link>
         )}
       </div>
