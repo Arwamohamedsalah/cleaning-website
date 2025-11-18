@@ -203,9 +203,9 @@ const Reports = () => {
       <GlassCard style={{ 
         padding: isMobile ? '12px' : '14px', 
         marginBottom: isMobile ? '16px' : '24px',
-        maxWidth: isMobile ? '100%' : '300px',
+        maxWidth: isMobile ? '100%' : '320px',
         margin: isMobile ? '0 auto 16px auto' : '0 auto 24px auto',
-        width: isMobile ? '100%' : '300px',
+        width: isMobile ? '100%' : '320px',
         aspectRatio: isMobile ? '1' : '1',
         display: 'flex',
         flexDirection: 'column',
@@ -215,7 +215,7 @@ const Reports = () => {
           <h3 style={{ fontSize: isMobile ? '14px' : '15px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? '100%' : '240px'} />
+          <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? '100%' : '260px'} />
         </div>
       </GlassCard>
 
