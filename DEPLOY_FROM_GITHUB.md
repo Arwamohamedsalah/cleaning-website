@@ -64,15 +64,32 @@ pm2 restart cleaning-backend
 
 ## 🔄 تحديث المشروع لاحقاً
 
-### إذا كان المشروع موجود بالفعل (git pull):
+### إذا كان المشروع موجود بالفعل وعايز تحديثات (git pull):
 
 ```bash
+# 1. الانتقال إلى مجلد المشروع
 cd /var/www/cleaning
+
+# 2. جلب التحديثات من GitHub
 git pull origin main
+
+# 3. تثبيت أي dependencies جديدة (إذا لزم الأمر)
+npm install
+cd backend && npm install && cd ..
+
+# 4. بناء Frontend
 npm run build
+
+# 5. نسخ ملفات البناء إلى مجلد client
 rm -rf /var/www/client/*
 cp -r dist/* /var/www/client/
+
+# 6. إعادة تشغيل Backend
 pm2 restart cleaning-backend
+
+# 7. التحقق من الحالة
+pm2 status
+pm2 logs cleaning-backend --lines 20
 ```
 
 ### إذا كان المشروع غير موجود (git clone):
