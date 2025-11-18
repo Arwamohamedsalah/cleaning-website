@@ -550,7 +550,7 @@ const Reports = () => {
           pageTitle="التقارير"
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: isMobile ? '16px' : '40px', flex: 1 }}>
+        <div style={{ padding: isMobile ? '20px' : '40px', paddingTop: isMobile ? '24px' : '40px', flex: 1 }}>
           {/* Report Type Selection */}
           <div style={{ 
             display: 'grid', 
