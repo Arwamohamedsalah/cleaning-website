@@ -1,7 +1,7 @@
 // PM2 Ecosystem Configuration
-// Run: pm2 start ecosystem.config.js
+// Run: pm2 start pm2-ecosystem.config.js
 
-module.exports = {
+export default {
   apps: [{
     name: 'cleaning-backend',
     script: './backend/server.js',
