@@ -26,7 +26,7 @@
   border-radius: 12px;
   padding: 28px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -128,7 +128,7 @@
 .dashboard-table-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.15);
   border-color: #bfdbfe;
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .dashboard-table-card h3 {
