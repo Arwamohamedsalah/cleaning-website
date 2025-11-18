@@ -247,7 +247,7 @@ const Profile = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: isMobile ? '32px' : '48px',
-                color: 'white',
+                color: '#374dbe',
                 flexShrink: 0,
                 boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)',
               }}>
