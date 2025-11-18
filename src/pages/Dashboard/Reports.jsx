@@ -116,8 +116,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الطلبات</h3>
@@ -138,8 +138,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'auto auto', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px',
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px',
         maxWidth: isMobile ? '100%' : 'none',
         width: isMobile ? '100%' : 'auto',
         justifyContent: isMobile ? 'stretch' : 'center'
@@ -202,7 +202,7 @@ const Reports = () => {
 
       <GlassCard style={{ 
         padding: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '24px' : '30px',
+        marginBottom: isMobile ? '28px' : '36px',
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0 auto',
         width: isMobile ? '100%' : 'auto',
@@ -223,7 +223,7 @@ const Reports = () => {
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0',
         width: isMobile ? '100%' : 'auto',
-        marginBottom: isMobile ? '24px' : '30px'
+        marginBottom: isMobile ? '28px' : '36px'
       }}>
         <div style={{ marginBottom: isMobile ? '12px' : '16px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
@@ -283,8 +283,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الإيرادات</h3>
@@ -305,8 +305,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
@@ -343,7 +343,10 @@ const Reports = () => {
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+      <GlassCard style={{ 
+        padding: isMobile ? '16px' : '30px',
+        marginBottom: isMobile ? '28px' : '36px'
+      }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي للإيرادات</h3>
         </div>
@@ -390,8 +393,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي العاملات</h3>
@@ -408,8 +411,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
@@ -445,7 +448,10 @@ const Reports = () => {
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+      <GlassCard style={{ 
+        padding: isMobile ? '16px' : '30px',
+        marginBottom: isMobile ? '28px' : '36px'
+      }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي لأداء العاملات</h3>
         </div>
@@ -490,8 +496,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '24px' : '30px', 
-        marginBottom: isMobile ? '24px' : '30px' 
+        gap: isMobile ? '20px' : '32px', 
+        marginBottom: isMobile ? '28px' : '36px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>نسبة الرضا</h3>
@@ -551,7 +557,7 @@ const Reports = () => {
               ? 'repeat(auto-fit, minmax(140px, 1fr))' 
               : 'repeat(auto-fit, minmax(200px, 1fr))', 
             gap: isMobile ? '12px' : '20px', 
-            marginBottom: isMobile ? '24px' : '40px' 
+            marginBottom: isMobile ? '28px' : '36px' 
           }}>
             {reportTypes.map((type) => (
               <GlassCard
