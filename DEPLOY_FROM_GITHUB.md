@@ -41,18 +41,25 @@ chmod +x deploy.sh
 bash deploy.sh
 ```
 
-### 3. تعديل ملف .env
+### 3. إعداد ملف .env للإنتاج
 
 ```bash
-nano /var/www/cleaning/backend/.env
+# نسخ ملف template للإنتاج
+cd /var/www/cleaning/backend
+cp PRODUCTION_ENV.txt .env
+
+# تعديل ملف .env
+nano .env
 ```
 
-**عدّل:**
-- `MONGODB_URI` - رابط MongoDB Atlas
-- `JWT_SECRET` - مفتاح قوي
+**عدّل القيم التالية:**
+- `MONGODB_URI` - رابط MongoDB Atlas الخاص بك
+- `JWT_SECRET` - مفتاح قوي وعشوائي
 - `FRONTEND_URL=https://ardbk.com`
 - `PORT=3000`
 - `NODE_ENV=production`
+- `SERVE_STATIC=false` (لأن Nginx يخدم الملفات الثابتة)
+- `DISABLE_PUPPETEER=true` (لأن WhatsApp معطل حالياً)
 
 ### 4. التحقق من عمليات PM2 وإعادة تشغيل Backend
 

@@ -1,0 +1,41 @@
+# ============================================
+# Production Environment Variables
+# للاستخدام على السيرفر: ardbk.com
+# ============================================
+# انسخ هذا الملف إلى .env في مجلد backend/
+# ============================================
+
+# MongoDB Atlas Connection String
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cleaning-service?retryWrites=true&w=majority
+
+# Server Configuration
+PORT=3000
+NODE_ENV=production
+
+# Frontend URL (for CORS)
+FRONTEND_URL=https://ardbk.com
+
+# JWT Secret (استخدم سلسلة عشوائية قوية)
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+
+# Admin User Credentials
+ADMIN_NAME=Admin
+ADMIN_EMAIL=admin@cleaning.com
+ADMIN_PASSWORD=admin123
+ADMIN_PHONE=0500000000
+
+# Static Files Serving (false لأن Nginx يخدم الملفات)
+SERVE_STATIC=false
+
+# WhatsApp API Configuration (معطل حالياً)
+DISABLE_PUPPETEER=true
+
+# ============================================
+# ملاحظات:
+# 1. غيّر MONGODB_URI برابط MongoDB Atlas الخاص بك
+# 2. غيّر JWT_SECRET بمفتاح قوي وعشوائي
+# 3. غيّر ADMIN_PASSWORD بكلمة مرور قوية
+# 4. تأكد من أن PORT=3000 (نفس البورت في Nginx)
+# 5. تأكد من أن FRONTEND_URL=https://ardbk.com
+# ============================================
+
