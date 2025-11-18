@@ -1177,9 +1177,9 @@ const Settings = () => {
                         borderRadius: '10px',
                         border: 'none',
                         background: activeTab === tab.id
-                          ? '#ffffff'
+                          ? '#374dbe'
                           : 'rgba(255, 255, 255, 0.3)',
-                        color: activeTab === tab.id ? '#ffffff' : '#ffffff',
+                        color: '#ffffff',
                         fontWeight: activeTab === tab.id ? 700 : 500,
                         cursor: 'pointer',
                         transition: 'none',
@@ -1190,7 +1190,7 @@ const Settings = () => {
                       }}
                     >
                       <span style={{ background: 'transparent', backgroundColor: 'transparent' }}>{tab.icon}</span>
-                      <span style={{ color: activeTab === tab.id ? '#ffffff' : '#ffffff' }}>{tab.label}</span>
+                      <span style={{ color: '#ffffff' }}>{tab.label}</span>
                     </button>
                   ))}
                 </div>
