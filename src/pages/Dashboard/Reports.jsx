@@ -137,23 +137,26 @@ const Reports = () => {
         display: 'grid', 
         gridTemplateColumns: isMobile 
           ? '1fr' 
-          : 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: isMobile ? '16px' : '30px', 
-        marginBottom: isMobile ? '20px' : '30px',
+          : 'repeat(2, 1fr)', 
+        gap: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '16px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
-        margin: isMobile ? '0 auto' : '0',
         width: isMobile ? '100%' : 'auto'
       }}>
         <GlassCard style={{ 
-          padding: isMobile ? '16px' : '30px',
+          padding: isMobile ? '12px' : '20px',
           maxWidth: isMobile ? '100%' : 'none',
           margin: isMobile ? '0 auto' : '0',
-          width: isMobile ? '100%' : 'auto'
+          width: isMobile ? '100%' : 'auto',
+          aspectRatio: isMobile ? '1' : '1',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
         }}>
-          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
-            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات الشهرية</h3>
+          <div style={{ marginBottom: isMobile ? '8px' : '12px' }}>
+            <h3 style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: 700 }}>الطلبات الشهرية</h3>
           </div>
-          <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
+          <ResponsiveContainer width="100%" height={isMobile ? 'calc(100% - 40px)' : 'calc(100% - 50px)'}>
             <BarChart data={ordersData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
               <XAxis dataKey="name" stroke="#64748B" style={{ fontSize: '12px' }} />
@@ -178,29 +181,41 @@ const Reports = () => {
         </GlassCard>
 
         <GlassCard style={{ 
-          padding: isMobile ? '16px' : '30px',
+          padding: isMobile ? '12px' : '20px',
           maxWidth: isMobile ? '100%' : 'none',
           margin: isMobile ? '0 auto' : '0',
-          width: isMobile ? '100%' : 'auto'
+          width: isMobile ? '100%' : 'auto',
+          aspectRatio: isMobile ? '1' : '1',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
         }}>
-          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
-            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب الحالة</h3>
+          <div style={{ marginBottom: isMobile ? '8px' : '12px' }}>
+            <h3 style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: 700 }}>الطلبات حسب الحالة</h3>
           </div>
-          <PieChart data={ordersByStatus} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <PieChart data={ordersByStatus} dataKey="value" nameKey="name" height={isMobile ? '100%' : '100%'} />
+          </div>
         </GlassCard>
       </div>
 
       <GlassCard style={{ 
-        padding: isMobile ? '16px' : '30px', 
-        marginBottom: isMobile ? '20px' : '30px',
+        padding: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '16px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
-        margin: isMobile ? '0 auto 20px auto' : '0 0 30px 0',
-        width: isMobile ? '100%' : 'auto'
+        margin: isMobile ? '0 auto 16px auto' : '0 auto 24px auto',
+        width: isMobile ? '100%' : 'auto',
+        aspectRatio: isMobile ? '1' : '1',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
       }}>
-        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
-          <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
+        <div style={{ marginBottom: isMobile ? '8px' : '12px' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
         </div>
-        <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? '100%' : '100%'} />
+        </div>
       </GlassCard>
 
       <div className="dashboard-table-card" style={{ 
