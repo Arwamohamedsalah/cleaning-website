@@ -389,6 +389,13 @@ p, span, div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Dashboard glass-input border color */
+.dashboard-content-area .glass-input,
+.dashboard-content .glass-input,
+.dashboard-container .glass-input {
+  border-color: #616161 !important;
+}
+
 .glass-input::placeholder {
   color: #64748b !important;
   transition: color 0.3s ease;
@@ -400,6 +407,13 @@ p, span, div {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
+/* Dashboard glass-input hover border color */
+.dashboard-content-area .glass-input:hover,
+.dashboard-content .glass-input:hover,
+.dashboard-container .glass-input:hover {
+  border-color: #616161 !important;
+}
+
 .glass-input:focus {
   background: #ffffff !important;
   outline: none;
@@ -409,6 +423,15 @@ p, span, div {
   color: #0f172a !important;
   font-weight: 500;
   transform: translateY(-2px);
+}
+
+/* Dashboard glass-input focus border color */
+.dashboard-content-area .glass-input:focus,
+.dashboard-content .glass-input:focus,
+.dashboard-container .glass-input:focus {
+  border-color: #616161 !important;
+  box-shadow: 0 0 0 3px rgba(97, 97, 97, 0.1),
+              0 4px 16px rgba(0, 0, 0, 0.08) !important;
 }
 
 .glass-input:focus::placeholder {
@@ -467,6 +490,13 @@ p, span, div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Dashboard glass-textarea border color */
+.dashboard-content-area .glass-textarea,
+.dashboard-content .glass-textarea,
+.dashboard-container .glass-textarea {
+  border-color: #616161 !important;
+}
+
 .glass-textarea:focus {
   background: #ffffff !important;
   outline: none;
@@ -476,6 +506,15 @@ p, span, div {
   color: #0f172a !important;
   font-weight: 500;
   transform: translateY(-2px);
+}
+
+/* Dashboard glass-textarea focus border color */
+.dashboard-content-area .glass-textarea:focus,
+.dashboard-content .glass-textarea:focus,
+.dashboard-container .glass-textarea:focus {
+  border-color: #616161 !important;
+  box-shadow: 0 0 0 3px rgba(97, 97, 97, 0.1),
+              0 4px 16px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Modern Select - White Background */
@@ -499,6 +538,13 @@ p, span, div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Dashboard glass-select border color */
+.dashboard-content-area .glass-select,
+.dashboard-content .glass-select,
+.dashboard-container .glass-select {
+  border-color: #616161 !important;
+}
+
 .glass-select:focus {
   background: #ffffff !important;
   outline: none;
@@ -507,6 +553,15 @@ p, span, div {
               0 4px 16px rgba(0, 0, 0, 0.08) !important;
   color: #0f172a !important;
   font-weight: 500;
+}
+
+/* Dashboard glass-select focus border color */
+.dashboard-content-area .glass-select:focus,
+.dashboard-content .glass-select:focus,
+.dashboard-container .glass-select:focus {
+  border-color: #616161 !important;
+  box-shadow: 0 0 0 3px rgba(97, 97, 97, 0.1),
+              0 4px 16px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Modern Checkbox */
