@@ -47,9 +47,9 @@ const Profile = () => {
     joinDate: user?.joinDate || new Date('2024-01-01'),
   });
 
-  // Update formData when user data changes
+  // Update formData when user data changes (only if not in edit mode to avoid overwriting user input)
   useEffect(() => {
-    if (user) {
+    if (user && !isEditMode) {
       setFormData({
         name: user.name || 'المسؤول',
         email: user.email || 'admin@cleaning.com',
@@ -59,7 +59,7 @@ const Profile = () => {
         joinDate: user.joinDate || new Date('2024-01-01'),
       });
     }
-  }, [user]);
+  }, [user, isEditMode]);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -78,9 +78,19 @@ const Profile = () => {
       
       const result = await dispatch(updateUserProfile(dataToUpdate));
       if (updateUserProfile.fulfilled.match(result)) {
+        // Update formData immediately with the returned data
+        if (result.payload) {
+          setFormData(prev => ({
+            ...prev,
+            name: result.payload.name || prev.name,
+            email: result.payload.email || prev.email,
+            phone: result.payload.phone || prev.phone,
+            bio: result.payload.bio || prev.bio,
+          }));
+        }
         setIsEditMode(false);
         alert('تم حفظ التغييرات بنجاح!');
-        // Refresh user data
+        // Refresh user data to ensure everything is in sync
         await dispatch(getCurrentUser());
       } else {
         alert(result.payload || 'حدث خطأ أثناء حفظ التغييرات');
