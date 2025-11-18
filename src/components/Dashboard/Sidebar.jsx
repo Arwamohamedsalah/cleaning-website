@@ -152,6 +152,10 @@ const Sidebar = ({ isOpen, onClose }) => {
     width: '24px',
     height: '24px',
     background: 'transparent',
+    backgroundColor: 'transparent',
+    border: 'none',
+    padding: 0,
+    margin: 0,
   };
 
   const logoutSectionStyles = {
@@ -262,7 +266,12 @@ const Sidebar = ({ isOpen, onClose }) => {
               }
             }}
           >
-            <span style={{...iconStyles, color: isActive(item.path) ? '#ffffff' : 'inherit'}}>{item.icon}</span>
+            <span style={{
+              ...iconStyles, 
+              color: isActive(item.path) ? '#ffffff' : 'inherit',
+              background: 'transparent',
+              backgroundColor: 'transparent',
+            }}>{item.icon}</span>
             <span style={{ color: isActive(item.path) ? '#ffffff' : 'inherit' }}>{item.label}</span>
           </Link>
         ))}
@@ -286,7 +295,12 @@ const Sidebar = ({ isOpen, onClose }) => {
             }
           }}
         >
-          <span style={{...iconStyles, color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit'}}>👤</span>
+          <span style={{
+            ...iconStyles, 
+            color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit',
+            background: 'transparent',
+            backgroundColor: 'transparent',
+          }}>👤</span>
           <span style={{ color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit' }}>الملف الشخصي</span>
         </Link>
         {settingsItem && (
@@ -309,7 +323,12 @@ const Sidebar = ({ isOpen, onClose }) => {
               }
             }}
           >
-            <span style={{...iconStyles, color: isActive(settingsItem.path) ? '#ffffff' : 'inherit'}}>{settingsItem.icon}</span>
+            <span style={{
+              ...iconStyles, 
+              color: isActive(settingsItem.path) ? '#ffffff' : 'inherit',
+              background: 'transparent',
+              backgroundColor: 'transparent',
+            }}>{settingsItem.icon}</span>
             <span style={{ color: isActive(settingsItem.path) ? '#ffffff' : 'inherit' }}>{settingsItem.label}</span>
           </Link>
         )}
@@ -332,7 +351,11 @@ const Sidebar = ({ isOpen, onClose }) => {
             Object.assign(e.currentTarget.style, logoutButtonStyles);
           }}
         >
-          <span style={iconStyles}>🚪</span>
+          <span style={{
+            ...iconStyles,
+            background: 'transparent',
+            backgroundColor: 'transparent',
+          }}>🚪</span>
           <span>تسجيل خروج</span>
         </div>
       </div>

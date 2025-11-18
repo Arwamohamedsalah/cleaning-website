@@ -346,12 +346,21 @@
   width: 22px;
   text-align: center;
   background: transparent !important;
+  backgroundColor: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .dashboard-sidebar .menu-item span,
 .dashboard-sidebar .menu-item .icon,
-.dashboard-sidebar span[style*="iconStyles"] {
+.dashboard-sidebar span[style*="iconStyles"],
+.dashboard-sidebar .menu-item span:first-child {
   background: transparent !important;
+  backgroundColor: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Sidebar Menu Scrollbar */
