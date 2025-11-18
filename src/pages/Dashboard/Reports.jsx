@@ -299,11 +299,11 @@ const Reports = () => {
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
             <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الإيرادات حسب نوع الخدمة</h3>
           </div>
-          <PieChart data={revenueByService} dataKey="value" nameKey="name" height={300} />
+          <PieChart data={revenueByService} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: '30px' }}>
+      <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي للإيرادات</h3>
         </div>
@@ -401,11 +401,11 @@ const Reports = () => {
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
             <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>توزيع المهارات</h3>
           </div>
-          <PieChart data={workerSkills} dataKey="value" nameKey="name" height={300} />
+          <PieChart data={workerSkills} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: '30px' }}>
+      <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي لأداء العاملات</h3>
         </div>
