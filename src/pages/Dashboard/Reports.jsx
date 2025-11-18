@@ -138,8 +138,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'auto auto', 
-        gap: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '16px' : '24px',
+        gap: isMobile ? '20px' : '20px', 
+        marginBottom: isMobile ? '20px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
         width: isMobile ? '100%' : 'auto',
         justifyContent: isMobile ? 'stretch' : 'center'
@@ -202,9 +202,9 @@ const Reports = () => {
 
       <GlassCard style={{ 
         padding: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '16px' : '24px',
+        marginBottom: isMobile ? '24px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
-        margin: isMobile ? '0 auto 16px auto' : '0 auto 24px auto',
+        margin: isMobile ? '0 auto 24px auto' : '0 auto 24px auto',
         width: isMobile ? '100%' : 'auto',
         display: 'flex',
         flexDirection: 'column',
