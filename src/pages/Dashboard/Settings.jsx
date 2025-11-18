@@ -1179,7 +1179,7 @@ const Settings = () => {
                         background: activeTab === tab.id
                           ? '#ffffff'
                           : 'rgba(255, 255, 255, 0.3)',
-                        color: activeTab === tab.id ? '#374dbe' : 'var(--text-primary)',
+                        color: activeTab === tab.id ? '#ffffff' : '#ffffff',
                         fontWeight: activeTab === tab.id ? 700 : 500,
                         cursor: 'pointer',
                         transition: 'none',
