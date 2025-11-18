@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Dashboard/Sidebar';
 import TopBar from '../../components/Dashboard/TopBar';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserProfile } from '../../store/slices/authSlice';
+import { updateUserProfile, getCurrentUser } from '../../store/slices/authSlice';
 import { overviewAPI, authAPI } from '../../services/api';
 import '../../styles/globals.css';
 import '../../styles/glassmorphism.css';
@@ -47,21 +47,48 @@ const Profile = () => {
     joinDate: user?.joinDate || new Date('2024-01-01'),
   });
 
+  // Update formData when user data changes
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.name || 'المسؤول',
+        email: user.email || 'admin@cleaning.com',
+        phone: user.phone || '0501234567',
+        role: user.role || 'مدير النظام',
+        bio: user.bio || 'مدير النظام في شركة خدمات التنظيف',
+        joinDate: user.joinDate || new Date('2024-01-01'),
+      });
+    }
+  }, [user]);
+
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSave = async () => {
     try {
-      const result = await dispatch(updateUserProfile(formData));
+      setLoading(true);
+      // Prepare data to send (only fields that can be updated)
+      const dataToUpdate = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        bio: formData.bio,
+      };
+      
+      const result = await dispatch(updateUserProfile(dataToUpdate));
       if (updateUserProfile.fulfilled.match(result)) {
         setIsEditMode(false);
         alert('تم حفظ التغييرات بنجاح!');
+        // Refresh user data
+        await dispatch(getCurrentUser());
       } else {
         alert(result.payload || 'حدث خطأ أثناء حفظ التغييرات');
       }
     } catch (error) {
       alert('حدث خطأ أثناء حفظ التغييرات');
+    } finally {
+      setLoading(false);
     }
   };
 
