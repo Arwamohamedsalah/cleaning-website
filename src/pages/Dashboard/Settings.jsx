@@ -1164,7 +1164,7 @@ const Settings = () => {
             </div>
           ) : (
             /* Desktop: Show tabs sidebar with content */
-            <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '30px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '20px' }}>
               {/* Tabs */}
               <GlassCard style={{ padding: '20px', height: 'fit-content' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -1199,7 +1199,7 @@ const Settings = () => {
               {/* Content */}
               <div>
                 {!activeTab ? (
-                  <GlassCard style={{ padding: '40px', textAlign: 'center' }}>
+                  <GlassCard style={{ padding: '20px', textAlign: 'center' }}>
                     <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '16px', color: '#ffffff' }}>اختر قسم الإعدادات</h3>
                     <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '16px' }}>اختر أحد الأقسام من القائمة على اليمين للبدء</p>
                   </GlassCard>
