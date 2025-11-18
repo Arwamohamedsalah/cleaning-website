@@ -751,6 +751,7 @@ p, span, div {
 
 /* Modern Modal */
 .glass-modal-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -766,10 +767,10 @@ p, span, div {
 }
 
 .glass-modal {
-  background: linear-gradient(135deg, rgba(37, 150, 190, 0.4) 0%, rgba(37, 150, 190, 0.35) 50%, rgba(37, 150, 190, 0.4) 100%) !important;
-  border: 2px solid rgba(235, 213, 115, 0.7) !important;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(37, 150, 190, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
   max-width: 90%;
   max-height: 90vh;
   overflow-y: auto;
@@ -779,8 +780,8 @@ p, span, div {
 }
 
 .glass-modal.glass-card {
-  background: linear-gradient(135deg, rgba(37, 150, 190, 0.25) 0%, rgba(37, 150, 190, 0.3) 50%, rgba(37, 150, 190, 0.2) 100%) !important;
-  border: 2px solid rgba(235, 213, 115, 0.6) !important;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
 }
 
 /* Modern Badge */

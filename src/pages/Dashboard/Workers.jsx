@@ -574,7 +574,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>رقم الهاتف *</label>
+                  <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>رقم الهاتف *</label>
                   <input
                     {...register('phone', { required: 'رقم الهاتف مطلوب' })}
                     className="glass-input"
@@ -761,7 +761,7 @@ const Workers = () => {
             <form onSubmit={handleSubmit(onSubmitEdit)}>
               <div style={{ display: 'grid', gap: '20px' }}>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     الاسم بالعربي *
                   </label>
                   <input
@@ -775,7 +775,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     الاسم بالإنجليزي
                   </label>
                   <input
@@ -786,7 +786,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     الجنسية *
                   </label>
                   <input
@@ -801,7 +801,7 @@ const Workers = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                       العمر *
                     </label>
                     <input
@@ -816,7 +816,7 @@ const Workers = () => {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                       سنوات الخبرة
                     </label>
                     <input
@@ -828,7 +828,7 @@ const Workers = () => {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                       السعر ($)
                     </label>
                     <input
@@ -842,7 +842,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     رقم الهاتف *
                   </label>
                   <input
@@ -856,7 +856,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     الحالة
                   </label>
                   <select
@@ -872,7 +872,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     المهارات
                   </label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -890,7 +890,7 @@ const Workers = () => {
                           background: selectedSkills.includes(skill)
                             ? 'rgba(10, 40, 81, 0.2)'
                             : 'transparent',
-                          color: selectedSkills.includes(skill) ? '#FFFFFF' : '#FFFFFF',
+                          color: selectedSkills.includes(skill) ? '#ffffff' : '#0f172a',
                           cursor: 'pointer',
                           fontWeight: selectedSkills.includes(skill) ? 600 : 500,
                           transition: 'all 0.3s',
@@ -903,7 +903,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#FFFFFF' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#0f172a' }}>
                     اللغات
                   </label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -919,12 +919,12 @@ const Workers = () => {
                             padding: '8px 16px',
                             borderRadius: '20px',
                             border: isSelected
-                              ? '2px solid rgba(10, 40, 81, 1)'
-                              : '1px solid rgba(10, 40, 81, 0.3)',
+                              ? '2px solid #374dbe'
+                              : '2px solid #e5e7eb',
                             background: isSelected
-                              ? 'rgba(10, 40, 81, 0.2)'
+                              ? '#374dbe'
                               : 'transparent',
-                            color: isSelected ? '#FFFFFF' : '#FFFFFF',
+                            color: isSelected ? '#ffffff' : '#0f172a',
                             cursor: 'pointer',
                             fontWeight: isSelected ? 600 : 500,
                             transition: 'all 0.3s',
@@ -1030,55 +1030,55 @@ const Workers = () => {
                   <>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الاسم بالعربي</p>
-                        <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.arabicName || selectedWorker.name}</p>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الاسم بالعربي</p>
+                        <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.arabicName || selectedWorker.name}</p>
                       </div>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الاسم بالإنجليزي</p>
-                        <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.englishName || '-'}</p>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الاسم بالإنجليزي</p>
+                        <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.englishName || '-'}</p>
                       </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الجنسية</p>
-                        <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.nationality}</p>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الجنسية</p>
+                        <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.nationality}</p>
                       </div>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>العمر</p>
-                        <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.age} سنة</p>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>العمر</p>
+                        <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.age} سنة</p>
                       </div>
                     </div>
 
                     <div>
-                      <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>رقم الهاتف</p>
-                      <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.phone}</p>
+                      <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>رقم الهاتف</p>
+                      <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.phone}</p>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>نوع العقد</p>
-                        <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>نوع العقد</p>
+                        <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>
                           {selectedWorker.contractType === 'hourly' ? '⏰ بالساعة' : 
                            selectedWorker.contractType === 'daily' ? '📅 باليوم' : 
                            selectedWorker.contractType || 'غير محدد'}
                         </p>
                       </div>
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الحالة</p>
+                        <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>الحالة</p>
                         <p style={{ color: status.color, fontWeight: 700, fontSize: '16px' }}>{status.label}</p>
                       </div>
                     </div>
 
                     <div>
-                      <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>سنوات الخبرة</p>
-                      <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.experience || 0} سنوات</p>
+                      <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>سنوات الخبرة</p>
+                      <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.experience || 0} سنوات</p>
                     </div>
 
 
                     <div>
-                      <p style={{ color: '#FFFFFF', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>عدد الطلبات المكتملة</p>
-                      <p style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.totalOrders || selectedWorker.orders || 0}</p>
+                      <p style={{ color: '#0f172a', marginBottom: '5px', fontSize: '14px', fontWeight: 700 }}>عدد الطلبات المكتملة</p>
+                      <p style={{ color: '#0f172a', fontWeight: 700, fontSize: '16px' }}>{selectedWorker.totalOrders || selectedWorker.orders || 0}</p>
                     </div>
 
                     <div>
