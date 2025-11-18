@@ -1322,7 +1322,7 @@ textarea::placeholder {
   color: #ffffff !important;
 }
 
-/* Eye icons - No important, use natural color */
+/* Eye icons - No important for color, use natural color */
 .dashboard-content-area button[style*="background: transparent"],
 .dashboard-content-area button[style*="backgroundColor: transparent"],
 .dashboard-content button[style*="background: transparent"],
@@ -1331,5 +1331,5 @@ textarea::placeholder {
 .dashboard-container button[style*="backgroundColor: transparent"] {
   background: transparent !important;
   backgroundColor: transparent !important;
-  color: inherit !important;
+  color: #374dbe !important;
 }
