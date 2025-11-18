@@ -256,7 +256,7 @@ const Orders = () => {
                     <th>الخدمة</th>
                     <th>التاريخ</th>
                     <th>الوقت</th>
-                    <th>العاملات</th>
+                    <th>اللات</th>
                     <th>الحالة</th>
                     <th>المبلغ</th>
                     <th>الإجراءات</th>
@@ -413,7 +413,7 @@ const Orders = () => {
                       />
                     </div>
                     <div className="glass-input-group" style={{ marginBottom: '15px' }}>
-                      <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600 }}>عدد العاملات</label>
+                      <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600 }}>عدد اللات</label>
                       <input
                         type="number"
                         className="glass-input"
@@ -471,7 +471,7 @@ const Orders = () => {
                         {getStatusBadge(selectedOrder.status).label}
                       </span>
                     </p>
-                    <p style={{ marginBottom: '10px' }}><strong>عدد العاملات:</strong> {selectedOrder.workers}</p>
+                    <p style={{ marginBottom: '10px' }}><strong>عدد اللات:</strong> {selectedOrder.workers}</p>
                     <p style={{ marginBottom: '10px' }}><strong>التاريخ:</strong> {formatDate(selectedOrder.date)}</p>
                     <p style={{ marginBottom: '10px' }}><strong>الوقت:</strong> {selectedOrder.time}</p>
                     <p><strong>المبلغ:</strong> {selectedOrder.amount || 0} ريال</p>
@@ -493,7 +493,7 @@ const Orders = () => {
                   )}
                   {selectedOrder.selectedWorkerId && (
                     <GlassCard style={{ padding: '20px', background: 'rgba(37, 150, 190, 0.15)' }}>
-                      <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '15px' }}>العاملة المختارة</h3>
+                      <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '15px' }}>اللة المختارة</h3>
                       {typeof selectedOrder.selectedWorkerId === 'object' ? (
                         <>
                           <p style={{ marginBottom: '10px' }}><strong>الاسم:</strong> {selectedOrder.selectedWorkerId.arabicName || selectedOrder.selectedWorkerId.name || 'غير محدد'}</p>
@@ -510,10 +510,10 @@ const Orders = () => {
                           )}
                         </>
                       ) : (
-                        <p>جارٍ تحميل بيانات العاملة...</p>
+                        <p>جارٍ تحميل بيانات اللة...</p>
                       )}
                       {selectedOrder.whatsappSent && (
-                        <p style={{ marginTop: '15px', color: '#4caf50', fontWeight: 600 }}>✅ تم إرسال بيانات العاملة على واتساب</p>
+                        <p style={{ marginTop: '15px', color: '#4caf50', fontWeight: 600 }}>✅ تم إرسال بيانات اللة على واتساب</p>
                       )}
                     </GlassCard>
                   )}
