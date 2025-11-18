@@ -1307,17 +1307,29 @@ textarea::placeholder {
 }
 
 /* Dashboard regular buttons - Unified Blue Color */
-.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]),
-.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]),
-.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]) {
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]),
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]),
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]) {
   background: #374dbe !important;
   border: none !important;
   color: #ffffff !important;
 }
 
-.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover,
-.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover,
-.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):hover {
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]):hover,
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]):hover,
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):not([style*="linear-gradient"]):not([style*="background: transparent"]):not([style*="backgroundColor: transparent"]):hover {
   background: #2d3fa0 !important;
   color: #ffffff !important;
+}
+
+/* Eye icons - No important, use natural color */
+.dashboard-content-area button[style*="background: transparent"],
+.dashboard-content-area button[style*="backgroundColor: transparent"],
+.dashboard-content button[style*="background: transparent"],
+.dashboard-content button[style*="backgroundColor: transparent"],
+.dashboard-container button[style*="background: transparent"],
+.dashboard-container button[style*="backgroundColor: transparent"] {
+  background: transparent !important;
+  backgroundColor: transparent !important;
+  color: inherit !important;
 }
