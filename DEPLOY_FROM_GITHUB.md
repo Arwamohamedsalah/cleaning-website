@@ -64,9 +64,56 @@ pm2 restart cleaning-backend
 
 ## 🔄 تحديث المشروع لاحقاً
 
+### إذا كان المشروع موجود بالفعل (git pull):
+
 ```bash
 cd /var/www/cleaning
 git pull origin main
+npm run build
+rm -rf /var/www/client/*
+cp -r dist/* /var/www/client/
+pm2 restart cleaning-backend
+```
+
+### إذا كان المشروع غير موجود (git clone):
+
+```bash
+# الانتقال إلى مجلد www
+cd /var/www
+
+# Clone المشروع من GitHub
+git clone https://github.com/Arwamohamedsalah/cleaning-website.git cleaning
+
+# الانتقال إلى مجلد المشروع
+cd /var/www/cleaning
+
+# تثبيت dependencies
+npm install
+cd backend && npm install && cd ..
+
+# بناء Frontend
+npm run build
+
+# نسخ ملفات البناء إلى مجلد client
+rm -rf /var/www/client/*
+cp -r dist/* /var/www/client/
+
+# إعداد ملف .env
+nano backend/.env
+
+# إعادة تشغيل Backend
+pm2 restart cleaning-backend
+```
+
+### للعمل مع Branch محدد (reports-improvements):
+
+```bash
+cd /var/www/cleaning
+git fetch origin
+git checkout reports-improvements
+# أو merge مع main
+git checkout main
+git merge reports-improvements
 npm run build
 rm -rf /var/www/client/*
 cp -r dist/* /var/www/client/
