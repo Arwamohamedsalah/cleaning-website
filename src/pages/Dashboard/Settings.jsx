@@ -1142,7 +1142,7 @@ const Settings = () => {
         <div style={{ padding: isMobile ? '16px' : '40px', flex: 1 }}>
           {isMobile ? (
             /* Mobile: Show tabs as cards that navigate to separate views */
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {tabs.map((tab) => (
                 <div
                   key={tab.id}
@@ -1167,7 +1167,7 @@ const Settings = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '30px' }}>
               {/* Tabs */}
               <GlassCard style={{ padding: '20px', height: 'fit-content' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
