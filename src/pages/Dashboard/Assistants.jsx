@@ -529,28 +529,20 @@ const Assistants = () => {
               style={{
                 padding: '12px 24px',
                 background: activeTab === 'assistants' 
-                  ? 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)'
-                  : '#f8fafc',
-                color: activeTab === 'assistants' ? '#ffffff' : '#334155',
-                border: activeTab === 'assistants' ? 'none' : '2px solid #e2e8f0',
-                borderRadius: '8px',
+                  ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(59, 130, 246, 1) 100%)'
+                  : 'rgba(17, 25, 44, 0.4)',
+                color: '#FFFFFF',
+                border: activeTab === 'assistants' 
+                  ? '2px solid rgba(59, 130, 246, 0.8)'
+                  : '1px solid rgba(59, 130, 246, 0.3)',
+                borderRadius: '10px',
                 cursor: 'pointer',
-                fontWeight: 700,
+                fontWeight: activeTab === 'assistants' ? 700 : 600,
                 fontSize: '16px',
                 transition: 'all 0.3s',
-                boxShadow: activeTab === 'assistants' ? '0 4px 12px rgba(59, 130, 246, 0.3)' : 'none',
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== 'assistants') {
-                  e.target.style.background = '#f1f5f9';
-                  e.target.style.borderColor = '#cbd5e1';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'assistants') {
-                  e.target.style.background = '#f8fafc';
-                  e.target.style.borderColor = '#e2e8f0';
-                }
+                boxShadow: activeTab === 'assistants' 
+                  ? '0 4px 12px rgba(59, 130, 246, 0.4)'
+                  : 'none',
               }}
             >
               📅 المساعدات (بعقد)
@@ -560,28 +552,20 @@ const Assistants = () => {
               style={{
                 padding: '12px 24px',
                 background: activeTab === 'workers' 
-                  ? 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)'
-                  : '#f8fafc',
-                color: activeTab === 'workers' ? '#ffffff' : '#334155',
-                border: activeTab === 'workers' ? 'none' : '2px solid #e2e8f0',
-                borderRadius: '8px',
+                  ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(59, 130, 246, 1) 100%)'
+                  : 'rgba(17, 25, 44, 0.4)',
+                color: '#FFFFFF',
+                border: activeTab === 'workers' 
+                  ? '2px solid rgba(59, 130, 246, 0.8)'
+                  : '1px solid rgba(59, 130, 246, 0.3)',
+                borderRadius: '10px',
                 cursor: 'pointer',
-                fontWeight: 700,
+                fontWeight: activeTab === 'workers' ? 700 : 600,
                 fontSize: '16px',
                 transition: 'all 0.3s',
-                boxShadow: activeTab === 'workers' ? '0 4px 12px rgba(59, 130, 246, 0.3)' : 'none',
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== 'workers') {
-                  e.target.style.background = '#f1f5f9';
-                  e.target.style.borderColor = '#cbd5e1';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'workers') {
-                  e.target.style.background = '#f8fafc';
-                  e.target.style.borderColor = '#e2e8f0';
-                }
+                boxShadow: activeTab === 'workers' 
+                  ? '0 4px 12px rgba(59, 130, 246, 0.4)'
+                  : 'none',
               }}
             >
               ⏰ العاملات (وقت محدد)
