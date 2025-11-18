@@ -1177,7 +1177,7 @@ const Settings = () => {
                         borderRadius: '10px',
                         border: 'none',
                         background: activeTab === tab.id
-                          ? 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #6366F1 100%)'
+                          ? 'transparent'
                           : 'rgba(255, 255, 255, 0.3)',
                         color: activeTab === tab.id ? 'white' : 'var(--text-primary)',
                         fontWeight: activeTab === tab.id ? 700 : 500,
