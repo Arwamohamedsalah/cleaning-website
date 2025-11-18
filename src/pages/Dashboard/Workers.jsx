@@ -885,10 +885,10 @@ const Workers = () => {
                           padding: '8px 16px',
                           borderRadius: '20px',
                           border: selectedSkills.includes(skill)
-                            ? '2px solid rgba(10, 40, 81, 1)'
-                            : '1px solid rgba(10, 40, 81, 0.3)',
+                            ? '2px solid #374dbe'
+                            : '2px solid #e5e7eb',
                           background: selectedSkills.includes(skill)
-                            ? 'rgba(10, 40, 81, 0.2)'
+                            ? '#374dbe'
                             : 'transparent',
                           color: selectedSkills.includes(skill) ? '#ffffff' : '#0f172a',
                           cursor: 'pointer',
@@ -1082,15 +1082,15 @@ const Workers = () => {
                     </div>
 
                     <div>
-                      <p style={{ color: '#FFFFFF', marginBottom: '8px', fontSize: '14px', fontWeight: 700 }}>المهارات</p>
+                      <p style={{ color: '#0f172a', marginBottom: '8px', fontSize: '14px', fontWeight: 700 }}>المهارات</p>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                         {(selectedWorker.skills || []).map((skill, i) => (
                           <span key={i} style={{
-                            background: 'rgba(10, 40, 81, 0.2)',
+                            background: '#374dbe',
                             padding: '6px 12px',
                             borderRadius: '12px',
                             fontSize: '13px',
-                            color: '#FFFFFF',
+                            color: '#ffffff',
                             fontWeight: 600,
                           }}>
                             {skill}
@@ -1100,15 +1100,15 @@ const Workers = () => {
                     </div>
 
                     <div>
-                      <p style={{ color: '#FFFFFF', marginBottom: '8px', fontSize: '14px', fontWeight: 700 }}>اللغات</p>
+                      <p style={{ color: '#0f172a', marginBottom: '8px', fontSize: '14px', fontWeight: 700 }}>اللغات</p>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                         {(selectedWorker.languages || []).map((language, i) => (
                           <span key={i} style={{
-                            background: 'rgba(10, 40, 81, 0.2)',
+                            background: '#374dbe',
                             padding: '6px 12px',
                             borderRadius: '12px',
                             fontSize: '13px',
-                            color: '#FFFFFF',
+                            color: '#ffffff',
                             fontWeight: 600,
                           }}>
                             {language}
@@ -1119,7 +1119,7 @@ const Workers = () => {
 
                     {selectedWorker.photos && selectedWorker.photos.length > 0 && (
                       <div>
-                        <p style={{ color: '#FFFFFF', marginBottom: '15px', fontSize: '14px', fontWeight: 700 }}>الصور</p>
+                        <p style={{ color: '#0f172a', marginBottom: '15px', fontSize: '14px', fontWeight: 700 }}>الصور</p>
                         <div style={{ 
                           display: 'grid', 
                           gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', 
