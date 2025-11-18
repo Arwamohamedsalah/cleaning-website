@@ -550,7 +550,7 @@ const Reports = () => {
           pageTitle="التقارير"
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: isMobile ? '20px' : '40px', paddingTop: isMobile ? '40px' : '40px', flex: 1 }}>
+        <div style={{ padding: isMobile ? '20px' : '40px', paddingTop: isMobile ? '48px' : '40px', flex: 1 }}>
           {/* Report Type Selection */}
           <div style={{ 
             display: 'grid', 
@@ -558,7 +558,7 @@ const Reports = () => {
               ? 'repeat(auto-fit, minmax(140px, 1fr))' 
               : 'repeat(auto-fit, minmax(200px, 1fr))', 
             gap: isMobile ? '12px' : '20px', 
-            marginTop: isMobile ? '32px' : '24px',
+            marginTop: isMobile ? '0px' : '24px',
             marginBottom: isMobile ? '28px' : '36px' 
           }}>
             {reportTypes.map((type) => (
