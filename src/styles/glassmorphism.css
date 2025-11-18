@@ -144,7 +144,7 @@ p, span, div {
 .dashboard-content .glass-input,
 .dashboard-container .glass-input {
   background: #ffffff !important;
-  border: 1px solid #bfdbfe !important;
+  border: 1px solid #616161 !important;
   color: #1e293b !important;
   border-radius: 10px !important;
   padding: 11px 16px !important;
@@ -164,15 +164,15 @@ p, span, div {
 .dashboard-content .glass-input:hover,
 .dashboard-container .glass-input:hover {
   background: #ffffff !important;
-  border-color: #bfdbfe !important;
+  border-color: #616161 !important;
 }
 
 .dashboard-content-area .glass-input:focus,
 .dashboard-content .glass-input:focus,
 .dashboard-container .glass-input:focus {
   background: #ffffff !important;
-  border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 2px 0 20px rgba(0, 0, 0, 0.08) !important;
+  border-color: #616161 !important;
+  box-shadow: 0 0 0 3px rgba(97, 97, 97, 0.1), 2px 0 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Dashboard Select - matching Sidebar design */
@@ -180,7 +180,7 @@ p, span, div {
 .dashboard-content .glass-select,
 .dashboard-container .glass-select {
   background: #ffffff !important;
-  border: 1px solid #bfdbfe !important;
+  border: 1px solid #616161 !important;
   color: #1e293b !important;
   border-radius: 10px !important;
   padding: 11px 16px !important;
@@ -194,8 +194,8 @@ p, span, div {
 .dashboard-content .glass-select:focus,
 .dashboard-container .glass-select:focus {
   background: #ffffff !important;
-  border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 2px 0 20px rgba(0, 0, 0, 0.08) !important;
+  border-color: #616161 !important;
+  box-shadow: 0 0 0 3px rgba(97, 97, 97, 0.1), 2px 0 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 .glass-card * {
@@ -1101,6 +1101,115 @@ textarea:hover,
 select:hover {
   background: #ffffff !important;
   border-color: #cbd5e1 !important;
+}
+
+/* Dashboard-specific input border color */
+.dashboard-content-area input[type="text"],
+.dashboard-content-area input[type="email"],
+.dashboard-content-area input[type="password"],
+.dashboard-content-area input[type="number"],
+.dashboard-content-area input[type="tel"],
+.dashboard-content-area input[type="date"],
+.dashboard-content-area input[type="time"],
+.dashboard-content-area input[type="search"],
+.dashboard-content-area input[type="url"],
+.dashboard-content-area textarea,
+.dashboard-content-area select,
+.dashboard-content input[type="text"],
+.dashboard-content input[type="email"],
+.dashboard-content input[type="password"],
+.dashboard-content input[type="number"],
+.dashboard-content input[type="tel"],
+.dashboard-content input[type="date"],
+.dashboard-content input[type="time"],
+.dashboard-content input[type="search"],
+.dashboard-content input[type="url"],
+.dashboard-content textarea,
+.dashboard-content select,
+.dashboard-container input[type="text"],
+.dashboard-container input[type="email"],
+.dashboard-container input[type="password"],
+.dashboard-container input[type="number"],
+.dashboard-container input[type="tel"],
+.dashboard-container input[type="date"],
+.dashboard-container input[type="time"],
+.dashboard-container input[type="search"],
+.dashboard-container input[type="url"],
+.dashboard-container textarea,
+.dashboard-container select {
+  border-color: #616161 !important;
+}
+
+.dashboard-content-area input[type="text"]:hover,
+.dashboard-content-area input[type="email"]:hover,
+.dashboard-content-area input[type="password"]:hover,
+.dashboard-content-area input[type="number"]:hover,
+.dashboard-content-area input[type="tel"]:hover,
+.dashboard-content-area input[type="date"]:hover,
+.dashboard-content-area input[type="time"]:hover,
+.dashboard-content-area input[type="search"]:hover,
+.dashboard-content-area input[type="url"]:hover,
+.dashboard-content-area textarea:hover,
+.dashboard-content-area select:hover,
+.dashboard-content input[type="text"]:hover,
+.dashboard-content input[type="email"]:hover,
+.dashboard-content input[type="password"]:hover,
+.dashboard-content input[type="number"]:hover,
+.dashboard-content input[type="tel"]:hover,
+.dashboard-content input[type="date"]:hover,
+.dashboard-content input[type="time"]:hover,
+.dashboard-content input[type="search"]:hover,
+.dashboard-content input[type="url"]:hover,
+.dashboard-content textarea:hover,
+.dashboard-content select:hover,
+.dashboard-container input[type="text"]:hover,
+.dashboard-container input[type="email"]:hover,
+.dashboard-container input[type="password"]:hover,
+.dashboard-container input[type="number"]:hover,
+.dashboard-container input[type="tel"]:hover,
+.dashboard-container input[type="date"]:hover,
+.dashboard-container input[type="time"]:hover,
+.dashboard-container input[type="search"]:hover,
+.dashboard-container input[type="url"]:hover,
+.dashboard-container textarea:hover,
+.dashboard-container select:hover {
+  border-color: #616161 !important;
+}
+
+.dashboard-content-area input[type="text"]:focus,
+.dashboard-content-area input[type="email"]:focus,
+.dashboard-content-area input[type="password"]:focus,
+.dashboard-content-area input[type="number"]:focus,
+.dashboard-content-area input[type="tel"]:focus,
+.dashboard-content-area input[type="date"]:focus,
+.dashboard-content-area input[type="time"]:focus,
+.dashboard-content-area input[type="search"]:focus,
+.dashboard-content-area input[type="url"]:focus,
+.dashboard-content-area textarea:focus,
+.dashboard-content-area select:focus,
+.dashboard-content input[type="text"]:focus,
+.dashboard-content input[type="email"]:focus,
+.dashboard-content input[type="password"]:focus,
+.dashboard-content input[type="number"]:focus,
+.dashboard-content input[type="tel"]:focus,
+.dashboard-content input[type="date"]:focus,
+.dashboard-content input[type="time"]:focus,
+.dashboard-content input[type="search"]:focus,
+.dashboard-content input[type="url"]:focus,
+.dashboard-content textarea:focus,
+.dashboard-content select:focus,
+.dashboard-container input[type="text"]:focus,
+.dashboard-container input[type="email"]:focus,
+.dashboard-container input[type="password"]:focus,
+.dashboard-container input[type="number"]:focus,
+.dashboard-container input[type="tel"]:focus,
+.dashboard-container input[type="date"]:focus,
+.dashboard-container input[type="time"]:focus,
+.dashboard-container input[type="search"]:focus,
+.dashboard-container input[type="url"]:focus,
+.dashboard-container textarea:focus,
+.dashboard-container select:focus {
+  border-color: #616161 !important;
 }
 
 input[type="text"]::placeholder,
