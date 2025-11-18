@@ -166,16 +166,18 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const logoutButtonStyles = {
     ...menuItemBaseStyles,
-    background: '#dc2626',
-    color: '#ffffff',
-    border: '1px solid #dc2626',
+    background: 'transparent',
+    backgroundColor: 'transparent',
+    color: '#dc2626',
+    border: '1px solid transparent',
     fontWeight: '600',
   };
 
   const logoutButtonHoverStyles = {
-    background: '#b91c1c',
-    border: '1px solid #b91c1c',
-    color: '#ffffff',
+    background: 'transparent',
+    backgroundColor: 'transparent',
+    border: '1px solid transparent',
+    color: '#dc2626',
   };
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
