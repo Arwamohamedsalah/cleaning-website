@@ -116,8 +116,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الطلبات</h3>
@@ -138,7 +138,7 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'auto auto', 
-        gap: isMobile ? '24px' : '20px', 
+        gap: isMobile ? '24px' : '24px', 
         marginBottom: isMobile ? '24px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
         width: isMobile ? '100%' : 'auto',
@@ -204,7 +204,7 @@ const Reports = () => {
         padding: isMobile ? '12px' : '20px', 
         marginBottom: isMobile ? '24px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
-        margin: isMobile ? '0 auto 24px auto' : '0 auto 24px auto',
+        margin: isMobile ? '0 auto' : '0 auto',
         width: isMobile ? '100%' : 'auto',
         display: 'flex',
         flexDirection: 'column',
@@ -223,7 +223,7 @@ const Reports = () => {
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0',
         width: isMobile ? '100%' : 'auto',
-        marginBottom: isMobile ? '16px' : '24px'
+        marginBottom: isMobile ? '24px' : '24px'
       }}>
         <div style={{ marginBottom: isMobile ? '12px' : '16px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
@@ -283,8 +283,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الإيرادات</h3>
@@ -305,8 +305,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: isMobile ? '16px' : '30px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
@@ -390,8 +390,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي العاملات</h3>
@@ -408,8 +408,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: isMobile ? '16px' : '30px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
@@ -490,8 +490,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: isMobile ? '12px' : '20px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        gap: isMobile ? '24px' : '24px', 
+        marginBottom: isMobile ? '24px' : '24px' 
       }}>
         <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
           <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>نسبة الرضا</h3>
