@@ -139,9 +139,17 @@ const Reports = () => {
           ? '1fr' 
           : 'repeat(auto-fit, minmax(400px, 1fr))', 
         gap: isMobile ? '16px' : '30px', 
-        marginBottom: isMobile ? '20px' : '30px' 
+        marginBottom: isMobile ? '20px' : '30px',
+        maxWidth: isMobile ? '100%' : 'none',
+        margin: isMobile ? '0 auto' : '0',
+        width: isMobile ? '100%' : 'auto'
       }}>
-        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+        <GlassCard style={{ 
+          padding: isMobile ? '16px' : '30px',
+          maxWidth: isMobile ? '100%' : 'none',
+          margin: isMobile ? '0 auto' : '0',
+          width: isMobile ? '100%' : 'auto'
+        }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
             <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات الشهرية</h3>
           </div>
@@ -169,7 +177,12 @@ const Reports = () => {
           </ResponsiveContainer>
         </GlassCard>
 
-        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+        <GlassCard style={{ 
+          padding: isMobile ? '16px' : '30px',
+          maxWidth: isMobile ? '100%' : 'none',
+          margin: isMobile ? '0 auto' : '0',
+          width: isMobile ? '100%' : 'auto'
+        }}>
           <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
             <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب الحالة</h3>
           </div>
@@ -177,16 +190,27 @@ const Reports = () => {
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: isMobile ? '16px' : '30px', marginBottom: isMobile ? '20px' : '30px' }}>
+      <GlassCard style={{ 
+        padding: isMobile ? '16px' : '30px', 
+        marginBottom: isMobile ? '20px' : '30px',
+        maxWidth: isMobile ? '100%' : 'none',
+        margin: isMobile ? '0 auto 20px auto' : '0 0 30px 0',
+        width: isMobile ? '100%' : 'auto'
+      }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
         </div>
         <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
       </GlassCard>
 
-      <div className="dashboard-table-card" style={{ padding: isMobile ? '16px' : '30px' }}>
+      <div className="dashboard-table-card" style={{ 
+        padding: isMobile ? '16px' : '30px',
+        maxWidth: isMobile ? '100%' : 'none',
+        margin: isMobile ? '0 auto' : '0',
+        width: isMobile ? '100%' : 'auto'
+      }}>
         <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
-          <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
+          <h3 style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
         </div>
         <div style={{ overflowX: 'auto' }}>
           {ordersData.length === 0 ? (
