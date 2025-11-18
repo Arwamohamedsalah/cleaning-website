@@ -249,12 +249,12 @@ const Reports = () => {
               <tbody>
                 {ordersData.map((row, index) => (
                   <tr key={index}>
-                    <td>{row.name}</td>
-                    <td>{row.orders}</td>
-                    <td>{row.completed}</td>
-                    <td>{row.inProgress}</td>
-                    <td>{row.pending}</td>
-                    <td>{row.cancelled}</td>
+                    <td>{row.name || '-'}</td>
+                    <td>{row.orders || 0}</td>
+                    <td>{row.completed || 0}</td>
+                    <td>{row.inProgress || 0}</td>
+                    <td>{row.pending || 0}</td>
+                    <td>{row.cancelled || 0}</td>
                     <td>{row.orders > 0 ? ((row.completed / row.orders) * 100).toFixed(1) : 0}%</td>
                   </tr>
                 ))}
