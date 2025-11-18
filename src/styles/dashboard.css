@@ -357,6 +357,22 @@
   color: #ffffff !important;
 }
 
+/* Force white text for Settings page tabs when active (blue background) */
+button[style*="background: #374dbe"],
+button[style*="background: '#374dbe'"],
+button[style*="background:#374dbe"] {
+  color: #ffffff !important;
+}
+
+button[style*="background: #374dbe"] *,
+button[style*="background: '#374dbe'"] *,
+button[style*="background:#374dbe"] *,
+button[style*="background: #374dbe"] span,
+button[style*="background: '#374dbe'"] span,
+button[style*="background:#374dbe"] span {
+  color: #ffffff !important;
+}
+
 .dashboard-sidebar .menu-item .icon {
   font-size: 18px;
   width: 22px;
