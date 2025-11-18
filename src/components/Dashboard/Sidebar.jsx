@@ -96,7 +96,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     height: '45px',
     borderRadius: '10px',
     objectFit: 'cover',
-    border: '2px solid #3b82f6',
+    border: '2px solid #374dbe',
   };
 
   const logoTextStyles = {
@@ -133,14 +133,14 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const menuItemActiveStyles = {
     ...menuItemBaseStyles,
-    background: '#3b82f6',
+    background: '#374dbe',
     color: '#ffffff',
-    border: '1px solid #3b82f6',
+    border: '1px solid #374dbe',
   };
 
   const menuItemHoverStyles = {
     background: '#f1f5f9',
-    color: '#3b82f6',
+    color: '#374dbe',
     border: '1px solid #e2e8f0',
   };
 

@@ -386,20 +386,22 @@ const Discounts = () => {
                         style={{
                           flex: 1,
                           padding: '10px 16px',
-                          background: '#3b82f6',
-                          border: '1px solid #3b82f6',
+                          background: '#374dbe',
+                          border: '1px solid #374dbe',
                           borderRadius: '8px',
                           cursor: 'pointer',
-                          color: 'white',
+                          color: '#ffffff',
                           fontWeight: 600,
                           fontSize: '14px',
                           transition: 'all 0.3s',
                         }}
                         onMouseEnter={(e) => {
-                          e.target.style.background = '#2563eb';
+                          e.target.style.background = '#2d3fa0';
+                          e.target.style.color = '#ffffff';
                         }}
                         onMouseLeave={(e) => {
-                          e.target.style.background = '#3b82f6';
+                          e.target.style.background = '#374dbe';
+                          e.target.style.color = '#ffffff';
                         }}
                       >
                         تعديل

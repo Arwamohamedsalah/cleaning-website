@@ -707,8 +707,8 @@ const Assistants = () => {
                       <button 
                         onClick={() => handleViewDetails(assistant)}
                         style={{
-                          background: '#3b82f6',
-                          border: '1px solid #3b82f6',
+                          background: '#374dbe',
+                          border: '1px solid #374dbe',
                           borderRadius: '8px',
                           padding: '8px 16px',
                           cursor: 'pointer',
@@ -718,10 +718,12 @@ const Assistants = () => {
                           fontSize: '14px',
                         }}
                         onMouseEnter={(e) => {
-                          e.target.style.background = '#2563eb';
+                          e.target.style.background = '#2d3fa0';
+                          e.target.style.color = '#ffffff';
                         }}
                         onMouseLeave={(e) => {
-                          e.target.style.background = '#3b82f6';
+                          e.target.style.background = '#374dbe';
+                          e.target.style.color = '#ffffff';
                         }}
                       >
                         عرض
@@ -847,8 +849,8 @@ const Assistants = () => {
                         <button 
                           onClick={() => handleViewWorkerDetails(worker)}
                           style={{
-                            background: '#3b82f6',
-                            border: '1px solid #3b82f6',
+                            background: '#374dbe',
+                            border: '1px solid #374dbe',
                             borderRadius: '8px',
                             padding: '8px 16px',
                             cursor: 'pointer',
@@ -858,10 +860,12 @@ const Assistants = () => {
                             fontSize: '14px',
                           }}
                           onMouseEnter={(e) => {
-                            e.target.style.background = '#2563eb';
+                            e.target.style.background = '#2d3fa0';
+                            e.target.style.color = '#ffffff';
                           }}
                           onMouseLeave={(e) => {
-                            e.target.style.background = '#3b82f6';
+                            e.target.style.background = '#374dbe';
+                            e.target.style.color = '#ffffff';
                           }}
                         >
                           عرض
