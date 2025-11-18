@@ -543,14 +543,14 @@ const Reports = () => {
         display: 'flex',
         flexDirection: 'column',
         marginRight: isMobile ? '0' : `${sidebarWidthValue}px`,
-        paddingTop: isMobile ? '90px' : '90px',
+        paddingTop: isMobile ? '100px' : '90px',
         transition: 'margin-right 0.3s ease',
       }}>
         <TopBar 
           pageTitle="التقارير"
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: isMobile ? '20px' : '40px', paddingTop: isMobile ? '24px' : '40px', flex: 1 }}>
+        <div style={{ padding: isMobile ? '20px' : '40px', paddingTop: isMobile ? '32px' : '40px', flex: 1 }}>
           {/* Report Type Selection */}
           <div style={{ 
             display: 'grid', 
