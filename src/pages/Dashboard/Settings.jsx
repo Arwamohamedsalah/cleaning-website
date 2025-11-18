@@ -1177,9 +1177,9 @@ const Settings = () => {
                         borderRadius: '10px',
                         border: 'none',
                         background: activeTab === tab.id
-                          ? 'transparent'
+                          ? '#ffffff'
                           : 'rgba(255, 255, 255, 0.3)',
-                        color: activeTab === tab.id ? '#ffffff' : 'var(--text-primary)',
+                        color: activeTab === tab.id ? '#374dbe' : 'var(--text-primary)',
                         fontWeight: activeTab === tab.id ? 700 : 500,
                         cursor: 'pointer',
                         transition: 'none',
