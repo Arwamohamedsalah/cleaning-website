@@ -1182,7 +1182,7 @@ const Settings = () => {
                         color: activeTab === tab.id ? 'white' : 'var(--text-primary)',
                         fontWeight: activeTab === tab.id ? 700 : 500,
                         cursor: 'pointer',
-                        transition: 'all 0.3s',
+                        transition: 'none',
                         textAlign: 'right',
                         display: 'flex',
                         alignItems: 'center',
