@@ -54,10 +54,25 @@ nano /var/www/cleaning/backend/.env
 - `PORT=3000`
 - `NODE_ENV=production`
 
-### 4. إعادة تشغيل Backend
+### 4. التحقق من عمليات PM2 وإعادة تشغيل Backend
 
 ```bash
+# التحقق من العمليات الحالية
+pm2 list
+
+# إذا كانت العملية موجودة باسم آخر، استخدم الاسم الصحيح
+# أو إذا لم تكن موجودة، ابدأها:
+cd /var/www/cleaning/backend
+pm2 start server.js --name cleaning-backend
+
+# أو استخدم ملف ecosystem
+cd /var/www/cleaning
+pm2 start pm2-ecosystem.config.js
+
+# ثم إعادة التشغيل
 pm2 restart cleaning-backend
+# أو
+pm2 restart all
 ```
 
 ---
@@ -85,9 +100,25 @@ rm -rf /var/www/client/*
 cp -r dist/* /var/www/client/
 
 # 6. إعادة تشغيل Backend
+# أولاً تحقق من العمليات الموجودة
+pm2 list
+
+# إذا كانت العملية موجودة:
 pm2 restart cleaning-backend
 
-# 7. التحقق من الحالة
+# إذا لم تكن موجودة، ابدأها:
+cd /var/www/cleaning
+pm2 start pm2-ecosystem.config.js
+
+# أو يدوياً:
+cd /var/www/cleaning/backend
+pm2 start server.js --name cleaning-backend --env production
+
+# 7. حفظ قائمة PM2 للتشغيل التلقائي
+pm2 save
+pm2 startup
+
+# 8. التحقق من الحالة
 pm2 status
 pm2 logs cleaning-backend --lines 20
 ```
