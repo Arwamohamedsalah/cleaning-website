@@ -201,21 +201,20 @@ const Reports = () => {
       </div>
 
       <GlassCard style={{ 
-        padding: isMobile ? '12px' : '14px', 
+        padding: isMobile ? '12px' : '20px', 
         marginBottom: isMobile ? '16px' : '24px',
-        maxWidth: isMobile ? '100%' : '320px',
+        maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto 16px auto' : '0 auto 24px auto',
-        width: isMobile ? '100%' : '320px',
-        aspectRatio: isMobile ? '1' : '1',
+        width: isMobile ? '100%' : 'auto',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
       }}>
-        <div style={{ marginBottom: isMobile ? '8px' : '8px' }}>
-          <h3 style={{ fontSize: isMobile ? '14px' : '15px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
+        <div style={{ marginBottom: isMobile ? '8px' : '16px' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '20px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? '100%' : '260px'} />
+          <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? '100%' : '400px'} />
         </div>
       </GlassCard>
 
