@@ -223,7 +223,7 @@ const Reports = () => {
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0',
         width: isMobile ? '100%' : 'auto',
-        marginTop: isMobile ? '40px' : '48px',
+        marginTop: isMobile ? '60px' : '55px',
         marginBottom: isMobile ? '28px' : '36px'
       }}>
         <div style={{ marginBottom: isMobile ? '12px' : '16px' }}>
@@ -543,7 +543,7 @@ const Reports = () => {
         display: 'flex',
         flexDirection: 'column',
         marginRight: isMobile ? '0' : `${sidebarWidthValue}px`,
-        paddingTop: isMobile ? '70px' : '90px',
+        paddingTop: isMobile ? '90px' : '90px',
         transition: 'margin-right 0.3s ease',
       }}>
         <TopBar 
