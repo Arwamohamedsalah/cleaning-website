@@ -138,8 +138,8 @@ const Reports = () => {
         gridTemplateColumns: isMobile 
           ? '1fr' 
           : 'auto auto', 
-        gap: isMobile ? '20px' : '20px', 
-        marginBottom: isMobile ? '20px' : '24px',
+        gap: isMobile ? '24px' : '20px', 
+        marginBottom: isMobile ? '24px' : '24px',
         maxWidth: isMobile ? '100%' : 'none',
         width: isMobile ? '100%' : 'auto',
         justifyContent: isMobile ? 'stretch' : 'center'
