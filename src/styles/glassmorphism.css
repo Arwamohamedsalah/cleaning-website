@@ -41,9 +41,11 @@ p, span, div {
 .dashboard-content-area .glass-card:hover,
 .dashboard-content .glass-card:hover,
 .dashboard-container .glass-card:hover {
-  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05) !important;
   border-color: #bfdbfe !important;
-  background: #f0f9ff !important;
+  background: #ffffff !important;
+  transform: none !important;
+  /* No hover effects */
 }
 
 .dashboard-content-area .glass-card *,

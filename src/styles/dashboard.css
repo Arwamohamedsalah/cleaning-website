@@ -39,6 +39,7 @@
   transform: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #bfdbfe;
+  /* No hover effects */
 }
 
 .dashboard-stats-card:hover::before {
@@ -96,13 +97,14 @@
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .dashboard-chart-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #bfdbfe;
-  transform: translateY(-2px);
+  transform: none;
+  /* No hover effects */
 }
 
 .dashboard-chart-card h3 {
@@ -126,9 +128,10 @@
 }
 
 .dashboard-table-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #bfdbfe;
   transform: none;
+  /* No hover effects */
 }
 
 .dashboard-table-card h3 {
@@ -778,7 +781,7 @@ button[style*="background:#374dbe"] span {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .swiper-button-next:after,
@@ -799,7 +802,7 @@ button[style*="background:#374dbe"] span {
   opacity: 1 !important;
   width: 8px !important;
   height: 8px !important;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .swiper-pagination-bullet-active {
