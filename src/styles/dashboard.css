@@ -345,6 +345,13 @@
   font-size: 18px;
   width: 22px;
   text-align: center;
+  background: transparent !important;
+}
+
+.dashboard-sidebar .menu-item span,
+.dashboard-sidebar .menu-item .icon,
+.dashboard-sidebar span[style*="iconStyles"] {
+  background: transparent !important;
 }
 
 /* Sidebar Menu Scrollbar */

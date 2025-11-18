@@ -151,6 +151,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     justifyContent: 'center',
     width: '24px',
     height: '24px',
+    background: 'transparent',
   };
 
   const logoutSectionStyles = {
