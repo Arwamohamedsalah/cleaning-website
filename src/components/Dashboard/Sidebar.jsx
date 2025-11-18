@@ -261,8 +261,8 @@ const Sidebar = ({ isOpen, onClose }) => {
               }
             }}
           >
-            <span style={iconStyles}>{item.icon}</span>
-            <span>{item.label}</span>
+            <span style={{...iconStyles, color: isActive(item.path) ? '#ffffff' : 'inherit'}}>{item.icon}</span>
+            <span style={{ color: isActive(item.path) ? '#ffffff' : 'inherit' }}>{item.label}</span>
           </Link>
         ))}
         {/* Profile - Available for all users */}
@@ -285,8 +285,8 @@ const Sidebar = ({ isOpen, onClose }) => {
             }
           }}
         >
-          <span style={iconStyles}>👤</span>
-          <span>الملف الشخصي</span>
+          <span style={{...iconStyles, color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit'}}>👤</span>
+          <span style={{ color: isActive('/dashboard/profile') ? '#ffffff' : 'inherit' }}>الملف الشخصي</span>
         </Link>
         {settingsItem && (
           <Link 
@@ -308,8 +308,8 @@ const Sidebar = ({ isOpen, onClose }) => {
               }
             }}
           >
-            <span style={iconStyles}>{settingsItem.icon}</span>
-            <span>{settingsItem.label}</span>
+            <span style={{...iconStyles, color: isActive(settingsItem.path) ? '#ffffff' : 'inherit'}}>{settingsItem.icon}</span>
+            <span style={{ color: isActive(settingsItem.path) ? '#ffffff' : 'inherit' }}>{settingsItem.label}</span>
           </Link>
         )}
       </div>
