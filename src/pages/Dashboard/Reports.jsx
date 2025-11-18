@@ -219,13 +219,14 @@ const Reports = () => {
       </GlassCard>
 
       <div className="dashboard-table-card" style={{ 
-        padding: isMobile ? '16px' : '30px',
+        padding: isMobile ? '12px' : '20px',
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0',
-        width: isMobile ? '100%' : 'auto'
+        width: isMobile ? '100%' : 'auto',
+        marginBottom: isMobile ? '16px' : '24px'
       }}>
-        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
-          <h3 style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
+        <div style={{ marginBottom: isMobile ? '12px' : '16px' }}>
+          <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
         </div>
         <div style={{ overflowX: 'auto' }}>
           {ordersData.length === 0 ? (
