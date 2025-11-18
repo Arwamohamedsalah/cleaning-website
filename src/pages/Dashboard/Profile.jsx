@@ -242,14 +242,14 @@ const Profile = () => {
                 width: isMobile ? '80px' : '120px',
                 height: isMobile ? '80px' : '120px',
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
+                background: '#374dbe',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: isMobile ? '32px' : '48px',
-                color: '#374dbe',
+                color: '#ffffff',
                 flexShrink: 0,
-                boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)',
+                boxShadow: '0 8px 32px rgba(55, 77, 190, 0.4)',
               }}>
                 {formData.name?.[0] || '👤'}
               </div>

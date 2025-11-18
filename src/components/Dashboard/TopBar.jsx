@@ -79,21 +79,21 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
-                  color: '#374dbe',
+                  background: '#374dbe',
+                  color: '#ffffff',
                   fontSize: '18px',
                   fontWeight: '700',
-                  boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
+                  boxShadow: '0 4px 20px rgba(55, 77, 190, 0.4)',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   lineHeight: '1',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
-                  e.currentTarget.style.boxShadow = '0 6px 30px rgba(139, 92, 246, 0.6)';
+                  e.currentTarget.style.boxShadow = '0 6px 30px rgba(55, 77, 190, 0.6)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
-                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(55, 77, 190, 0.4)';
                 }}
               >
                 {user?.name?.[0] || '👤'}
@@ -376,8 +376,8 @@ const TopBar = ({ pageTitle, onSearch, onMenuToggle }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 25%, #6366F1 50%, #4F46E5 75%, #4338CA 100%)',
-                color: '#374dbe',
+                background: '#374dbe',
+                color: '#ffffff',
                 fontSize: '20px',
                 fontWeight: '700',
                 boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)',
