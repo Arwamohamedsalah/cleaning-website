@@ -40,7 +40,7 @@
   /* Gradients - Light Theme */
   --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
   --secondary-gradient: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+  --accent-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
   --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #e0f2fe 100%);
   --hero-gradient: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #e0f2fe 100%);
   
@@ -71,7 +71,7 @@
 [data-theme="light"] {
   --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
   --secondary-gradient: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+  --accent-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
   --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #e0f2fe 100%);
   --card-bg: #ffffff;
   --card-border: #bfdbfe;
