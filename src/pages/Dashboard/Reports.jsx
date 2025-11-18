@@ -111,27 +111,41 @@ const Reports = () => {
 
     return (
       <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>إجمالي الطلبات</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{ordersReportData.totalOrders}</p>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الطلبات</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{ordersReportData.totalOrders}</p>
         </div>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>مكتملة</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#059669', letterSpacing: '-0.5px' }}>{ordersReportData.completedOrders}</p>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>مكتملة</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#059669', letterSpacing: '-0.5px' }}>{ordersReportData.completedOrders}</p>
         </div>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>معدل الإتمام</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{ordersReportData.completionRate}%</p>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>معدل الإتمام</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{ordersReportData.completionRate}%</p>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '30px', marginBottom: '30px' }}>
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>الطلبات الشهرية</h3>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(400px, 1fr))', 
+        gap: isMobile ? '16px' : '30px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات الشهرية</h3>
           </div>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
             <BarChart data={ordersData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
               <XAxis dataKey="name" stroke="#64748B" style={{ fontSize: '12px' }} />
@@ -155,23 +169,23 @@ const Reports = () => {
           </ResponsiveContainer>
         </GlassCard>
 
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>الطلبات حسب الحالة</h3>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب الحالة</h3>
           </div>
-          <PieChart data={ordersByStatus} dataKey="value" nameKey="name" height={300} />
+          <PieChart data={ordersByStatus} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
         </GlassCard>
       </div>
 
-      <GlassCard style={{ padding: '30px', marginBottom: '30px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '20px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
+      <GlassCard style={{ padding: isMobile ? '16px' : '30px', marginBottom: isMobile ? '20px' : '30px' }}>
+        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+          <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الطلبات حسب نوع الخدمة</h3>
         </div>
-        <PieChart data={ordersByService} dataKey="value" nameKey="name" height={300} />
+        <PieChart data={ordersByService} dataKey="value" nameKey="name" height={isMobile ? 250 : 300} />
       </GlassCard>
 
-      <div className="dashboard-table-card" style={{ padding: '30px' }}>
-        <div style={{ marginBottom: '20px' }}>
+      <div className="dashboard-table-card" style={{ padding: isMobile ? '16px' : '30px' }}>
+        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
           <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.3px' }}>جدول تفصيلي للطلبات</h3>
         </div>
         <div style={{ overflowX: 'auto' }}>
@@ -224,27 +238,41 @@ const Reports = () => {
 
     return (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>إجمالي الإيرادات</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{revenueReportData.totalRevenue?.toLocaleString() || 0} ر.س</p>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الإيرادات</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{revenueReportData.totalRevenue?.toLocaleString() || 0} ر.س</p>
         </div>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>إجمالي الأرباح</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#059669', letterSpacing: '-0.5px' }}>{revenueReportData.totalProfit?.toLocaleString() || 0} ر.س</p>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الأرباح</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#059669', letterSpacing: '-0.5px' }}>{revenueReportData.totalProfit?.toLocaleString() || 0} ر.س</p>
         </div>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>متوسط الشهري</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{revenueReportData.averageMonthly?.toLocaleString() || 0} ر.س</p>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>متوسط الشهري</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{revenueReportData.averageMonthly?.toLocaleString() || 0} ر.س</p>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '30px', marginBottom: '30px' }}>
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>الإيرادات والأرباح الشهرية</h3>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(400px, 1fr))', 
+        gap: isMobile ? '16px' : '30px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الإيرادات والأرباح الشهرية</h3>
           </div>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
             <BarChart data={revenueData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
               <XAxis dataKey="name" stroke="#64748B" style={{ fontSize: '12px' }} />
@@ -267,17 +295,17 @@ const Reports = () => {
           </ResponsiveContainer>
         </GlassCard>
 
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>الإيرادات حسب نوع الخدمة</h3>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>الإيرادات حسب نوع الخدمة</h3>
           </div>
           <PieChart data={revenueByService} dataKey="value" nameKey="name" height={300} />
         </GlassCard>
       </div>
 
       <GlassCard style={{ padding: '30px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '20px', fontWeight: 700 }}>جدول تفصيلي للإيرادات</h3>
+        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+          <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي للإيرادات</h3>
         </div>
         <div style={{ overflowX: 'auto' }}>
           <table className="glass-table">
@@ -317,23 +345,37 @@ const Reports = () => {
 
     return (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>إجمالي العاملات</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{workersReportData.totalWorkers || 0}</p>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي العاملات</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.5px' }}>{workersReportData.totalWorkers || 0}</p>
         </div>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>إجمالي الطلبات</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{workersReportData.totalOrders || 0}</p>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>إجمالي الطلبات</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{workersReportData.totalOrders || 0}</p>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '30px', marginBottom: '30px' }}>
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>أداء العاملات</h3>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(400px, 1fr))', 
+        gap: isMobile ? '16px' : '30px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>أداء العاملات</h3>
           </div>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
             <BarChart data={workerPerformance}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
               <XAxis dataKey="name" stroke="#64748B" style={{ fontSize: '12px' }} />
@@ -355,17 +397,17 @@ const Reports = () => {
           </ResponsiveContainer>
         </GlassCard>
 
-        <GlassCard style={{ padding: '30px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700 }}>توزيع المهارات</h3>
+        <GlassCard style={{ padding: isMobile ? '16px' : '30px' }}>
+          <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+            <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>توزيع المهارات</h3>
           </div>
           <PieChart data={workerSkills} dataKey="value" nameKey="name" height={300} />
         </GlassCard>
       </div>
 
       <GlassCard style={{ padding: '30px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '20px', fontWeight: 700 }}>جدول تفصيلي لأداء العاملات</h3>
+        <div style={{ marginBottom: isMobile ? '16px' : '20px' }}>
+          <h3 style={{ fontSize: isMobile ? '16px' : '20px', fontWeight: 700 }}>جدول تفصيلي لأداء العاملات</h3>
         </div>
         <div style={{ overflowX: 'auto' }}>
           <table className="glass-table">
@@ -403,10 +445,17 @@ const Reports = () => {
 
     return (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-        <div className="dashboard-stats-card" style={{ padding: '20px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '10px', color: '#334155' }}>نسبة الرضا</h3>
-          <p style={{ fontSize: '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{satisfactionReportData.satisfactionRate || 0}%</p>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile 
+          ? '1fr' 
+          : 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: isMobile ? '12px' : '20px', 
+        marginBottom: isMobile ? '20px' : '30px' 
+      }}>
+        <div className="dashboard-stats-card" style={{ padding: isMobile ? '16px' : '20px', textAlign: 'center' }}>
+          <h3 style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: 600, marginBottom: isMobile ? '8px' : '10px', color: '#334155' }}>نسبة الرضا</h3>
+          <p style={{ fontSize: isMobile ? '28px' : '42px', fontWeight: 800, color: '#3b82f6', letterSpacing: '-0.5px' }}>{satisfactionReportData.satisfactionRate || 0}%</p>
         </div>
       </div>
       </>
@@ -454,15 +503,22 @@ const Reports = () => {
           pageTitle="التقارير"
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
         />
-        <div style={{ padding: '40px', flex: 1 }}>
+        <div style={{ padding: isMobile ? '16px' : '40px', flex: 1 }}>
           {/* Report Type Selection */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '40px' }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: isMobile 
+              ? 'repeat(auto-fit, minmax(140px, 1fr))' 
+              : 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: isMobile ? '12px' : '20px', 
+            marginBottom: isMobile ? '24px' : '40px' 
+          }}>
             {reportTypes.map((type) => (
               <GlassCard
                 key={type.id}
                 onClick={() => setActiveReport(type.id)}
                 style={{
-                  padding: '25px',
+                  padding: isMobile ? '16px' : '25px',
                   textAlign: 'center',
                   cursor: 'pointer',
                   border: activeReport === type.id
@@ -474,9 +530,9 @@ const Reports = () => {
                   transition: 'all 0.3s',
                 }}
               >
-                <div style={{ fontSize: '48px', marginBottom: '15px' }}>{type.icon}</div>
+                <div style={{ fontSize: isMobile ? '32px' : '48px', marginBottom: isMobile ? '10px' : '15px' }}>{type.icon}</div>
                 <h3 style={{
-                  fontSize: '18px',
+                  fontSize: isMobile ? '14px' : '18px',
                   fontWeight: activeReport === type.id ? 700 : 600,
                   color: activeReport === type.id ? '#3b82f6' : '#111827',
                 }}>
