@@ -30,9 +30,10 @@ const Modal = ({ isOpen, onClose, children, size = 'medium', title }) => {
         style={{ 
           ...sizeStyles[size], 
           width: '90%',
-          background: 'linear-gradient(135deg, rgba(37, 150, 190, 0.25) 0%, rgba(37, 150, 190, 0.3) 50%, rgba(37, 150, 190, 0.2) 100%)',
-          border: '2px solid rgba(37, 150, 190, 0.6)',
+          background: '#ffffff',
+          border: '1px solid #e5e7eb',
           padding: '30px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -42,8 +43,8 @@ const Modal = ({ isOpen, onClose, children, size = 'medium', title }) => {
             position: 'absolute',
             top: '20px',
             left: '20px',
-            background: 'rgba(255, 255, 255, 0.3)',
-            border: '1px solid rgba(255, 255, 255, 0.5)',
+            background: 'transparent',
+            border: 'none',
             borderRadius: '50%',
             width: '40px',
             height: '40px',
@@ -52,13 +53,8 @@ const Modal = ({ isOpen, onClose, children, size = 'medium', title }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'all 0.3s',
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'rgba(255, 154, 139, 0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.3)';
+            color: '#64748b',
+            transition: 'all 0.2s',
           }}
         >
           ×
@@ -67,7 +63,7 @@ const Modal = ({ isOpen, onClose, children, size = 'medium', title }) => {
           <h2 style={{
             fontSize: '24px',
             fontWeight: 700,
-            color: '#FFFFFF',
+            color: '#0f172a',
             marginBottom: '20px',
             textAlign: 'center',
             paddingTop: '10px',

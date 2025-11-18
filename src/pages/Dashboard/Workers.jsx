@@ -489,12 +489,6 @@ const Workers = () => {
                         transition: 'all 0.3s',
                         fontSize: '14px',
                       }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.5)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.3)';
-                      }}
                     >
                       تعديل
                     </button>
@@ -509,12 +503,6 @@ const Workers = () => {
                         color: '#f44336',
                         fontWeight: 600,
                         transition: 'all 0.3s',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(244, 67, 54, 0.3)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(244, 67, 54, 0.2)';
                       }}
                     >
                       حذف
@@ -545,7 +533,7 @@ const Workers = () => {
               <div style={{ display: 'grid', gap: '20px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>الاسم بالعربي *</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>الاسم بالعربي *</label>
                     <input
                       {...register('arabicName', { required: 'الاسم بالعربي مطلوب' })}
                       className="glass-input"
@@ -554,7 +542,7 @@ const Workers = () => {
                     {errors.arabicName && <p style={{ color: '#f44336', fontSize: '12px', marginTop: '5px' }}>{errors.arabicName.message}</p>}
                   </div>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>الاسم بالإنجليزي</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>الاسم بالإنجليزي</label>
                     <input
                       {...register('englishName')}
                       className="glass-input"
@@ -565,7 +553,7 @@ const Workers = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>الجنسية *</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>الجنسية *</label>
                     <input
                       {...register('nationality', { required: 'الجنسية مطلوبة' })}
                       className="glass-input"
@@ -574,7 +562,7 @@ const Workers = () => {
                     {errors.nationality && <p style={{ color: '#f44336', fontSize: '12px', marginTop: '5px' }}>{errors.nationality.message}</p>}
                   </div>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>العمر *</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>العمر *</label>
                     <input
                       type="number"
                       {...register('age', { required: 'العمر مطلوب', min: { value: 18, message: 'العمر يجب أن يكون 18 سنة على الأقل' }, max: { value: 65, message: 'العمر يجب أن يكون 65 سنة على الأكثر' } })}
@@ -597,7 +585,7 @@ const Workers = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>سنوات الخبرة</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>سنوات الخبرة</label>
                     <input
                       type="number"
                       {...register('experience', { min: 0 })}
@@ -606,7 +594,7 @@ const Workers = () => {
                     />
                   </div>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>السعر ($)</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>السعر ($)</label>
                     <input
                       type="number"
                       {...register('price', { min: 0 })}
@@ -619,7 +607,7 @@ const Workers = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                   <div>
-                    <label style={{ display: 'block', marginBottom: '5px', color: '#FFFFFF', fontWeight: 700 }}>الحالة</label>
+                    <label style={{ display: 'block', marginBottom: '5px', color: '#0f172a', fontWeight: 700 }}>الحالة</label>
                     <select
                       {...register('status')}
                       className="glass-select"
@@ -633,7 +621,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '10px', color: '#FFFFFF', fontWeight: 700 }}>المهارات</label>
+                  <label style={{ display: 'block', marginBottom: '10px', color: '#0f172a', fontWeight: 700 }}>المهارات</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {allSkills.map((skill) => (
                       <button
@@ -643,9 +631,9 @@ const Workers = () => {
                         style={{
                           padding: '8px 16px',
                           borderRadius: '20px',
-                          border: selectedSkills.includes(skill) ? '2px solid rgba(10, 40, 81, 1)' : '2px solid rgba(10, 40, 81, 0.3)',
-                          background: selectedSkills.includes(skill) ? 'rgba(10, 40, 81, 0.2)' : 'transparent',
-                          color: selectedSkills.includes(skill) ? '#FFFFFF' : '#FFFFFF',
+                          border: selectedSkills.includes(skill) ? '2px solid #374dbe' : '2px solid #e5e7eb',
+                          background: selectedSkills.includes(skill) ? '#374dbe' : 'transparent',
+                          color: selectedSkills.includes(skill) ? '#ffffff' : '#0f172a',
                           cursor: 'pointer',
                           fontWeight: 600,
                         }}
@@ -657,7 +645,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '10px', color: '#FFFFFF', fontWeight: 700 }}>اللغات</label>
+                  <label style={{ display: 'block', marginBottom: '10px', color: '#0f172a', fontWeight: 700 }}>اللغات</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {allLanguages.map((language) => (
                       <button
@@ -667,9 +655,9 @@ const Workers = () => {
                         style={{
                           padding: '8px 16px',
                           borderRadius: '20px',
-                          border: (watch('languages') || []).includes(language) ? '2px solid rgba(10, 40, 81, 1)' : '2px solid rgba(10, 40, 81, 0.3)',
-                          background: (watch('languages') || []).includes(language) ? 'rgba(10, 40, 81, 0.2)' : 'transparent',
-                          color: (watch('languages') || []).includes(language) ? '#FFFFFF' : '#FFFFFF',
+                          border: (watch('languages') || []).includes(language) ? '2px solid #374dbe' : '2px solid #e5e7eb',
+                          background: (watch('languages') || []).includes(language) ? '#374dbe' : 'transparent',
+                          color: (watch('languages') || []).includes(language) ? '#ffffff' : '#0f172a',
                           cursor: 'pointer',
                           fontWeight: 600,
                         }}
@@ -681,7 +669,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '10px', color: '#FFFFFF', fontWeight: 700 }}>الصور</label>
+                  <label style={{ display: 'block', marginBottom: '10px', color: '#0f172a', fontWeight: 700 }}>الصور</label>
                   <input
                     type="file"
                     accept="image/*"
@@ -690,10 +678,10 @@ const Workers = () => {
                     style={{ 
                       width: '100%', 
                       padding: '10px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      background: '#ffffff',
+                      border: '1px solid #e5e7eb',
                       borderRadius: '8px',
-                      color: '#FFFFFF',
+                      color: '#0f172a',
                       cursor: 'pointer',
                       marginBottom: '15px',
                     }}
@@ -715,7 +703,7 @@ const Workers = () => {
                               height: '100px',
                               objectFit: 'cover',
                               borderRadius: '8px',
-                              border: '2px solid rgba(255, 255, 255, 0.3)',
+                              border: '2px solid #e5e7eb',
                             }}
                           />
                           <button
@@ -725,8 +713,8 @@ const Workers = () => {
                               position: 'absolute',
                               top: '5px',
                               right: '5px',
-                              background: 'rgba(244, 67, 54, 0.9)',
-                              color: 'white',
+                              background: '#ef4444',
+                              color: '#ffffff',
                               border: 'none',
                               borderRadius: '50%',
                               width: '24px',
@@ -950,7 +938,7 @@ const Workers = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', marginBottom: '10px', color: '#FFFFFF', fontWeight: 700 }}>الصور</label>
+                  <label style={{ display: 'block', marginBottom: '10px', color: '#0f172a', fontWeight: 700 }}>الصور</label>
                   <input
                     type="file"
                     accept="image/*"
@@ -959,10 +947,10 @@ const Workers = () => {
                     style={{ 
                       width: '100%', 
                       padding: '10px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      background: '#ffffff',
+                      border: '1px solid #e5e7eb',
                       borderRadius: '8px',
-                      color: '#FFFFFF',
+                      color: '#0f172a',
                       cursor: 'pointer',
                       marginBottom: '15px',
                     }}
@@ -984,7 +972,7 @@ const Workers = () => {
                               height: '100px',
                               objectFit: 'cover',
                               borderRadius: '8px',
-                              border: '2px solid rgba(255, 255, 255, 0.3)',
+                              border: '2px solid #e5e7eb',
                             }}
                           />
                           <button
@@ -994,8 +982,8 @@ const Workers = () => {
                               position: 'absolute',
                               top: '5px',
                               right: '5px',
-                              background: 'rgba(244, 67, 54, 0.9)',
-                              color: 'white',
+                              background: '#ef4444',
+                              color: '#ffffff',
                               border: 'none',
                               borderRadius: '50%',
                               width: '24px',
@@ -1147,7 +1135,7 @@ const Workers = () => {
                                   height: '150px',
                                   objectFit: 'cover',
                                   borderRadius: '12px',
-                                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                                  border: '2px solid #e5e7eb',
                                   cursor: 'pointer',
                                 }}
                                 onClick={() => window.open(photo, '_blank')}
