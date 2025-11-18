@@ -558,6 +558,7 @@ const Reports = () => {
               ? 'repeat(auto-fit, minmax(140px, 1fr))' 
               : 'repeat(auto-fit, minmax(200px, 1fr))', 
             gap: isMobile ? '12px' : '20px', 
+            marginTop: isMobile ? '20px' : '24px',
             marginBottom: isMobile ? '28px' : '36px' 
           }}>
             {reportTypes.map((type) => (
