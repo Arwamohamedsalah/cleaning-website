@@ -1163,8 +1163,8 @@ const Settings = () => {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '24px' }}>{tab.icon}</span>
-                    <span style={{ fontSize: '16px', fontWeight: 600, color: '#0f172a' }}>{tab.label}</span>
+                    <span style={{ fontSize: '24px', background: 'transparent', backgroundColor: 'transparent' }}>{tab.icon}</span>
+                    <span style={{ fontSize: '16px', fontWeight: 600, color: '#ffffff' }}>{tab.label}</span>
                     <span style={{ marginLeft: 'auto', fontSize: '18px', color: '#64748b' }}>→</span>
                   </div>
                 </div>
@@ -1197,8 +1197,8 @@ const Settings = () => {
                         gap: '10px',
                       }}
                     >
-                      <span>{tab.icon}</span>
-                      <span>{tab.label}</span>
+                      <span style={{ background: 'transparent', backgroundColor: 'transparent' }}>{tab.icon}</span>
+                      <span style={{ color: activeTab === tab.id ? '#ffffff' : '#ffffff' }}>{tab.label}</span>
                     </button>
                   ))}
                 </div>
