@@ -264,24 +264,24 @@ p, span, div {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Modern Button Design */
+/* Modern Button Design - Unified Blue Color */
 .glass-button {
-  background: linear-gradient(135deg, #2596be 0%, #3ba8d0 50%, #52bae2 100%);
-  border: 2px solid rgba(37, 150, 190, 0.6);
+  background: #3b82f6 !important;
+  border: none !important;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   padding: 14px 36px;
-  color: white;
+  color: white !important;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(37, 150, 190, 0.4);
-  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  text-transform: none;
   letter-spacing: 0.5px;
 }
 
@@ -319,20 +319,18 @@ p, span, div {
 }
 
 .glass-button:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 35px rgba(37, 150, 190, 0.7),
-              0 0 0 4px rgba(37, 150, 190, 0.3),
-              0 0 30px rgba(37, 150, 190, 0.6),
-              0 0 60px rgba(37, 150, 190, 0.4);
-  border-color: rgba(37, 150, 190, 0.9);
-  background: linear-gradient(135deg, #1e88e5 0%, #2596be 50%, #2ba3d6 100%);
-  animation: buttonGlow 2s ease-in-out infinite;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5),
+              0 0 0 3px rgba(59, 130, 246, 0.2);
+  background: #2563eb !important;
+  border: none !important;
 }
 
 .glass-button:active {
   transform: translateY(-1px) scale(0.98);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(37, 150, 190, 0.6);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.6);
+  background: #1d4ed8 !important;
 }
 
 .glass-button:active::after {
@@ -1278,4 +1276,42 @@ input[type="search"]::placeholder,
 input[type="url"]::placeholder,
 textarea::placeholder {
   color: #64748b !important;
+}
+
+/* Dashboard Buttons - Unified Blue Color */
+.dashboard-content-area .glass-button,
+.dashboard-content .glass-button,
+.dashboard-container .glass-button {
+  background: #3b82f6 !important;
+  border: none !important;
+  color: white !important;
+}
+
+.dashboard-content-area .glass-button:hover,
+.dashboard-content .glass-button:hover,
+.dashboard-container .glass-button:hover {
+  background: #2563eb !important;
+  border: none !important;
+}
+
+.dashboard-content-area .glass-button:active,
+.dashboard-content .glass-button:active,
+.dashboard-container .glass-button:active {
+  background: #1d4ed8 !important;
+  border: none !important;
+}
+
+/* Dashboard regular buttons - Unified Blue Color */
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]),
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]),
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]) {
+  background: #3b82f6 !important;
+  border: none !important;
+  color: white !important;
+}
+
+.dashboard-content-area button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover,
+.dashboard-content button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover,
+.dashboard-container button:not(.glass-button-secondary):not([style*="rgba(244, 67, 54"]):not([style*="#f44336"]):not([style*="background: 'rgba(244"]):hover {
+  background: #2563eb !important;
 }

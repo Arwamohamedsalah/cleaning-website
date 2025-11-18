@@ -219,7 +219,7 @@ const Orders = () => {
               />
               <button style={{
                 padding: '12px 24px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                background: '#3b82f6',
                 border: 'none',
                 borderRadius: '12px',
                 color: '#ffffff',
@@ -229,11 +229,13 @@ const Orders = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
+                e.currentTarget.style.background = '#2563eb';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.background = '#3b82f6';
               }}
               >تصفية</button>
             </div>

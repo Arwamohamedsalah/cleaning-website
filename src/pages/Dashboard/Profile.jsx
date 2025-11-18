@@ -321,8 +321,8 @@ const Profile = () => {
                       onClick={handleSave}
                       className="dashboard-button"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%)',
-                        border: '1px solid rgba(139, 92, 246, 0.5)',
+                        background: '#3b82f6',
+                        border: 'none',
                         color: '#ffffff',
                         padding: '12px 24px',
                         borderRadius: '10px',
@@ -332,11 +332,13 @@ const Profile = () => {
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.transform = 'scale(1.05)';
-                        e.target.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                        e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
+                        e.target.style.background = '#2563eb';
                       }}
                       onMouseLeave={(e) => {
                         e.target.style.transform = 'scale(1)';
                         e.target.style.boxShadow = 'none';
+                        e.target.style.background = '#3b82f6';
                       }}
                     >
                       حفظ
@@ -371,8 +373,8 @@ const Profile = () => {
                     onClick={() => setIsEditMode(true)}
                     className="dashboard-button"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%)',
-                      border: '1px solid rgba(139, 92, 246, 0.5)',
+                      background: '#3b82f6',
+                      border: 'none',
                       color: '#ffffff',
                       padding: isMobile ? '8px 16px' : '12px 24px',
                       borderRadius: '12px',
@@ -383,11 +385,13 @@ const Profile = () => {
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = 'scale(1.05)';
-                      e.target.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                      e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
+                      e.target.style.background = '#2563eb';
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = 'scale(1)';
                       e.target.style.boxShadow = 'none';
+                      e.target.style.background = '#3b82f6';
                     }}
                   >
                     {isMobile ? 'تعديل' : 'تعديل الملف الشخصي'}
@@ -707,12 +711,10 @@ const Profile = () => {
                 disabled={passwordLoading}
                 className="dashboard-button"
                 style={{
-                  background: passwordLoading 
-                    ? 'rgba(139, 92, 246, 0.5)' 
-                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%)',
+                  background: passwordLoading ? '#93c5fd' : '#3b82f6',
                   cursor: passwordLoading ? 'not-allowed' : 'pointer',
                   opacity: passwordLoading ? 0.6 : 1,
-                  border: '1px solid rgba(139, 92, 246, 0.5)',
+                  border: 'none',
                   color: '#ffffff',
                   padding: '12px 24px',
                   borderRadius: '12px',
@@ -721,12 +723,16 @@ const Profile = () => {
                   width: 'fit-content',
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'scale(1.05)';
-                  e.target.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.4)';
+                  if (!passwordLoading) {
+                    e.target.style.transform = 'scale(1.05)';
+                    e.target.style.boxShadow = '0 4px 20px rgba(59, 130, 246, 0.4)';
+                    e.target.style.background = '#2563eb';
+                  }
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = 'scale(1)';
                   e.target.style.boxShadow = 'none';
+                  e.target.style.background = passwordLoading ? '#93c5fd' : '#3b82f6';
                 }}
               >
                 تغيير كلمة المرور

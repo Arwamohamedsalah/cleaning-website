@@ -362,11 +362,12 @@ const Workers = () => {
             <GlassButton
               onClick={handleAddNew}
               style={{
-                background: 'linear-gradient(135deg, #0a2851 0%, #0a2851 50%, #0a2851 100%)',
+                background: '#3b82f6',
                 color: 'white',
                 fontWeight: 700,
                 padding: '12px 24px',
                 fontSize: '16px',
+                border: 'none',
               }}
             >
               ➕ إضافة عاملة جديدة
@@ -759,7 +760,7 @@ const Workers = () => {
                   </GlassButton>
                   <GlassButton
                     type="submit"
-                    style={{ background: 'linear-gradient(135deg, #0a2851 0%, #0a2851 50%, #0a2851 100%)', color: 'white' }}
+                    style={{ background: '#3b82f6', color: 'white', border: 'none' }}
                   >
                     إضافة
                   </GlassButton>

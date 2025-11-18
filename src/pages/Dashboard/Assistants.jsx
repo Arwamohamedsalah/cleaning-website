@@ -592,11 +592,12 @@ const Assistants = () => {
             <GlassButton
               onClick={handleAddNew}
               style={{
-                background: 'linear-gradient(135deg, rgba(10, 40, 81, 1) 0%, rgba(10, 40, 81, 0.9) 50%, rgba(10, 40, 81, 1) 100%)',
+                background: '#3b82f6',
                 color: 'white',
                 fontWeight: 700,
                 padding: '12px 24px',
                 fontSize: '16px',
+                border: 'none',
               }}
             >
               ➕ إضافة {activeTab === 'assistants' ? 'استقدام' : 'عاملة'} جديد
@@ -1177,7 +1178,7 @@ const Assistants = () => {
                   </GlassButton>
                   <GlassButton
                     type="submit"
-                    style={{ background: 'linear-gradient(135deg, rgba(10, 40, 81, 1) 0%, rgba(10, 40, 81, 0.9) 50%, rgba(10, 40, 81, 1) 100%)', color: 'white' }}
+                    style={{ background: '#3b82f6', color: 'white', border: 'none' }}
                   >
                     إضافة
                   </GlassButton>
