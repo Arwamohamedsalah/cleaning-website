@@ -223,7 +223,7 @@ const Reports = () => {
         maxWidth: isMobile ? '100%' : 'none',
         margin: isMobile ? '0 auto' : '0',
         width: isMobile ? '100%' : 'auto',
-        marginTop: isMobile ? '28px' : '36px',
+        marginTop: isMobile ? '40px' : '48px',
         marginBottom: isMobile ? '28px' : '36px'
       }}>
         <div style={{ marginBottom: isMobile ? '12px' : '16px' }}>
